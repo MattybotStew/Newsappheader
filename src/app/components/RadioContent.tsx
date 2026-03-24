@@ -1,8 +1,8 @@
 import { Link } from 'react-router';
 import { Radio as RadioIcon } from 'lucide-react';
-import wdunAmLogo from '../../assets/radio-image-1.png';
-import wdunFmLogo from '../../assets/radio-image-2.png';
-import lakeLogo from '../../assets/radio-image-3.png';
+import wdunAmLogo from '../../assets/Image (WDUN AM 550).png';
+import wdunFmLogo from '../../assets/Image (WDUN FM 102.9).png';
+import lakeLogo from '../../assets/Image (94.5 The Lake).png';
 
 interface RadioStation {
   id: string;
