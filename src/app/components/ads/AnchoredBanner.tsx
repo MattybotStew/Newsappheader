@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import weaverLawBanner from 'figma:asset/c32522b368fd0595bbc044e71ef12f86b79ec203.png';
+import weaverLawBanner from '../../../assets/weaver-law-banner.png';
 
 interface AnchoredBannerProps {
   adUnit: string;

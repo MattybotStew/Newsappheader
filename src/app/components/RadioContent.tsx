@@ -1,8 +1,8 @@
 import { Link } from 'react-router';
 import { Radio as RadioIcon } from 'lucide-react';
-import wdunAmLogo from 'figma:asset/5a78d37c4747ccb6fe47c329ebf4f909801b7822.png';
-import wdunFmLogo from 'figma:asset/116c445cb92ab06f2fc685cc4d51dfef463f069a.png';
-import lakeLogo from 'figma:asset/cc8d54ae63152b9541f694f46c4507f237521aea.png';
+import wdunAmLogo from '../../assets/radio-image-1.png';
+import wdunFmLogo from '../../assets/radio-image-2.png';
+import lakeLogo from '../../assets/radio-image-3.png';
 
 interface RadioStation {
   id: string;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import weaverLawBanner from 'figma:asset/c32522b368fd0595bbc044e71ef12f86b79ec203.png';
+import weaverLawBanner from '../../../assets/weaver-law-banner.png';
 
 interface TopBannerAdProps {
   adUnit: string;
@@ -29,7 +29,7 @@ export function TopBannerAd({ adUnit }: TopBannerAdProps) {
   }
 
   return (
-    <div className="bg-white w-full border-b border-[#e5e7eb]">
+    <div className="bg-white w-full border-b border-[#e5e7eb] sticky top-[114px] z-40">
       <div className="flex flex-col items-center py-2">
         
         <a 

@@ -257,7 +257,7 @@ function LiveRadioBar() {
 
 export function Header() {
   return (
-    <div className="bg-[#1a3178] content-stretch flex flex-col gap-[2px] items-start pb-[10px] px-[16px] pt-[10px] relative shrink-0 w-full" data-name="TOP APP BAR">
+    <div className="bg-[#1a3178] content-stretch flex flex-col gap-[2px] items-start pb-[10px] px-[16px] pt-[10px] sticky top-0 z-50 shrink-0 w-full" data-name="TOP APP BAR">
       <Container />
       <LiveRadioBar />
     </div>

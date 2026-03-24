@@ -64,7 +64,7 @@ export function Footer() {
   ];
 
   return (
-    <div className="bg-[#011843] content-stretch flex items-start justify-center pb-[8px] pt-px relative w-full shrink-0" data-name="Nav - M3 NAVIGATION BAR">
+    <div className="bg-[#011843] content-stretch flex items-start justify-center pb-[8px] pt-px fixed bottom-0 left-0 right-0 z-50 w-full" data-name="Nav - M3 NAVIGATION BAR">
       <div aria-hidden="true" className="absolute border-[#011843] border-solid border-t inset-0 pointer-events-none shadow-[0px_-1px_3px_0px_rgba(0,0,0,0.3)]" />
       {tabs.map((tab) => (
         <NavButton
