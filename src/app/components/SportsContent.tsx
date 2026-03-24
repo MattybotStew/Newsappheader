@@ -1,9 +1,9 @@
 import { useState, useRef, TouchEvent, MouseEvent } from 'react';
 import { Link } from 'react-router';
-import placeholderImage from 'figma:asset/2b97325de4e56fe079f3ddbcfdc4d5b4aa816d2f.png';
 import { NativeAdArticleCard } from './ads/NativeAdArticleCard';
 import { adConfig } from '../config/adConfig';
 import { SportsTicker } from './SportsTicker';
+import { sportsArticles } from '../data/mockArticles';
 
 // Filter Chips Component
 function FilterChips() {
@@ -23,7 +23,7 @@ function FilterChips() {
   ];
 
   return (
-    <div className="px-4 py-3 bg-white border-b border-[#c1c7ce]">
+    <div className="px-4 py-3 bg-white border-b border-[#e5e7eb]">
       <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {filters.map((filter) => (
           <button
@@ -31,11 +31,11 @@ function FilterChips() {
             onClick={() => setSelectedFilter(filter)}
             className={`px-4 py-1.5 rounded-full whitespace-nowrap transition-colors shrink-0 ${
               selectedFilter === filter
-                ? 'bg-[#1976d2] text-white'
-                : 'bg-[#e8eef5] text-[#41484d] hover:bg-[#d9e3f0]'
+                ? 'bg-[#22c55e] text-white'
+                : 'bg-[#e8eef5] text-[#6b7280] hover:bg-[#d9e3f0]'
             }`}
           >
-            <span className="font-['Roboto:Medium',sans-serif] font-medium text-[13px]" style={{ fontVariationSettings: "'wdth' 100" }}>
+            <span className="font-['Kranto',sans-serif] font-semibold text-[13px]">
               {filter}
             </span>
           </button>
@@ -53,38 +53,23 @@ function HeroArticleSlider() {
   const [translateX, setTranslateX] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
   
-  const stories = [
-    {
-      category: 'High School',
-      title: "North Hall wins region championship with dominant 42-14 victory over rivals",
-      author: 'AccessNorthGA Sports',
-      time: '1 hour ago'
-    },
-    {
-      category: 'Baseball',
-      title: 'Gainesville High baseball team opens season with tournament win',
-      author: 'AccessNorthGA Sports',
-      time: '2 hours ago'
-    },
-    {
-      category: 'College Signing',
-      title: 'Five local athletes sign letters of intent on National Signing Day',
-      author: 'AccessNorthGA Sports',
-      time: '3 hours ago'
-    },
-    {
-      category: 'Basketball',
-      title: 'Flowery Branch girls basketball advances to regional finals',
-      author: 'AccessNorthGA Sports',
-      time: '5 hours ago'
-    },
-    {
-      category: 'Youth Sports',
-      title: 'Hall County youth soccer league announces spring registration',
-      author: 'AccessNorthGA Sports',
-      time: 'Yesterday'
-    }
-  ];
+  // Use top 5 sports articles for hero slider
+  const stories = sportsArticles.slice(0, 5).map((article, index) => {
+    const images = [
+      'https://images.unsplash.com/photo-1763479197379-93d1dcd229d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaWdoJTIwc2Nob29sJTIwZm9vdGJhbGwlMjBnYW1lJTIwYWN0aW9ufGVufDF8fHx8MTc3NDMwMTg5NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      'https://images.unsplash.com/photo-1762025930827-9f1dda45aff8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYXNrZXRiYWxsJTIwZ2FtZSUyMGFjdGlvbiUyMHNob3R8ZW58MXx8fHwxNzc0Mzc0Nzg0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      'https://images.unsplash.com/photo-1696250892381-597efcbb9094?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYXNlYmFsbCUyMGdhbWUlMjBwbGF5ZXJ8ZW58MXx8fHwxNzc0Mzc0Nzg1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      'https://images.unsplash.com/photo-1761225091881-0d3bda9f6d5a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2NjZXIlMjBnYW1lJTIwYWN0aW9ufGVufDF8fHx8MTc3NDM1NjUyMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      'https://images.unsplash.com/photo-1686947079063-f1e7a7dfc6a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcG9ydHMlMjBzdGFkaXVtJTIwY3Jvd2R8ZW58MXx8fHwxNzc0Mzc0Nzg3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
+    ];
+    return {
+      category: article.category,
+      title: article.title,
+      author: article.author,
+      time: article.timestamp,
+      imageUrl: images[index % images.length]
+    };
+  });
 
   const handleStart = (clientX: number) => {
     setIsDragging(true);
@@ -162,25 +147,25 @@ function HeroArticleSlider() {
               >
                 <div className="bg-[#dde3ea] h-[216px] overflow-clip rounded-2xl shadow-[0px_1px_3px_0px_rgba(0,0,0,0.12),0px_1px_2px_0px_rgba(0,0,0,0.08)] relative mx-1">
                   <img
-                    src={placeholderImage}
+                    src={story.imageUrl}
                     alt={story.title}
                     className="absolute inset-0 w-full h-full object-cover"
                     draggable={false}
                   />
-                  <div className="absolute bg-gradient-to-b from-[40%] from-[rgba(0,0,0,0)] inset-0 to-[rgba(0,0,0,0.78)]" />
+                  <div className="absolute bg-gradient-to-b from-[40%] from-[rgba(26,49,120,0)] inset-0 to-[rgba(26,49,120,0.90)]" />
                   <div className="absolute bottom-0 left-0 right-0 flex flex-col gap-[5.2px] items-start p-[14px]">
-                    <div className="bg-[#1976d2] px-2 py-[2px] rounded-full">
-                      <div className="font-['Roboto:ExtraBold',sans-serif] font-extrabold text-[9px] text-white tracking-[0.6px] uppercase" style={{ fontVariationSettings: "'wdth' 100" }}>
+                    <div className="bg-[#22c55e] px-2 py-[2px] rounded-full">
+                      <div className="font-['Kranto',sans-serif] font-extrabold text-[9px] text-white tracking-[0.6px] uppercase">
                         {story.category}
                       </div>
                     </div>
-                    <div className="font-['Roboto:Bold',sans-serif] font-bold leading-[20.48px] text-[16px] text-white w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
+                    <div className="font-['Kranto',sans-serif] font-bold leading-[20.48px] text-[16px] text-white w-full">
                       {story.title}
                     </div>
                     <div className="flex gap-2 items-center text-[10px] text-[rgba(255,255,255,0.72)]">
-                      <span className="font-['Roboto:Regular',sans-serif]" style={{ fontVariationSettings: "'wdth' 100" }}>{story.author}</span>
+                      <span className="font-['Kranto',sans-serif]">{story.author}</span>
                       <span className="opacity-50">·</span>
-                      <span className="font-['Roboto:Regular',sans-serif]" style={{ fontVariationSettings: "'wdth' 100" }}>{story.time}</span>
+                      <span className="font-['Kranto',sans-serif]">{story.time}</span>
                     </div>
                   </div>
                 </div>
@@ -213,27 +198,33 @@ function HeroArticleSlider() {
 }
 
 // Article List Item Component
-function ArticleListItem({ category, title, author }: { category: string; title: string; author: string }) {
+function ArticleListItem({ category, title, author, imageUrl }: { category: string; title: string; author: string; imageUrl?: string }) {
+  const sportImages = [
+    'https://images.unsplash.com/photo-1763479197379-93d1dcd229d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaWdoJTIwc2Nob29sJTIwZm9vdGJhbGwlMjBnYW1lJTIwYWN0aW9ufGVufDF8fHx8MTc3NDMwMTg5NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    'https://images.unsplash.com/photo-1762025930827-9f1dda45aff8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYXNrZXRiYWxsJTIwZ2FtZSUyMGFjdGlvbiUyMHNob3R8ZW58MXx8fHwxNzc0Mzc0Nzg0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    'https://images.unsplash.com/photo-1696250892381-597efcbb9094?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYXNlYmFsbCUyMGdhbWUlMjBwbGF5ZXJ8ZW58MXx8fHwxNzc0Mzc0Nzg1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+  ];
+  
   return (
-    <Link to="/sports/article/1" className="block hover:bg-white transition-colors">
-      <div className="flex gap-3 items-start pb-[11px] pt-[10px] px-4 border-b border-[#c1c7ce]">
+    <Link to="/sports/article/1" className="block hover:bg-gray-50 transition-colors">
+      <div className="flex gap-3 items-start pb-[11px] pt-[10px] px-4 border-b border-[#e5e7eb] bg-white">
         <div className="h-[68px] rounded-xl shrink-0 w-20 overflow-hidden bg-gradient-to-br from-[#b8d0ee] to-[#8fb8e2]">
           <img
-            src={placeholderImage}
+            src={imageUrl || sportImages[Math.floor(Math.random() * sportImages.length)]}
             alt={title}
             className="w-full h-full object-cover"
           />
         </div>
         <div className="flex-1 flex flex-col gap-[3px]">
-          <div className="font-['Roboto:Bold',sans-serif] font-bold text-[#1976d2] text-[10px] tracking-[0.7px] uppercase" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <div className="font-['Kranto',sans-serif] font-bold text-[#22c55e] text-[10px] tracking-[0.7px] uppercase">
             {category}
           </div>
           <div className="h-[37.78px] overflow-clip">
-            <div className="font-['Roboto:SemiBold',sans-serif] font-semibold leading-[18.9px] text-[#1a1c1e] text-[14px]" style={{ fontVariationSettings: "'wdth' 100" }}>
+            <div className="font-['Kranto',sans-serif] font-semibold leading-[18.9px] text-[#333399] text-[14px]">
               {title}
             </div>
           </div>
-          <div className="font-['Roboto:Regular',sans-serif] font-normal text-[#41484d] text-[10px] pt-[2px]" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <div className="font-['Kranto',sans-serif] font-normal text-[#6b7280] text-[10px] pt-[2px]">
             {author}
           </div>
         </div>
@@ -244,49 +235,6 @@ function ArticleListItem({ category, title, author }: { category: string; title:
 
 // Main Component
 export function SportsContent() {
-  const articles = [
-    {
-      category: "High School",
-      title: "Cherokee Bluff softball team opens season with 8-2 victory",
-      author: "AccessNorthGA Sports  ·  9:30 AM"
-    },
-    {
-      category: "Football",
-      title: "Flowery Branch QB commits to play college football at Mercer",
-      author: "AccessNorthGA Sports  ·  8:15 AM"
-    },
-    {
-      category: "Basketball",
-      title: "East Hall wins nail-biter against Habersham Central, 67-65",
-      author: "AccessNorthGA Sports  ·  Yesterday"
-    },
-    {
-      category: "Friday Game Night",
-      title: "Week 10 high school football scores and highlights from Northeast Georgia",
-      author: "AccessNorthGA Sports  ·  Yesterday"
-    },
-    {
-      category: "Baseball",
-      title: "West Hall pitcher throws no-hitter in season opener",
-      author: "AccessNorthGA Sports  ·  2 days ago"
-    },
-    {
-      category: "College Signing",
-      title: "Johnson High School celebrates six athletes on National Signing Day",
-      author: "AccessNorthGA Sports  ·  2 days ago"
-    },
-    {
-      category: "Youth Sports",
-      title: "Gwinnett County travel baseball tryouts scheduled for March",
-      author: "AccessNorthGA Sports  ·  3 days ago"
-    },
-    {
-      category: "Soccer",
-      title: "Lakeview Academy boys soccer team wins region title",
-      author: "AccessNorthGA Sports  ·  3 days ago"
-    }
-  ];
-
   return (
     <div className="bg-[#f8f9fa] w-full pb-24">
       {/* Filter Chips */}
@@ -301,12 +249,13 @@ export function SportsContent() {
       </div>
       
       {/* Article List with Native Ad after 3rd article */}
-      {articles.map((article, index) => (
-        <div key={index}>
+      {sportsArticles.map((article, index) => (
+        <div key={article.id}>
           <ArticleListItem
             category={article.category}
             title={article.title}
-            author={article.author}
+            author={`${article.author}  ·  ${article.timestamp}`}
+            imageUrl={article.imageUrl}
           />
           {/* Insert native ad after 3rd article (index 2) */}
           {index === 2 && (

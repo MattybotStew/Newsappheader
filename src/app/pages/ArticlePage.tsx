@@ -6,6 +6,7 @@ import { BannerAd } from '../components/ads/BannerAd';
 import { AnchoredBanner } from '../components/ads/AnchoredBanner';
 import { TopBannerAd } from '../components/ads/TopBannerAd';
 import { adConfig, adSizes } from '../config/adConfig';
+import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 
 export function ArticlePage() {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ export function ArticlePage() {
               </div>
             </div>
             
-            <h1 className="font-['Roboto:Bold',sans-serif] font-bold leading-[28px] text-[22px] text-[#1a1c1e] mb-3" style={{ fontVariationSettings: "'wdth' 100" }}>
+            <h1 className="font-['Roboto:Bold',sans-serif] font-bold leading-[28px] text-[22px] mb-3 text-[#333399]" style={{ fontVariationSettings: "'wdth' 100" }}>
               Interstate 85 northbound wreck causing late-morning delays by SR 211
             </h1>
 
@@ -75,7 +76,7 @@ export function ArticlePage() {
 
           {/* Featured Image */}
           <div className="w-full">
-            <img
+            <ImageWithFallback
               src="https://images.unsplash.com/photo-1703101091834-3d81b2960248?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaWdod2F5JTIwdHJhZmZpYyUyMGFjY2lkZW50JTIwZW1lcmdlbmN5fGVufDF8fHx8MTc3MjU1OTcwNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
               alt="Interstate 85 traffic"
               className="w-full h-[240px] object-cover"
@@ -145,12 +146,16 @@ export function ArticlePage() {
                 className="w-full text-left hover:bg-white p-3 rounded-lg transition-colors"
               >
                 <div className="flex gap-3">
-                  <div className="w-20 h-[68px] bg-gradient-to-br from-[#b8d0ee] to-[#8fb8e2] rounded-xl shrink-0"></div>
+                  <ImageWithFallback
+                    src="https://images.unsplash.com/photo-1759542877976-5d870f7cd0a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaWdod2F5JTIwY29uc3RydWN0aW9uJTIwbWFpbnRlbmFuY2UlMjB3b3JrZXJzfGVufDF8fHx8MTc3NDM3NTk2MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    alt="Highway maintenance"
+                    className="w-20 h-[68px] rounded-xl shrink-0 object-cover"
+                  />
                   <div className="flex-1">
-                    <div className="font-['Roboto:Bold',sans-serif] font-bold text-[#1a56a4] text-[10px] tracking-[0.7px] uppercase mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
+                    <div className="font-['Source_Sans_3',sans-serif] font-extrabold text-[9px] text-[#1a3178] tracking-[0.6px] uppercase bg-[#1a3178] bg-opacity-10 px-2 py-0.5 rounded inline-block mb-2">
                       Local
                     </div>
-                    <div className="font-['Roboto:SemiBold',sans-serif] font-semibold leading-[18.9px] text-[#1a1c1e] text-[14px] mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
+                    <div className="font-['Roboto:SemiBold',sans-serif] font-semibold leading-[18.9px] text-[#333399] text-[14px] mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
                       Georgia DOT announces I-985 maintenance schedule for next week
                     </div>
                     <div className="font-['Roboto:Regular',sans-serif] text-[#41484d] text-[10px]" style={{ fontVariationSettings: "'wdth' 100" }}>
@@ -165,12 +170,16 @@ export function ArticlePage() {
                 className="w-full text-left hover:bg-white p-3 rounded-lg transition-colors"
               >
                 <div className="flex gap-3">
-                  <div className="w-20 h-[68px] bg-gradient-to-br from-[#b8d0ee] to-[#8fb8e2] rounded-xl shrink-0"></div>
+                  <ImageWithFallback
+                    src="https://images.unsplash.com/photo-1649513361889-c30692c1b024?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwb2xpY2UlMjBwYXRyb2wlMjBjYXIlMjBoaWdod2F5fGVufDF8fHx8MTc3NDM3NTk2MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    alt="Police patrol"
+                    className="w-20 h-[68px] rounded-xl shrink-0 object-cover"
+                  />
                   <div className="flex-1">
                     <div className="font-['Roboto:Bold',sans-serif] font-bold text-[#1a56a4] text-[10px] tracking-[0.7px] uppercase mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
                       Local
                     </div>
-                    <div className="font-['Roboto:SemiBold',sans-serif] font-semibold leading-[18.9px] text-[#1a1c1e] text-[14px] mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
+                    <div className="font-['Roboto:SemiBold',sans-serif] font-semibold leading-[18.9px] text-[#333399] text-[14px] mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
                       Hall County Sheriff's Office increases patrols on I-85 corridor
                     </div>
                     <div className="font-['Roboto:Regular',sans-serif] text-[#41484d] text-[10px]" style={{ fontVariationSettings: "'wdth' 100" }}>

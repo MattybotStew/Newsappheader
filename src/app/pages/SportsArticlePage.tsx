@@ -31,10 +31,8 @@ export function SportsArticlePage() {
 
           {/* Article Header */}
           <div className="px-4 pt-4 pb-3">
-            <div className="bg-[#1976d2] px-2 py-[2px] rounded-full inline-block mb-3">
-              <div className="font-['Roboto:ExtraBold',sans-serif] font-extrabold text-[9px] text-white tracking-[0.6px] uppercase" style={{ fontVariationSettings: "'wdth' 100" }}>
-                High School
-              </div>
+            <div className="font-['Source_Sans_3',sans-serif] font-extrabold text-[9px] text-[#22c55e] tracking-[0.6px] uppercase bg-[#22c55e] bg-opacity-10 px-2 py-0.5 rounded inline-block mb-2">
+              High School
             </div>
             
             <h1 className="font-['Roboto:Bold',sans-serif] font-bold leading-[28px] text-[22px] text-[#1a1c1e] mb-3" style={{ fontVariationSettings: "'wdth' 100" }}>
@@ -184,7 +182,7 @@ export function SportsArticlePage() {
                     <div className="font-['Roboto:Bold',sans-serif] font-bold text-[#1976d2] text-[10px] tracking-[0.7px] uppercase mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
                       High School
                     </div>
-                    <div className="font-['Roboto:SemiBold',sans-serif] font-semibold leading-[18.9px] text-[#1a1c1e] text-[14px] mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
+                    <div className="font-['Roboto:SemiBold',sans-serif] font-semibold leading-[18.9px] text-[#333399] text-[14px] mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
                       Flowery Branch advances to semifinals with upset victory
                     </div>
                     <div className="font-['Roboto:Regular',sans-serif] text-[#41484d] text-[10px]" style={{ fontVariationSettings: "'wdth' 100" }}>
@@ -204,7 +202,7 @@ export function SportsArticlePage() {
                     <div className="font-['Roboto:Bold',sans-serif] font-bold text-[#1976d2] text-[10px] tracking-[0.7px] uppercase mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
                       Friday Game Night
                     </div>
-                    <div className="font-['Roboto:SemiBold',sans-serif] font-semibold leading-[18.9px] text-[#1a1c1e] text-[14px] mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
+                    <div className="font-['Roboto:SemiBold',sans-serif] font-semibold leading-[18.9px] text-[#333399] text-[14px] mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
                       Week 11 high school football scores from Northeast Georgia
                     </div>
                     <div className="font-['Roboto:Regular',sans-serif] text-[#41484d] text-[10px]" style={{ fontVariationSettings: "'wdth' 100" }}>
@@ -224,7 +222,7 @@ export function SportsArticlePage() {
                     <div className="font-['Roboto:Bold',sans-serif] font-bold text-[#1976d2] text-[10px] tracking-[0.7px] uppercase mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
                       High School
                     </div>
-                    <div className="font-['Roboto:SemiBold',sans-serif] font-semibold leading-[18.9px] text-[#1a1c1e] text-[14px] mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
+                    <div className="font-['Roboto:SemiBold',sans-serif] font-semibold leading-[18.9px] text-[#333399] text-[14px] mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
                       Gainesville High prepares for tough playoff matchup Friday
                     </div>
                     <div className="font-['Roboto:Regular',sans-serif] text-[#41484d] text-[10px]" style={{ fontVariationSettings: "'wdth' 100" }}>

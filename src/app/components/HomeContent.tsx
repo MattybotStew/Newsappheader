@@ -1,8 +1,9 @@
 import { useState, useRef, TouchEvent, MouseEvent } from 'react';
 import { Link } from 'react-router';
-import placeholderImage from 'figma:asset/2b97325de4e56fe079f3ddbcfdc4d5b4aa816d2f.png';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 import { NativeAdArticleCard } from './ads/NativeAdArticleCard';
 import { adConfig } from '../config/adConfig';
+import { breakingNews, localNews } from '../data/mockArticles';
 
 // Hero Article Slider Component
 function HeroArticleSlider() {
@@ -12,38 +13,15 @@ function HeroArticleSlider() {
   const [translateX, setTranslateX] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
   
-  const stories = [
-    {
-      category: 'Local',
-      title: "Hall County Sheriff's deputy arrested on DUI charges Friday evening on GA-365",
-      author: 'Steve Winslow',
-      time: '2 hours ago'
-    },
-    {
-      category: 'Politics',
-      title: 'District 50 State Senator Bo Hatchett qualifies for re-election in 2026 primaries',
-      author: 'Steve Winslow',
-      time: '3 hours ago'
-    },
-    {
-      category: 'Local',
-      title: 'Suspect arrested following Hoschton residential fire Thursday night',
-      author: 'AccessNorthGA Staff',
-      time: '7:42 AM'
-    },
-    {
-      category: 'Business',
-      title: 'New development plans announced for downtown Gainesville commercial district',
-      author: 'AccessNorthGA Staff',
-      time: '8:15 AM'
-    },
-    {
-      category: 'Local',
-      title: 'Local schools announce winter break schedule changes due to weather concerns',
-      author: 'Steve Winslow',
-      time: 'Yesterday'
-    }
-  ];
+  // Use the first 5 articles from breaking news and local news combined
+  const allStories = [...breakingNews, ...localNews];
+  const stories = allStories.slice(0, 5).map(article => ({
+    category: article.category,
+    title: article.title,
+    author: article.author,
+    time: article.timestamp,
+    imageUrl: article.imageUrl
+  }));
 
   const handleStart = (clientX: number) => {
     setIsDragging(true);
@@ -120,26 +98,26 @@ function HeroArticleSlider() {
                 }}
               >
                 <div className="bg-[#dde3ea] h-[216px] overflow-clip rounded-2xl shadow-[0px_1px_3px_0px_rgba(0,0,0,0.12),0px_1px_2px_0px_rgba(0,0,0,0.08)] relative mx-1">
-                  <img
-                    src={placeholderImage}
+                  <ImageWithFallback
+                    src={story.imageUrl}
                     alt={story.title}
                     className="absolute inset-0 w-full h-full object-cover"
                     draggable={false}
                   />
-                  <div className="absolute bg-gradient-to-b from-[40%] from-[rgba(0,0,0,0)] inset-0 to-[rgba(0,0,0,0.78)]" />
+                  <div className="absolute bg-gradient-to-b from-[40%] from-[rgba(26,49,120,0)] inset-0 to-[rgba(26,49,120,0.90)]" />
                   <div className="absolute bottom-0 left-0 right-0 flex flex-col gap-[5.2px] items-start p-[14px]">
-                    <div className="bg-[#1a56a4] px-2 py-[2px] rounded-full">
-                      <div className="font-['Roboto:ExtraBold',sans-serif] font-extrabold text-[9px] text-white tracking-[0.6px] uppercase" style={{ fontVariationSettings: "'wdth' 100" }}>
+                    <div className="bg-[#1a3178] px-2 py-[2px] rounded-full">
+                      <div className="font-['Kranto',sans-serif] font-extrabold text-[9px] text-white tracking-[0.6px] uppercase">
                         {story.category}
                       </div>
                     </div>
-                    <div className="font-['Roboto:Bold',sans-serif] font-bold leading-[20.48px] text-[16px] text-white w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
+                    <div className="font-['Kranto',sans-serif] font-bold leading-[20.48px] text-[16px] text-white w-full">
                       {story.title}
                     </div>
                     <div className="flex gap-2 items-center text-[10px] text-[rgba(255,255,255,0.72)]">
-                      <span className="font-['Roboto:Regular',sans-serif]" style={{ fontVariationSettings: "'wdth' 100" }}>{story.author}</span>
+                      <span className="font-['Kranto',sans-serif]">{story.author}</span>
                       <span className="opacity-50">·</span>
-                      <span className="font-['Roboto:Regular',sans-serif]" style={{ fontVariationSettings: "'wdth' 100" }}>{story.time}</span>
+                      <span className="font-['Kranto',sans-serif]">{story.time}</span>
                     </div>
                   </div>
                 </div>
@@ -172,29 +150,38 @@ function HeroArticleSlider() {
 }
 
 // Article List Item Component
-function ArticleListItem({ category, title, author }: { category: string; title: string; author: string }) {
+function ArticleListItem({ category, title, author, imageUrl }: { category: string; title: string; author: string; imageUrl?: string }) {
   const isBreaking = category.toLowerCase() === 'breaking';
   
+  // Get category color based on type
+  const getCategoryColor = () => {
+    if (isBreaking) return 'text-[#dc2626] bg-[#dc2626]';
+    const lower = category.toLowerCase();
+    if (lower.includes('sport')) return 'text-[#22c55e] bg-[#22c55e]';
+    if (lower.includes('weather')) return 'text-[#f97316] bg-[#f97316]';
+    return 'text-[#1a3178] bg-[#1a3178]'; // Default navy for Local, Business, etc.
+  };
+  
   return (
-    <Link to="/article/1" className="block hover:bg-white transition-colors">
-      <div className="flex gap-3 items-start pb-[11px] pt-[10px] px-4 border-b border-[#c1c7ce]">
+    <Link to="/article/1" className="block hover:bg-gray-50 transition-colors">
+      <div className="flex gap-3 items-start pb-[11px] pt-[10px] px-4 border-b border-[#e5e7eb] bg-white">
         <div className="h-[68px] rounded-xl shrink-0 w-20 overflow-hidden bg-gradient-to-br from-[#b8d0ee] to-[#8fb8e2]">
-          <img
-            src={placeholderImage}
+          <ImageWithFallback
+            src={imageUrl}
             alt={title}
             className="w-full h-full object-cover"
           />
         </div>
         <div className="flex-1 flex flex-col gap-[3px]">
-          <div className={`font-['Roboto:Bold',sans-serif] font-bold text-[10px] tracking-[0.7px] uppercase ${isBreaking ? 'text-[#c62828]' : 'text-[#1a56a4]'}`} style={{ fontVariationSettings: "'wdth' 100" }}>
+          <div className={`font-['Kranto',sans-serif] font-bold text-[10px] tracking-[0.7px] uppercase ${getCategoryColor().split(' ')[0]}`}>
             {category}
           </div>
           <div className="h-[37.78px] overflow-clip">
-            <div className="font-['Roboto:SemiBold',sans-serif] font-semibold leading-[18.9px] text-[#1a1c1e] text-[14px]" style={{ fontVariationSettings: "'wdth' 100" }}>
+            <div className="font-['Kranto',sans-serif] font-semibold leading-[18.9px] text-[#333399] text-[14px]">
               {title}
             </div>
           </div>
-          <div className="font-['Roboto:Regular',sans-serif] font-normal text-[#41484d] text-[10px] pt-[2px]" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <div className="font-['Kranto',sans-serif] font-normal text-[#6b7280] text-[10px] pt-[2px]">
             {author}
           </div>
         </div>
@@ -205,73 +192,24 @@ function ArticleListItem({ category, title, author }: { category: string; title:
 
 // Main Component
 export function HomeContent() {
-  const articles = [
-    {
-      category: "Breaking",
-      title: "District 50 State Senator Bo Hatchett qualifies for re-election in 2026 primaries",
-      author: "Steve Winslow  ·  8:56 AM"
-    },
-    {
-      category: "Breaking",
-      title: "Hall County Schools announces weather-related delay for Thursday",
-      author: "Maria Johnson  ·  7:15 AM"
-    },
-    {
-      category: "Breaking",
-      title: "New development project approved for downtown Gainesville",
-      author: "Tom Patterson  ·  6:42 AM"
-    },
-    {
-      category: "Local",
-      title: "Suspect arrested following Hoschton residential fire Thursday night",
-      author: "AccessNorthGA Staff  ·  7:42 AM"
-    },
-    {
-      category: "Business",
-      title: "New retail development coming to Hall County with 15 stores planned",
-      author: "AccessNorthGA Staff  ·  Yesterday"
-    },
-    {
-      category: "Real Estate",
-      title: "Housing market sees steady growth in Northeast Georgia region",
-      author: "Steve Winslow  ·  Yesterday"
-    },
-    {
-      category: "Local",
-      title: "Community fundraiser exceeds goal for local family in need",
-      author: "AccessNorthGA Staff  ·  2 days ago"
-    },
-    {
-      category: "Food Inspections",
-      title: "Health department releases latest restaurant inspection scores",
-      author: "AccessNorthGA Staff  ·  2 days ago"
-    },
-    {
-      category: "Politics",
-      title: "City council approves new infrastructure improvements for 2026",
-      author: "Steve Winslow  ·  3 days ago"
-    },
-    {
-      category: "Local",
-      title: "Local high school students win state championship competition",
-      author: "AccessNorthGA Staff  ·  3 days ago"
-    }
-  ];
+  // Combine breaking news and local news, with breaking news first
+  const allArticles = [...breakingNews, ...localNews];
 
   return (
     <div className="bg-[#f8f9fa] w-full pb-24">
-      {/* Hero Slider */}
+      {/* Hero Slider - Use top 5 breaking/featured stories */}
       <div className="pt-4">
         <HeroArticleSlider />
       </div>
       
       {/* Article List with Native Ad after 3rd article */}
-      {articles.map((article, index) => (
-        <div key={index}>
+      {allArticles.slice(0, 10).map((article, index) => (
+        <div key={article.id}>
           <ArticleListItem
             category={article.category}
             title={article.title}
-            author={article.author}
+            author={`${article.author}  ·  ${article.timestamp}`}
+            imageUrl={article.imageUrl}
           />
           {/* Insert native ad after 3rd article (index 2) */}
           {index === 2 && (

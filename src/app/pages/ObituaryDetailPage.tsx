@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router';
+import { ChevronLeft, MapPin, Calendar, Church, Facebook, Mail, Share2 } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { ChevronLeft, Share2, Facebook, Mail, MapPin, Calendar } from 'lucide-react';
 import { TopBannerAd } from '../components/ads/TopBannerAd';
 import { AnchoredBanner } from '../components/ads/AnchoredBanner';
 import { adConfig } from '../config/adConfig';
@@ -34,7 +34,7 @@ export function ObituaryDetailPage() {
             <div className="flex justify-center">
               <div className="w-[200px] h-[200px] rounded-full overflow-hidden bg-gradient-to-br from-[#e8e8e8] to-[#d0d0d0] border-4 border-white shadow-lg">
                 <img
-                  src={placeholderImage}
+                  src="https://images.unsplash.com/photo-1750926013469-9d8f680d8aff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMGVsZGVybHklMjB3b21hbnxlbnwxfHx8fDE3NzQzNzQ3ODZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                   alt="Margaret Louise Thompson"
                   className="w-full h-full object-cover"
                 />

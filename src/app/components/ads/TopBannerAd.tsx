@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import weaverLawBanner from 'figma:asset/c32522b368fd0595bbc044e71ef12f86b79ec203.png';
 
 interface TopBannerAdProps {
   adUnit: string;
@@ -11,13 +12,13 @@ export function TopBannerAd({ adUnit }: TopBannerAdProps) {
   useEffect(() => {
     // Simulate ad loading
     const timer = setTimeout(() => {
-      // Simulate 90% success rate
-      if (Math.random() > 0.1) {
+      // Simulate 95% success rate
+      if (Math.random() > 0.05) {
         setIsLoaded(true);
       } else {
         setHasError(true);
       }
-    }, 500);
+    }, 300);
 
     return () => clearTimeout(timer);
   }, [adUnit]);
@@ -28,11 +29,22 @@ export function TopBannerAd({ adUnit }: TopBannerAdProps) {
   }
 
   return (
-    <div className="bg-[#1a1a1a] w-full border-b border-[#444] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.3)]">
-      <div className="bg-[#2c2c2c] h-[50px] flex items-center justify-center">
-        <span className="font-['Roboto:Regular',sans-serif] text-[11px] text-white">
-          Advertisement
-        </span>
+    <div className="bg-white w-full border-b border-[#e5e7eb]">
+      <div className="flex flex-col items-center py-2">
+        
+        <a 
+          href="https://example.com/weaverlaw" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="hover:opacity-90 transition-opacity"
+        >
+          <img
+            src={weaverLawBanner}
+            alt="Weaver Law - Injury Attorneys"
+            className="max-w-full h-auto"
+            style={{ maxHeight: '90px' }}
+          />
+        </a>
       </div>
     </div>
   );

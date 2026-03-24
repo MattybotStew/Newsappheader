@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { NativeAdPodcastCard } from './ads/NativeAdPodcastCard';
 import { adConfig } from '../config/adConfig';
-import placeholderImage from 'figma:asset/2b97325de4e56fe079f3ddbcfdc4d5b4aa816d2f.png';
 
 const shows = [
   { id: 'all', name: 'All Shows' },
@@ -30,7 +29,7 @@ const episodes: PodcastEpisode[] = [
     description: 'Martha discusses the latest state legislature developments and their impact on North Georgia communities.',
     date: 'March 3, 2025',
     duration: '45 min',
-    imageUrl: placeholderImage,
+    imageUrl: 'https://images.unsplash.com/photo-1650984661525-7e6b1b874e47?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuZXdzJTIwYW5jaG9yJTIwYnJvYWRjYXN0aW5nfGVufDF8fHx8MTc3NDM3NDc4N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
   },
   {
     id: 2,
@@ -39,7 +38,7 @@ const episodes: PodcastEpisode[] = [
     description: 'Recapping the weekend in sports with analysis of local high school and college games.',
     date: 'March 2, 2025',
     duration: '60 min',
-    imageUrl: placeholderImage,
+    imageUrl: 'https://images.unsplash.com/photo-1627667050609-d4ba6483a368?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwb2RjYXN0JTIwbWljcm9waG9uZSUyMHJlY29yZGluZyUyMHN0dWRpb3xlbnwxfHx8fDE3NzQzNzQ3ODV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
   },
   {
     id: 3,
@@ -48,7 +47,7 @@ const episodes: PodcastEpisode[] = [
     description: 'Breaking down this week\'s biggest high school matchups and playoff implications.',
     date: 'February 27, 2025',
     duration: '50 min',
-    imageUrl: placeholderImage,
+    imageUrl: 'https://images.unsplash.com/photo-1763479197379-93d1dcd229d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaWdoJTIwc2Nob29sJTIwZm9vdGJhbGwlMjBnYW1lJTIwYWN0aW9ufGVufDF8fHx8MTc3NDMwMTg5NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
   },
   {
     id: 4,
@@ -57,7 +56,7 @@ const episodes: PodcastEpisode[] = [
     description: 'Special interview with local school board members about upcoming initiatives.',
     date: 'March 1, 2025',
     duration: '40 min',
-    imageUrl: placeholderImage,
+    imageUrl: 'https://images.unsplash.com/photo-1650984661525-7e6b1b874e47?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuZXdzJTIwYW5jaG9yJTIwYnJvYWRjYXN0aW5nfGVufDF8fHx8MTc3NDM3NDc4N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
   },
   {
     id: 5,
@@ -66,7 +65,7 @@ const episodes: PodcastEpisode[] = [
     description: 'Latest updates on Georgia basketball season and recruiting commitments.',
     date: 'February 28, 2025',
     duration: '55 min',
-    imageUrl: placeholderImage,
+    imageUrl: 'https://images.unsplash.com/photo-1762025930827-9f1dda45aff8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYXNrZXRiYWxsJTIwZ2FtZSUyMGFjdGlvbiUyMHNob3R8ZW58MXx8fHwxNzc0Mzc0Nzg0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
   },
   {
     id: 6,
@@ -75,7 +74,7 @@ const episodes: PodcastEpisode[] = [
     description: 'Expert analysis and predictions for the upcoming regional playoffs.',
     date: 'February 26, 2025',
     duration: '48 min',
-    imageUrl: placeholderImage,
+    imageUrl: 'https://images.unsplash.com/photo-1686947079063-f1e7a7dfc6a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcG9ydHMlMjBzdGFkaXVtJTIwY3Jvd2R8ZW58MXx8fHwxNzc0Mzc0Nzg3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
   },
 ];
 

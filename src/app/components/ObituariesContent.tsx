@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
-import placeholderImage from 'figma:asset/2b97325de4e56fe079f3ddbcfdc4d5b4aa816d2f.png';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 import { BannerAd } from './ads/BannerAd';
 import { adConfig, adSizes } from '../config/adConfig';
+import { obituaries as mockObituaries } from '../data/mockArticles';
 
 // County Filter Component
 function CountyFilter() {
@@ -135,37 +136,41 @@ function TimeFilter() {
 // Obituary List Item Component
 function ObituaryListItem({ 
   name, 
-  lifespan, 
-  location,
-  date 
+  age,
+  city,
+  county,
+  dateOfDeath,
+  imageUrl
 }: { 
   name: string; 
-  lifespan: string; 
-  location: string;
-  date: string;
+  age: number;
+  city: string;
+  county: string;
+  dateOfDeath: string;
+  imageUrl?: string;
 }) {
   return (
     <Link to="/obituaries/1" className="block hover:bg-white transition-colors">
-      <div className="flex gap-4 items-start pb-4 pt-4 px-4 border-b border-[#c1c7ce]">
+      <div className="flex gap-4 items-start pb-4 pt-4 px-4 border-b border-[#e5e7eb]">
         <div className="h-[100px] rounded-xl shrink-0 w-[100px] overflow-hidden bg-gradient-to-br from-[#e8e8e8] to-[#d0d0d0]">
-          <img
-            src={placeholderImage}
+          <ImageWithFallback
+            src={imageUrl}
             alt={name}
             className="w-full h-full object-cover"
           />
         </div>
         <div className="flex-1 flex flex-col gap-1.5">
-          <div className="font-['Roboto:Bold',sans-serif] font-bold leading-[20px] text-[#1a1c1e] text-[16px]" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <div className="font-['Source_Sans_3',sans-serif] font-bold leading-[20px] text-[#111827] text-[16px]">
             {name}
           </div>
-          <div className="font-['Roboto:Medium',sans-serif] font-medium text-[#41484d] text-[13px]" style={{ fontVariationSettings: "'wdth' 100" }}>
-            {lifespan}
+          <div className="font-['Source_Sans_3',sans-serif] font-semibold text-[#6b7280] text-[13px]">
+            Age {age}
           </div>
-          <div className="font-['Roboto:Regular',sans-serif] font-normal text-[#41484d] text-[12px]" style={{ fontVariationSettings: "'wdth' 100" }}>
-            {location}
+          <div className="font-['Source_Sans_3',sans-serif] font-normal text-[#6b7280] text-[12px]">
+            {city}, {county} County
           </div>
-          <div className="font-['Roboto:Regular',sans-serif] font-normal text-[#6b7178] text-[11px] pt-1" style={{ fontVariationSettings: "'wdth' 100" }}>
-            {date}
+          <div className="font-['Source_Sans_3',sans-serif] font-normal text-[#9ca3af] text-[11px] pt-1">
+            {dateOfDeath}
           </div>
         </div>
       </div>
@@ -175,19 +180,6 @@ function ObituaryListItem({
 
 // Main Component
 export function ObituariesContent() {
-  const obituaries = [
-    { name: "Robert James Anderson", lifespan: "1945 - 2026", location: "Gainesville, Georgia", date: "March 3, 2026" },
-    { name: "Mary Elizabeth Thompson", lifespan: "1952 - 2026", location: "Flowery Branch, Georgia", date: "March 2, 2026" },
-    { name: "William David Harrison", lifespan: "1938 - 2026", location: "Oakwood, Georgia", date: "March 2, 2026" },
-    { name: "Patricia Ann Wilson", lifespan: "1960 - 2026", location: "Buford, Georgia", date: "March 1, 2026" },
-    { name: "Charles Edward Brown", lifespan: "1942 - 2026", location: "Braselton, Georgia", date: "March 1, 2026" },
-    { name: "Dorothy Mae Collins", lifespan: "1947 - 2026", location: "Gainesville, Georgia", date: "February 29, 2026" },
-    { name: "James Michael Davis", lifespan: "1955 - 2026", location: "Hoschton, Georgia", date: "February 28, 2026" },
-    { name: "Linda Sue Johnson", lifespan: "1950 - 2026", location: "Clermont, Georgia", date: "February 28, 2026" },
-    { name: "George Franklin Miller", lifespan: "1940 - 2026", location: "Flowery Branch, Georgia", date: "February 27, 2026" },
-    { name: "Barbara Jean Taylor", lifespan: "1948 - 2026", location: "Oakwood, Georgia", date: "February 27, 2026" },
-  ];
-
   return (
     <div className="bg-[#f8f9fa] w-full pb-24">
       {/* County Filter */}
@@ -198,13 +190,15 @@ export function ObituariesContent() {
       
       {/* Obituary List with Ads */}
       <div>
-        {obituaries.map((obit, index) => (
-          <div key={index}>
+        {mockObituaries.map((obit, index) => (
+          <div key={obit.id}>
             <ObituaryListItem
               name={obit.name}
-              lifespan={obit.lifespan}
-              location={obit.location}
-              date={obit.date}
+              age={obit.age}
+              city={obit.city}
+              county={obit.county}
+              dateOfDeath={obit.dateOfDeath}
+              imageUrl={obit.imageUrl}
             />
             {/* Insert Medium Rectangle Ad after every 5th obituary (index 4, 9, etc.) */}
             {(index + 1) % 5 === 0 && (

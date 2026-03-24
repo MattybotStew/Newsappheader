@@ -93,7 +93,7 @@ export function RadioStationPage() {
             <div className="max-w-sm mx-auto">
               <div className="aspect-square w-1/2 mx-auto rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-[#e8e8e8] to-[#d0d0d0] mb-4">
                 <img
-                  src={placeholderImage}
+                  src="https://images.unsplash.com/photo-1767474365536-ef81bfa24c8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyYWRpbyUyMGJyb2FkY2FzdGluZyUyMHN0dWRpbyUyMG1pY3JvcGhvbmV8ZW58MXx8fHwxNzc0Mzc0Nzg1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                   alt="Now Playing"
                   className="w-full h-full object-cover"
                 />

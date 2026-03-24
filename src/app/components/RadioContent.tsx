@@ -1,6 +1,8 @@
 import { Link } from 'react-router';
 import { Radio as RadioIcon } from 'lucide-react';
-import placeholderImage from 'figma:asset/2b97325de4e56fe079f3ddbcfdc4d5b4aa816d2f.png';
+import wdunAmLogo from 'figma:asset/5a78d37c4747ccb6fe47c329ebf4f909801b7822.png';
+import wdunFmLogo from 'figma:asset/116c445cb92ab06f2fc685cc4d51dfef463f069a.png';
+import lakeLogo from 'figma:asset/cc8d54ae63152b9541f694f46c4507f237521aea.png';
 
 interface RadioStation {
   id: string;
@@ -8,6 +10,7 @@ interface RadioStation {
   frequency: string;
   tagline: string;
   genre: string;
+  logoUrl: string;
 }
 
 const stations: RadioStation[] = [
@@ -17,6 +20,7 @@ const stations: RadioStation[] = [
     frequency: 'AM 550',
     tagline: 'News Talk 550',
     genre: 'News & Talk',
+    logoUrl: wdunAmLogo,
   },
   {
     id: 'wdun-fm',
@@ -24,6 +28,7 @@ const stations: RadioStation[] = [
     frequency: 'FM 102.9',
     tagline: 'North Georgia\'s News Station',
     genre: 'News & Information',
+    logoUrl: wdunFmLogo,
   },
   {
     id: 'the-lake',
@@ -31,6 +36,7 @@ const stations: RadioStation[] = [
     frequency: 'FM 94.5',
     tagline: 'Classic Hits',
     genre: 'Classic Rock',
+    logoUrl: lakeLogo,
   },
 ];
 
@@ -40,17 +46,17 @@ function RadioStationCard({ station }: { station: RadioStation }) {
       <div className="bg-white rounded-lg shadow-sm border border-[#c1c7ce] overflow-hidden hover:shadow-md transition-shadow">
         <div className="flex gap-3 p-3">
           {/* Thumbnail - matching podcast size (96px) */}
-          <div className="size-24 shrink-0 rounded-lg overflow-hidden bg-gradient-to-br from-[#e8e8e8] to-[#d0d0d0]">
-            <img
-              src={placeholderImage}
+          <div className="size-24 shrink-0 rounded-lg overflow-hidden bg-white flex items-center justify-center">
+            <img 
+              src={station.logoUrl} 
               alt={station.name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
           
           {/* Content */}
           <div className="flex-1 min-w-0">
-            <h3 className="font-['Roboto:Bold',sans-serif] font-bold text-[18px] text-[#1a1c1e] mb-1 line-clamp-2" style={{ fontVariationSettings: "'wdth' 100" }}>
+            <h3 className="font-['Roboto:Bold',sans-serif] font-bold text-[18px] mb-1 line-clamp-2 text-[#333399]" style={{ fontVariationSettings: "'wdth' 100" }}>
               {station.name}
             </h3>
             <p className="font-['Roboto:Medium',sans-serif] font-medium text-[14px] text-[#1976d2] mb-2 line-clamp-1" style={{ fontVariationSettings: "'wdth' 100" }}>
@@ -77,7 +83,7 @@ export function RadioContent() {
     <div className="bg-[#f8f9fa] w-full pb-24">
       {/* Page Header */}
       <div className="px-4 pt-5 pb-4 bg-white border-b border-[#c1c7ce]">
-        <h1 className="font-['Roboto:Bold',sans-serif] font-bold text-[24px] text-[#1a1c1e] mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
+        <h1 className="font-['Roboto:Bold',sans-serif] font-bold text-[24px] mb-1 text-[#333399]" style={{ fontVariationSettings: "'wdth' 100" }}>
           Radio
         </h1>
         <p className="font-['Roboto:Regular',sans-serif] text-[14px] text-[#41484d]" style={{ fontVariationSettings: "'wdth' 100" }}>

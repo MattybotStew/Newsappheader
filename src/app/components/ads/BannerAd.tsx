@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getRandomAd } from '../../data/fakeAds';
 
 interface BannerAdProps {
   adUnit: string;
@@ -10,17 +11,18 @@ interface BannerAdProps {
 export function BannerAd({ adUnit, size, label, className = '' }: BannerAdProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [ad] = useState(() => getRandomAd());
 
   useEffect(() => {
     // Simulate ad loading
     const timer = setTimeout(() => {
-      // Simulate 90% success rate
-      if (Math.random() > 0.1) {
+      // Simulate 95% success rate
+      if (Math.random() > 0.05) {
         setIsLoaded(true);
       } else {
         setHasError(true);
       }
-    }, 500);
+    }, 300);
 
     return () => clearTimeout(timer);
   }, []);
@@ -40,23 +42,37 @@ export function BannerAd({ adUnit, size, label, className = '' }: BannerAdProps)
         </div>
       )}
       <div
-        className="bg-[#2c2c2c] border border-[#444] flex items-center justify-center overflow-hidden"
+        className="bg-white border border-[#e5e7eb] flex flex-col overflow-hidden"
         style={{ width: `${size.width}px`, height: `${size.height}px` }}
       >
         {isLoaded ? (
-          <div className="text-center p-4">
-            <div className="font-['Roboto:Regular',sans-serif] text-[11px] text-[#999] mb-2">
-              Advertisement
+          <a
+            href={ad.clickUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col h-full hover:opacity-90 transition-opacity"
+          >
+            <div className="flex-1 relative overflow-hidden">
+              <img
+                src={ad.imageUrl}
+                alt={ad.headline}
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="font-['Roboto:Bold',sans-serif] text-[14px] text-white mb-1">
-              Ad Placeholder
+            <div className="p-3 bg-gradient-to-b from-white to-gray-50 border-t border-gray-200">
+              <div className="font-['Source_Sans_3',sans-serif] text-[9px] text-[#6b7280] uppercase tracking-wide mb-1">
+                {ad.advertiser}
+              </div>
+              <div className="font-['Source_Sans_3',sans-serif] font-bold text-[13px] text-[#1a3178] leading-tight mb-1">
+                {ad.headline}
+              </div>
+              <div className="font-['Source_Sans_3',sans-serif] text-[11px] text-[#6b7280] line-clamp-2 leading-snug">
+                {ad.bodyText}
+              </div>
             </div>
-            <div className="font-['Roboto:Regular',sans-serif] text-[10px] text-[#bbb]">
-              {size.width} × {size.height}
-            </div>
-          </div>
+          </a>
         ) : (
-          <div className="animate-pulse w-full h-full bg-gradient-to-r from-[#3a3a3a] via-[#2c2c2c] to-[#3a3a3a]" />
+          <div className="animate-pulse w-full h-full bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100" />
         )}
       </div>
     </div>
