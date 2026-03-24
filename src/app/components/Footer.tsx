@@ -6,9 +6,10 @@ interface NavButtonProps {
   path: string;
   svgPath: string;
   isActive: boolean;
+  fillRule?: 'nonzero' | 'evenodd';
 }
 
-function NavButton({ label, path, svgPath, isActive }: NavButtonProps) {
+function NavButton({ label, path, svgPath, isActive, fillRule }: NavButtonProps) {
   return (
     <Link to={path} className="flex-[1_0_0] min-h-px min-w-px relative">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col gap-[2px] items-center justify-end pb-[4px] pt-[20px] relative w-full">
@@ -17,7 +18,7 @@ function NavButton({ label, path, svgPath, isActive }: NavButtonProps) {
             <div className="relative shrink-0 size-[24px]">
               <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
                 <g>
-                  <path d={svgPath} fill="white" />
+                  <path d={svgPath} fill="white" fillRule={fillRule} />
                 </g>
               </svg>
             </div>
@@ -30,7 +31,7 @@ function NavButton({ label, path, svgPath, isActive }: NavButtonProps) {
                   {label === 'Podcasts' ? (
                     <path d="M12 14C13.66 14 15 12.66 15 11V5C15 3.34 13.66 2 12 2C10.34 2 9 3.34 9 5V11C9 12.66 10.34 14 12 14ZM11 5C11 4.45 11.45 4 12 4C12.55 4 13 4.45 13 5V11C13 11.55 12.55 12 12 12C11.45 12 11 11.55 11 11V5ZM17 11C17 13.76 14.76 16 12 16C9.24 16 7 13.76 7 11H5C5 14.53 7.61 17.43 11 17.92V21H13V17.92C16.39 17.43 19 14.53 19 11H17Z" fill="rgba(255, 255, 255, 0.6)" />
                   ) : (
-                    <path d={svgPath} fill="rgba(255, 255, 255, 0.6)" />
+                    <path d={svgPath} fill="rgba(255, 255, 255, 0.6)" fillRule={fillRule} />
                   )}
                 </g>
               </svg>
@@ -54,9 +55,9 @@ function NavButton({ label, path, svgPath, isActive }: NavButtonProps) {
 export function Footer() {
   const location = useLocation();
   
-  const tabs = [
+  const tabs: { label: string; path: string; svgPath: string; fillRule?: 'nonzero' | 'evenodd' }[] = [
     { label: 'News', path: '/', svgPath: svgPaths.p8a20700 },
-    { label: 'Sports', path: '/sports', svgPath: svgPaths.p35ce4700 },
+    { label: 'Sports', path: '/sports', svgPath: 'M2 12C2 8 6 6 12 6C18 6 22 8 22 12C22 16 18 18 12 18C6 18 2 16 2 12ZM11 8H13V16H11ZM9 10H15V11H9ZM9 12H15V13H9ZM9 14H15V15H9Z', fillRule: 'evenodd' },
     { label: 'Obits', path: '/obituaries', svgPath: svgPaths.p16e91500 },
     { label: 'Weather', path: '/weather', svgPath: svgPaths.p28f79600 },
     { label: 'Radio', path: '/radio', svgPath: svgPaths.p28b71800 },
@@ -73,6 +74,7 @@ export function Footer() {
           path={tab.path}
           svgPath={tab.svgPath}
           isActive={location.pathname === tab.path}
+          fillRule={tab.fillRule}
         />
       ))}
     </div>
