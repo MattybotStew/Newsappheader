@@ -74,4 +74,4 @@ export const router = createBrowserRouter([
     Component: PodcastPlayerPage,
     errorElement: <ErrorBoundary />,
   },
-]);
+], { basename: '/Newsappheader' });
