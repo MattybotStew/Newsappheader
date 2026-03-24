@@ -22,6 +22,7 @@ function figmaAssetPlugin(): Plugin {
 }
 
 export default defineConfig({
+base: '/Newsappheader/',
   plugins: [
     react(),
     tailwindcss(),
