@@ -46,11 +46,11 @@ function RadioStationCard({ station }: { station: RadioStation }) {
       <div className="bg-white rounded-lg shadow-sm border border-[#c1c7ce] overflow-hidden hover:shadow-md transition-shadow">
         <div className="flex gap-3 p-3">
           {/* Thumbnail - matching podcast size (96px) */}
-          <div className="size-24 shrink-0 rounded-lg overflow-hidden bg-white flex items-center justify-center">
+          <div className="size-24 shrink-0 overflow-hidden bg-white flex items-center justify-center">
             <img 
               src={station.logoUrl} 
               alt={station.name}
-              className="w-full h-full object-contain"
+              className="max-w-full max-h-full object-contain"
             />
           </div>
           

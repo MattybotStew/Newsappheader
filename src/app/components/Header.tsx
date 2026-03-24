@@ -34,7 +34,7 @@ function Background() {
 function Container2() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Container">
-      <div className="flex items-baseline font-['Kranto',sans-serif] leading-[0] relative shrink-0 text-[22px] text-white tracking-[-0.2px] whitespace-nowrap">
+      <div className="flex items-baseline font-['Source_Sans_3',sans-serif] leading-[0] relative shrink-0 text-[22px] text-white tracking-[-0.2px] whitespace-nowrap">
         <p>
           <span className="font-normal leading-[normal]">access</span>
           <span className="font-bold leading-[normal]">WDUN</span>
@@ -67,9 +67,13 @@ function Svg() {
 
 function ButtonSearch() {
   return (
-    <button className="content-stretch flex items-center justify-center relative rounded-[100px] shrink-0 size-[40px] hover:bg-white/10 transition-colors" data-name="Button - Search">
+    <Link 
+      to="/search"
+      className="content-stretch flex items-center justify-center relative rounded-[100px] shrink-0 size-[40px] hover:bg-white/10 transition-colors" 
+      data-name="Button - Search"
+    >
       <Svg />
-    </button>
+    </Link>
   );
 }
 
@@ -93,7 +97,7 @@ function Container() {
 function Background1() {
   return (
     <div className="bg-[#c62828] content-stretch flex flex-col items-start px-[6px] py-[2px] relative rounded-[100px] shrink-0" data-name="Background">
-      <div className="flex flex-col font-['Kranto',sans-serif] font-extrabold justify-center leading-[0] relative shrink-0 text-[9px] text-white tracking-[0.8px] whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
+      <div className="flex flex-col font-['Roboto:ExtraBold',sans-serif] font-extrabold justify-center leading-[0] relative shrink-0 text-[9px] text-white tracking-[0.8px] whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
         <p className="leading-[normal]">LIVE</p>
       </div>
     </div>
@@ -112,7 +116,7 @@ function Container5() {
 function Container6() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Container">
-      <div className="flex flex-col font-['Kranto',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[13px] text-white whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
+      <div className="flex flex-col font-['Roboto:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[13px] text-white whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
         <p className="leading-[normal]">WDUN AM 550</p>
       </div>
     </div>
@@ -176,7 +180,7 @@ function Button({ isPlaying, onToggle }: { isPlaying: boolean; onToggle: () => v
       data-name="Button"
     >
       {isPlaying ? <PauseIcon /> : <Svg2 />}
-      <div className="flex flex-col font-['Kranto',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-white text-[12px] text-center tracking-[0.3px] whitespace-nowrap">
+      <div className="flex flex-col font-['Source_Sans_3',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-white text-[12px] text-center tracking-[0.3px] whitespace-nowrap">
         <p className="leading-[normal]">{isPlaying ? 'Pause' : 'Listen'}</p>
       </div>
     </button>
@@ -225,7 +229,7 @@ function LiveRadioBar() {
           />
           <div className="absolute top-full left-4 right-4 mt-2 bg-white rounded-lg shadow-lg overflow-hidden z-50 border border-[#c1c7ce]">
             <div className="bg-[#1a56a4] px-4 py-3 flex items-center justify-between">
-              <div className="font-['Kranto',sans-serif] font-bold text-white text-[14px]" style={{ fontVariationSettings: "'wdth' 100" }}>
+              <div className="font-['Roboto:Bold',sans-serif] font-bold text-white text-[14px]" style={{ fontVariationSettings: "'wdth' 100" }}>
                 LISTEN LIVE
               </div>
               <ChevronDown />
@@ -237,7 +241,7 @@ function LiveRadioBar() {
                   onClick={() => setIsExpanded(false)}
                   className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
                 >
-                  <div className="font-['Kranto',sans-serif] font-semibold text-[#1a56a4] text-[14px]" style={{ fontVariationSettings: "'wdth' 100" }}>
+                  <div className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[#1a56a4] text-[14px]" style={{ fontVariationSettings: "'wdth' 100" }}>
                     {station.name}
                   </div>
                   <ChevronRight />

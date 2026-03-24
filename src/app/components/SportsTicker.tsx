@@ -33,7 +33,7 @@ export function SportsTicker() {
         {/* Ticker Label */}
         <div className="flex items-center gap-2 mb-2">
           <div className="bg-[#1a3178] px-2 py-1 rounded">
-            <span className="font-['Kranto',sans-serif] font-extrabold text-[11px] text-white tracking-[1px] uppercase">
+            <span className="font-['Source_Sans_3',sans-serif] font-extrabold text-[11px] text-white tracking-[1px] uppercase">
               SPORTS TICKER
             </span>
           </div>
@@ -47,10 +47,10 @@ export function SportsTicker() {
             key={currentItem.id}
           >
             <div className="flex items-start gap-2">
-              <span className="font-['Kranto',sans-serif] font-semibold text-[12px] text-[#1a3178] shrink-0 mt-0.5">
+              <span className="font-['Source_Sans_3',sans-serif] font-semibold text-[12px] text-[#1a3178] shrink-0 mt-0.5">
                 {currentItem.time}
               </span>
-              <p className="font-['Kranto',sans-serif] text-[14px] text-[#111827] leading-[20px] line-clamp-2">
+              <p className="font-['Source_Sans_3',sans-serif] text-[14px] text-[#111827] leading-[20px] line-clamp-2">
                 {currentItem.text}
               </p>
             </div>

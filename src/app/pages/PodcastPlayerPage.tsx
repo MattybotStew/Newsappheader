@@ -144,11 +144,11 @@ export function PodcastPlayerPage() {
           {/* Album Art / Episode Artwork */}
           <div className="px-4 py-6">
             <div className="max-w-sm mx-auto">
-              <div className="aspect-square w-1/2 mx-auto rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-[#e8e8e8] to-[#d0d0d0] mb-6">
+              <div className="aspect-square w-1/2 mx-auto overflow-hidden shadow-lg bg-gradient-to-br from-[#e8e8e8] to-[#d0d0d0] mb-6">
                 <img
                   src={episode.imageUrl}
                   alt={episode.title}
-                  className="w-full h-full object-cover"
+                  className="size-full object-cover"
                 />
               </div>
 
@@ -228,7 +228,7 @@ export function PodcastPlayerPage() {
                   className="w-full bg-white rounded-lg border border-[#c1c7ce] hover:shadow-md transition-shadow text-left overflow-hidden"
                 >
                   <div className="flex gap-3 p-3">
-                    <div className="size-16 shrink-0 rounded-lg overflow-hidden bg-gradient-to-br from-[#e8e8e8] to-[#d0d0d0]">
+                    <div className="size-16 shrink-0 overflow-hidden bg-gradient-to-br from-[#e8e8e8] to-[#d0d0d0]">
                       <img
                         src={ep.imageUrl}
                         alt={ep.title}

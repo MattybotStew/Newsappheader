@@ -10,12 +10,18 @@ import { RadioPage } from "./pages/RadioPage";
 import { RadioStationPage } from "./pages/RadioStationPage";
 import { PodcastsPage } from "./pages/PodcastsPage";
 import { PodcastPlayerPage } from "./pages/PodcastPlayerPage";
+import { SearchPage } from "./pages/SearchPage";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: HomePage,
+    errorElement: <ErrorBoundary />,
+  },
+  {
+    path: "/search",
+    Component: SearchPage,
     errorElement: <ErrorBoundary />,
   },
   {

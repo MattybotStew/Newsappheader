@@ -129,11 +129,11 @@ export function PodcastsContent() {
             >
               <div className="flex gap-3 p-3">
                 {/* Thumbnail */}
-                <div className="size-24 shrink-0 rounded-lg overflow-hidden bg-gradient-to-br from-[#e8e8e8] to-[#d0d0d0]">
+                <div className="size-24 shrink-0 overflow-hidden bg-gradient-to-br from-[#e8e8e8] to-[#d0d0d0]">
                   <img
                     src={episode.imageUrl}
                     alt={episode.title}
-                    className="w-full h-full object-cover"
+                    className="size-full object-cover"
                   />
                 </div>
 

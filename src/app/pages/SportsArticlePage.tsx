@@ -76,13 +76,8 @@ export function SportsArticlePage() {
             <img
               src="https://images.unsplash.com/photo-1620397629667-6e4ed81766a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaWdoJTIwc2Nob29sJTIwZm9vdGJhbGwlMjBnYW1lJTIwc3RhZGl1bXxlbnwxfHx8fDE3NzI1NjA0MjJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
               alt="High school football game"
-              className="w-full h-[240px] object-cover"
+              className="w-full h-auto object-cover"
             />
-            <div className="px-4 py-2 text-[11px] text-[#41484d] italic border-b border-[#c1c7ce]">
-              <span className="font-['Roboto:Regular',sans-serif]" style={{ fontVariationSettings: "'wdth' 100" }}>
-                North Hall celebrates their region championship victory Friday night. (Photo: AccessNorthGA Sports)
-              </span>
-            </div>
           </div>
 
           {/* Article Content */}
@@ -177,7 +172,7 @@ export function SportsArticlePage() {
                 className="w-full text-left hover:bg-white p-3 rounded-lg transition-colors"
               >
                 <div className="flex gap-3">
-                  <div className="w-20 h-[68px] bg-gradient-to-br from-[#b8d0ee] to-[#8fb8e2] rounded-xl shrink-0"></div>
+                  <div className="w-20 h-[68px] bg-gradient-to-br from-[#b8d0ee] to-[#8fb8e2] shrink-0"></div>
                   <div className="flex-1">
                     <div className="font-['Roboto:Bold',sans-serif] font-bold text-[#1976d2] text-[10px] tracking-[0.7px] uppercase mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
                       High School
@@ -197,7 +192,7 @@ export function SportsArticlePage() {
                 className="w-full text-left hover:bg-white p-3 rounded-lg transition-colors"
               >
                 <div className="flex gap-3">
-                  <div className="w-20 h-[68px] bg-gradient-to-br from-[#b8d0ee] to-[#8fb8e2] rounded-xl shrink-0"></div>
+                  <div className="w-20 h-[68px] bg-gradient-to-br from-[#b8d0ee] to-[#8fb8e2] shrink-0"></div>
                   <div className="flex-1">
                     <div className="font-['Roboto:Bold',sans-serif] font-bold text-[#1976d2] text-[10px] tracking-[0.7px] uppercase mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
                       Friday Game Night
@@ -217,7 +212,7 @@ export function SportsArticlePage() {
                 className="w-full text-left hover:bg-white p-3 rounded-lg transition-colors"
               >
                 <div className="flex gap-3">
-                  <div className="w-20 h-[68px] bg-gradient-to-br from-[#b8d0ee] to-[#8fb8e2] rounded-xl shrink-0"></div>
+                  <div className="w-20 h-[68px] bg-gradient-to-br from-[#b8d0ee] to-[#8fb8e2] shrink-0"></div>
                   <div className="flex-1">
                     <div className="font-['Roboto:Bold',sans-serif] font-bold text-[#1976d2] text-[10px] tracking-[0.7px] uppercase mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
                       High School

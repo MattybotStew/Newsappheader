@@ -35,7 +35,7 @@ function FilterChips() {
                 : 'bg-[#e8eef5] text-[#6b7280] hover:bg-[#d9e3f0]'
             }`}
           >
-            <span className="font-['Kranto',sans-serif] font-semibold text-[13px]">
+            <span className="font-['Source_Sans_3',sans-serif] font-semibold text-[13px]">
               {filter}
             </span>
           </button>
@@ -145,29 +145,12 @@ function HeroArticleSlider() {
                   }
                 }}
               >
-                <div className="bg-[#dde3ea] h-[216px] overflow-clip rounded-2xl shadow-[0px_1px_3px_0px_rgba(0,0,0,0.12),0px_1px_2px_0px_rgba(0,0,0,0.08)] relative mx-1">
+                <div className="bg-[#dde3ea] h-[216px] overflow-clip shadow-[0px_1px_3px_0px_rgba(0,0,0,0.12),0px_1px_2px_0px_rgba(0,0,0,0.08)] relative mx-1">
                   <img
                     src={story.imageUrl}
                     alt={story.title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    draggable={false}
+                    className="size-full object-cover"
                   />
-                  <div className="absolute bg-gradient-to-b from-[40%] from-[rgba(26,49,120,0)] inset-0 to-[rgba(26,49,120,0.90)]" />
-                  <div className="absolute bottom-0 left-0 right-0 flex flex-col gap-[5.2px] items-start p-[14px]">
-                    <div className="bg-[#22c55e] px-2 py-[2px] rounded-full">
-                      <div className="font-['Kranto',sans-serif] font-extrabold text-[9px] text-white tracking-[0.6px] uppercase">
-                        {story.category}
-                      </div>
-                    </div>
-                    <div className="font-['Kranto',sans-serif] font-bold leading-[20.48px] text-[16px] text-white w-full">
-                      {story.title}
-                    </div>
-                    <div className="flex gap-2 items-center text-[10px] text-[rgba(255,255,255,0.72)]">
-                      <span className="font-['Kranto',sans-serif]">{story.author}</span>
-                      <span className="opacity-50">·</span>
-                      <span className="font-['Kranto',sans-serif]">{story.time}</span>
-                    </div>
-                  </div>
                 </div>
               </Link>
             ))}
@@ -208,7 +191,7 @@ function ArticleListItem({ category, title, author, imageUrl }: { category: stri
   return (
     <Link to="/sports/article/1" className="block hover:bg-gray-50 transition-colors">
       <div className="flex gap-3 items-start pb-[11px] pt-[10px] px-4 border-b border-[#e5e7eb] bg-white">
-        <div className="h-[68px] rounded-xl shrink-0 w-20 overflow-hidden bg-gradient-to-br from-[#b8d0ee] to-[#8fb8e2]">
+        <div className="h-[68px] shrink-0 w-20 overflow-hidden bg-gradient-to-br from-[#b8d0ee] to-[#8fb8e2]">
           <img
             src={imageUrl || sportImages[Math.floor(Math.random() * sportImages.length)]}
             alt={title}
@@ -216,15 +199,15 @@ function ArticleListItem({ category, title, author, imageUrl }: { category: stri
           />
         </div>
         <div className="flex-1 flex flex-col gap-[3px]">
-          <div className="font-['Kranto',sans-serif] font-bold text-[#22c55e] text-[10px] tracking-[0.7px] uppercase">
+          <div className="font-['Source_Sans_3',sans-serif] font-bold text-[#22c55e] text-[10px] tracking-[0.7px] uppercase">
             {category}
           </div>
           <div className="h-[37.78px] overflow-clip">
-            <div className="font-['Kranto',sans-serif] font-semibold leading-[18.9px] text-[#333399] text-[14px]">
+            <div className="font-['Source_Sans_3',sans-serif] font-semibold leading-[18.9px] text-[#333399] text-[14px]">
               {title}
             </div>
           </div>
-          <div className="font-['Kranto',sans-serif] font-normal text-[#6b7280] text-[10px] pt-[2px]">
+          <div className="font-['Source_Sans_3',sans-serif] font-normal text-[#6b7280] text-[10px] pt-[2px]">
             {author}
           </div>
         </div>

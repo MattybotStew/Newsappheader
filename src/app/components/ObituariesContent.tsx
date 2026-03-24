@@ -152,7 +152,7 @@ function ObituaryListItem({
   return (
     <Link to="/obituaries/1" className="block hover:bg-white transition-colors">
       <div className="flex gap-4 items-start pb-4 pt-4 px-4 border-b border-[#e5e7eb]">
-        <div className="h-[100px] rounded-xl shrink-0 w-[100px] overflow-hidden bg-gradient-to-br from-[#e8e8e8] to-[#d0d0d0]">
+        <div className="h-[100px] shrink-0 w-[100px] overflow-hidden bg-gradient-to-br from-[#e8e8e8] to-[#d0d0d0]">
           <ImageWithFallback
             src={imageUrl}
             alt={name}

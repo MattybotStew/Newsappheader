@@ -44,11 +44,11 @@ export function NativeAdArticleCard({ adUnit }: NativeAdArticleCardProps) {
           </span>
         </div>
 
-        <div className="h-[68px] rounded-xl shrink-0 w-20 overflow-hidden bg-gradient-to-br from-[#4a4a4a] to-[#3a3a3a]">
+        <div className="h-[68px] shrink-0 w-20 overflow-hidden bg-gradient-to-br from-[#4a4a4a] to-[#3a3a3a]">
           <img
             src={ad.imageUrl}
             alt={ad.headline}
-            className="w-full h-full object-cover opacity-60"
+            className="size-full object-cover"
           />
         </div>
         <div className="flex-1 flex flex-col gap-[3px]">

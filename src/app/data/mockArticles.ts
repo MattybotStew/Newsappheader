@@ -39,7 +39,7 @@ export const breakingNews: Article[] = [
     content: 'The National Weather Service has issued a severe thunderstorm warning for Hall County and surrounding areas, effective until 8:00 PM this evening. Meteorologists are tracking a line of storms moving northeast through the region, with the potential for damaging winds up to 60 mph, quarter-sized hail, and heavy rainfall.\n\nHall County Emergency Management is urging residents to monitor weather conditions closely and seek shelter if threatening weather approaches. The storms are expected to impact the Gainesville area during the evening commute, potentially causing hazardous driving conditions.\n\n"We want everyone to take this seriously," said Hall County Emergency Management Director Zach Brackett. "Have multiple ways to receive weather alerts, and don\'t hesitate to take shelter if you hear thunder or see lightning."\n\nLocal school systems have canceled all after-school activities and athletic events as a precaution. Residents are encouraged to secure outdoor furniture and objects that could become projectiles in high winds.',
     author: 'Rob Moore',
     timestamp: '45 minutes ago',
-    imageUrl: 'https://images.unsplash.com/photo-1656495782911-06e6a5f9bef5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWF2eSUyMHJhaW4lMjB3ZWF0aGVyJTIwc3Rvcm18ZW58MXx8fHwxNzc0Mzc1NzE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    imageUrl: 'https://images.unsplash.com/photo-1517478881647-fbbbc313849b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdG9ybSUyMGNsb3VkcyUyMHdlYXRoZXJ8ZW58MXx8fHwxNzc0MzAxODk2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
     isBreaking: true
   },
   {
