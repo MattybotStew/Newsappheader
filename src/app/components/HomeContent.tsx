@@ -109,31 +109,6 @@ function HeroArticleSlider() {
   );
 }
 
-// Category Filter Chips
-const CATEGORIES = ['All', 'Breaking', 'Local', 'Business', 'Politics', 'Education', 'Sports'];
-
-function CategoryFilter({ selected, onSelect }: { selected: string; onSelect: (c: string) => void }) {
-  return (
-    <div className="flex gap-2 overflow-x-auto scrollbar-hide px-4 pb-3 pt-1">
-      {CATEGORIES.map((cat) => {
-        const active = selected === cat;
-        return (
-          <button
-            key={cat}
-            onClick={() => onSelect(cat)}
-            className={`shrink-0 px-4 py-1.5 rounded-full text-[12px] font-semibold font-['Source_Sans_3',sans-serif] tracking-[0.2px] transition-colors border ${
-              active
-                ? 'bg-[#1a3178] text-white border-[#1a3178]'
-                : 'bg-white text-[#1a3178] border-[#c1c7ce] hover:border-[#1a3178]'
-            }`}
-          >
-            {cat}
-          </button>
-        );
-      })}
-    </div>
-  );
-}
 
 // Article List Item — Artifact-inspired layout
 function ArticleListItem({ category, title, author, imageUrl }: { category: string; title: string; author: string; imageUrl?: string }) {
@@ -177,15 +152,8 @@ function SectionLabel({ label }: { label: string }) {
 
 // Main Component
 export function HomeContent() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
-
   const allArticles = [...breakingNews, ...localNews];
 
-  const filtered = selectedCategory === 'All'
-    ? allArticles
-    : allArticles.filter(a => a.category.toLowerCase() === selectedCategory.toLowerCase());
-
-  const displayArticles = filtered.slice(0, 15);
 
   return (
     <div className="bg-white w-full">
@@ -194,22 +162,11 @@ export function HomeContent() {
         <HeroArticleSlider />
       </div>
 
-      {/* Category Chips */}
-      <div className="bg-white border-b border-[#eef0f3]">
-        <CategoryFilter selected={selectedCategory} onSelect={setSelectedCategory} />
-      </div>
-
       {/* Article Feed */}
       <div className="pb-24">
-        {displayArticles.length === 0 && (
-          <div className="px-4 py-8 text-center text-[#9ca3af] font-['Source_Sans_3',sans-serif] text-sm">
-            No articles in this category.
-          </div>
-        )}
-
-        {displayArticles.map((article, index) => (
+        <SectionLabel label="Latest News" />
+        {allArticles.slice(0, 15).map((article, index) => (
           <div key={article.id}>
-            {index === 0 && selectedCategory === 'All' && <SectionLabel label="Latest News" />}
             <ArticleListItem
               category={article.category}
               title={article.title}

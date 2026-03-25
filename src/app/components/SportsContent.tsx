@@ -5,39 +5,24 @@ import { adConfig } from '../config/adConfig';
 import { SportsTicker } from './SportsTicker';
 import { sportsArticles } from '../data/mockArticles';
 
-// Filter Chips Component
-function FilterChips() {
-  const [selectedFilter, setSelectedFilter] = useState('All');
+// Filter Chips Component — Artifact style
+const SPORT_CATEGORIES = ['All', 'High School', 'Friday Game Night', 'Youth Sports', 'College Signing', 'Baseball', 'Basketball', 'Football', 'Softball', 'Soccer'];
 
-  const filters = [
-    'All',
-    'High School',
-    'Friday Game Night',
-    'Youth Sports',
-    'College Signing',
-    'Baseball',
-    'Basketball',
-    'Football',
-    'Softball',
-    'Soccer'
-  ];
-
+function FilterChips({ selected, onSelect }: { selected: string; onSelect: (c: string) => void }) {
   return (
-    <div className="px-4 py-3 bg-white border-b border-[#e5e7eb]">
-      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-        {filters.map((filter) => (
+    <div className="bg-white border-b border-[#eef0f3]">
+      <div className="flex gap-2 overflow-x-auto scrollbar-hide px-4 pb-3 pt-1">
+        {SPORT_CATEGORIES.map((cat) => (
           <button
-            key={filter}
-            onClick={() => setSelectedFilter(filter)}
-            className={`px-4 py-1.5 rounded-full whitespace-nowrap transition-colors shrink-0 ${
-              selectedFilter === filter
-                ? 'bg-[#22c55e] text-white'
-                : 'bg-[#e8eef5] text-[#6b7280] hover:bg-[#d9e3f0]'
+            key={cat}
+            onClick={() => onSelect(cat)}
+            className={`shrink-0 px-4 py-1.5 rounded-full text-[12px] font-semibold font-['Source_Sans_3',sans-serif] tracking-[0.2px] transition-colors border whitespace-nowrap ${
+              selected === cat
+                ? 'bg-[#1a3178] text-white border-[#1a3178]'
+                : 'bg-white text-[#1a3178] border-[#c1c7ce] hover:border-[#1a3178]'
             }`}
           >
-            <span className="font-['Source_Sans_3',sans-serif] font-semibold text-[13px]">
-              {filter}
-            </span>
+            {cat}
           </button>
         ))}
       </div>
@@ -194,36 +179,24 @@ function HeroArticleSlider() {
   );
 }
 
-// Article List Item Component
+// Article List Item Component — Artifact style
 function ArticleListItem({ category, title, author, imageUrl }: { category: string; title: string; author: string; imageUrl?: string }) {
-  const sportImages = [
-    'https://images.unsplash.com/photo-1763479197379-93d1dcd229d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaWdoJTIwc2Nob29sJTIwZm9vdGJhbGwlMjBnYW1lJTIwYWN0aW9ufGVufDF8fHx8MTc3NDMwMTg5NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    'https://images.unsplash.com/photo-1762025930827-9f1dda45aff8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYXNrZXRiYWxsJTIwZ2FtZSUyMGFjdGlvbiUyMHNob3R8ZW58MXx8fHwxNzc0Mzc0Nzg0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    'https://images.unsplash.com/photo-1696250892381-597efcbb9094?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYXNlYmFsbCUyMGdhbWUlMjBwbGF5ZXJ8ZW58MXx8fHwxNzc0Mzc0Nzg1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-  ];
-  
   return (
-    <Link to="/sports/article/1" className="block hover:bg-gray-50 transition-colors">
-      <div className="flex gap-3 items-start pb-[11px] pt-[10px] px-4 border-b border-[#e5e7eb] bg-white">
-        <div className="h-[68px] shrink-0 w-20 overflow-hidden bg-gradient-to-br from-[#b8d0ee] to-[#8fb8e2]">
-          <img
-            src={imageUrl || sportImages[Math.floor(Math.random() * sportImages.length)]}
-            alt={title}
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="flex-1 flex flex-col gap-[3px]">
-          <div className="font-['Source_Sans_3',sans-serif] font-bold text-[#22c55e] text-[10px] tracking-[0.7px] uppercase">
+    <Link to="/sports/article/1" className="block hover:bg-[#f8f9fa] transition-colors">
+      <div className="flex gap-3 items-start py-3 px-4 border-b border-[#eef0f3] bg-white">
+        <div className="flex-1 flex flex-col gap-1 min-w-0">
+          <span className="text-[10px] font-bold tracking-[0.7px] uppercase font-['Source_Sans_3',sans-serif] text-[#1a56a4]">
             {category}
-          </div>
-          <div className="h-[37.78px] overflow-clip">
-            <div className="font-['Source_Sans_3',sans-serif] font-semibold leading-[18.9px] text-[#333399] text-[14px]">
-              {title}
-            </div>
-          </div>
-          <div className="font-['Source_Sans_3',sans-serif] font-normal text-[#6b7280] text-[10px] pt-[2px]">
+          </span>
+          <p className="font-['Source_Sans_3',sans-serif] font-bold text-[14px] leading-[1.35] text-[#1a3178] line-clamp-3">
+            {title}
+          </p>
+          <p className="font-['Source_Sans_3',sans-serif] text-[11px] text-[#9ca3af] pt-0.5">
             {author}
-          </div>
+          </p>
+        </div>
+        <div className="size-[72px] shrink-0 overflow-hidden rounded-sm bg-gradient-to-br from-[#b8d0ee] to-[#8fb8e2]">
+          {imageUrl && <img src={imageUrl} alt={title} className="w-full h-full object-cover" />}
         </div>
       </div>
     </Link>
@@ -232,21 +205,27 @@ function ArticleListItem({ category, title, author, imageUrl }: { category: stri
 
 // Main Component
 export function SportsContent() {
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const filtered = selectedCategory === 'All'
+    ? sportsArticles
+    : sportsArticles.filter(a => a.category.toLowerCase() === selectedCategory.toLowerCase());
+
   return (
-    <div className="bg-[#f8f9fa] w-full pb-24">
-      {/* Filter Chips */}
-      <FilterChips />
-      
+    <div className="bg-white w-full pb-24">
       {/* Sports Ticker */}
       <SportsTicker />
-      
+
       {/* Hero Slider */}
-      <div className="pt-4">
+      <div className="pt-3 bg-[#f8f9fa]">
         <HeroArticleSlider />
       </div>
-      
+
+      {/* Filter Chips */}
+      <FilterChips selected={selectedCategory} onSelect={setSelectedCategory} />
+
       {/* Article List with Native Ad after 3rd article */}
-      {sportsArticles.map((article, index) => (
+      {filtered.map((article, index) => (
         <div key={article.id}>
           <ArticleListItem
             category={article.category}
@@ -254,7 +233,6 @@ export function SportsContent() {
             author={`${article.author}  ·  ${article.timestamp}`}
             imageUrl={article.imageUrl}
           />
-          {/* Insert native ad after 3rd article (index 2) */}
           {index === 2 && (
             <NativeAdArticleCard adUnit={adConfig.adUnits.sportsFeedNative} />
           )}
