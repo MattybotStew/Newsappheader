@@ -76,31 +76,41 @@ export function Header() {
 
       {/* ── Search mode ─────────────────────────────── */}
       {isSearchOpen ? (
-        <div className="flex items-center gap-2 w-full h-[36px]">
+        <div className="flex items-center gap-[8px] w-full">
+          {/* Search icon */}
+          <div className="size-[36px] flex items-center justify-center rounded-[8px] bg-[#0091b0] shrink-0">
+            <svg viewBox="0 0 24 24" fill="none" className="size-[22px] text-white">
+              <path d={svgPaths.p3696db80} fill="currentColor" />
+            </svg>
+          </div>
+          {/* White input */}
+          <div className="flex-1 flex items-center bg-white rounded-[8px] px-3 gap-2 h-[36px]">
+            <input
+              ref={searchInputRef}
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleSearchSubmit()}
+              placeholder="Search accessWDUN…"
+              className="flex-1 bg-transparent text-[#011843] placeholder-[#011843]/40 text-[14px] font-['Source_Sans_3',sans-serif] outline-none"
+            />
+            {searchQuery && (
+              <button onClick={() => setSearchQuery('')} className="text-[#011843]/40 hover:text-[#011843] transition-colors shrink-0">
+                <svg viewBox="0 0 24 24" fill="none" className="size-4">
+                  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor" />
+                </svg>
+              </button>
+            )}
+          </div>
+          {/* Close icon */}
           <button
             onClick={() => { setIsSearchOpen(false); setSearchQuery(''); }}
-            className="text-white/70 hover:text-white p-1 transition-colors"
+            className="size-[36px] flex items-center justify-center rounded-[8px] bg-white/15 hover:bg-white/25 transition-colors text-white shrink-0"
             aria-label="Close search"
           >
             <svg viewBox="0 0 24 24" fill="none" className="size-5">
-              <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="currentColor" />
+              <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="currentColor" />
             </svg>
           </button>
-          <input
-            ref={searchInputRef}
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && handleSearchSubmit()}
-            placeholder="Search accessWDUN…"
-            className="flex-1 bg-white/15 text-white placeholder-white/40 rounded-full px-4 py-1.5 text-[14px] font-['Source_Sans_3',sans-serif] outline-none focus:bg-white/20 transition-colors"
-          />
-          {searchQuery ? (
-            <button onClick={() => setSearchQuery('')} className="text-white/50 hover:text-white p-1 transition-colors">
-              <svg viewBox="0 0 24 24" fill="none" className="size-4">
-                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor" />
-              </svg>
-            </button>
-          ) : <div className="size-6" />}
         </div>
 
       ) : (
