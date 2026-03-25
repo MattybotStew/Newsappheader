@@ -131,8 +131,8 @@ export function ObituariesContent() {
 
   return (
     <div className="bg-white w-full pb-24">
-      <ChipRow items={TIME_FILTERS} selected={selectedTime} onSelect={setSelectedTime} />
       <CountyDropdown selected={selectedCounty} onSelect={setSelectedCounty} />
+      <ChipRow items={TIME_FILTERS} selected={selectedTime} onSelect={setSelectedTime} />
       
       {/* Obituary List with Ads */}
       <div>
