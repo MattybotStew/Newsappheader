@@ -212,7 +212,7 @@ export function Header() {
               <span className="font-bold text-white text-[14px] font-['Source_Sans_3',sans-serif] tracking-[0.3px]">LISTEN LIVE</span>
               <button onClick={() => setIsExpanded(false)} className="text-white/70 hover:text-white transition-colors">
                 <svg viewBox="0 0 24 24" fill="none" className="size-4">
-                  <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="currentColor" />
+                  <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="currentColor" />
                 </svg>
               </button>
             </div>
