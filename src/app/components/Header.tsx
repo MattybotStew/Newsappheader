@@ -132,7 +132,7 @@ export function Header() {
             </Link>
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="size-[40px] flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-white"
+              className="size-[40px] flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-white -mr-2"
               aria-label="Search"
             >
               <svg viewBox="0 0 24 24" fill="none" className="size-[22px]">
