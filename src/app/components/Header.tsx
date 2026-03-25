@@ -143,7 +143,7 @@ export function Header() {
 
           {/* ── Radio bar ───────────────────────────── */}
           <div className={`px-4 transition-all duration-300 ${isScrolled ? 'pb-2' : 'pb-[10px]'}`}>
-            <div className={`bg-white/[0.13] rounded-[8px] flex items-center justify-between transition-all duration-300 px-3 ${isScrolled ? 'h-[30px]' : 'h-[40px]'}`}>
+            <div className={`bg-[#011843] rounded-[8px] flex items-center justify-between transition-all duration-300 px-3 ${isScrolled ? 'h-[30px]' : 'h-[40px]'}`}>
               {/* Left: live dot + badge + station name */}
               <button
                 onClick={() => !isScrolled && setIsExpanded(!isExpanded)}
@@ -204,7 +204,7 @@ export function Header() {
         <>
           <div className="fixed inset-0 bg-black/20 z-40" onClick={() => setIsExpanded(false)} />
           <div className="absolute top-full left-4 right-4 mt-1 bg-white rounded-lg shadow-xl overflow-hidden z-50 border border-[#d1d5db]">
-            <div className="bg-[#1a56a4] px-4 py-2.5 flex items-center justify-between">
+            <div className="bg-[#011843] px-4 py-2.5 flex items-center justify-between">
               <span className="font-bold text-white text-[14px] font-['Source_Sans_3',sans-serif] tracking-[0.3px]">LISTEN LIVE</span>
               <button onClick={() => setIsExpanded(false)} className="text-white/70 hover:text-white transition-colors">
                 <svg viewBox="0 0 24 24" fill="none" className="size-4">
