@@ -167,17 +167,17 @@ export function Header() {
                 >
                   {isPlaying ? (
                     <>
+                      Pause
                       <svg viewBox="0 0 14 14" fill="none" className="size-3 shrink-0">
                         <path d="M4 2H6V12H4V2ZM8 2H10V12H8V2Z" fill="white" />
                       </svg>
-                      Pause
                     </>
                   ) : (
                     <>
+                      Listen
                       <svg viewBox="0 0 14 14" fill="none" className="size-3 shrink-0">
                         <path d={svgPaths.p3c11d380} fill="white" />
                       </svg>
-                      Listen
                     </>
                   )}
                 </button>
