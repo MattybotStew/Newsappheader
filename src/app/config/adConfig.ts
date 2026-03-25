@@ -11,6 +11,7 @@ export const adConfig = {
     newsFeedNative: '/YOUR_NETWORK_ID/accessnorthga_news_feed_native',
     sportsFeedNative: '/YOUR_NETWORK_ID/accessnorthga_sports_feed_native',
     podcastsNative: '/YOUR_NETWORK_ID/accessnorthga_podcasts_native',
+    articleNative: '/YOUR_NETWORK_ID/accessnorthga_article_native',
     
     // Banner ads - Medium Rectangle (300x250)
     articleInline: '/YOUR_NETWORK_ID/accessnorthga_article_inline',

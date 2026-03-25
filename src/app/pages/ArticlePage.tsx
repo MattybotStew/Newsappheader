@@ -5,6 +5,7 @@ import { ChevronLeft, Share2, Facebook, Mail } from 'lucide-react';
 import { BannerAd } from '../components/ads/BannerAd';
 import { AnchoredBanner } from '../components/ads/AnchoredBanner';
 import { TopBannerAd } from '../components/ads/TopBannerAd';
+import { NativeAdArticleCard } from '../components/ads/NativeAdArticleCard';
 import { adConfig, adSizes } from '../config/adConfig';
 
 export function ArticlePage() {
@@ -31,11 +32,9 @@ export function ArticlePage() {
 
           {/* Article Header */}
           <div className="px-4 pt-4 pb-3">
-            <div className="bg-[#1a3178] px-3 py-[3px] rounded-full inline-block mb-3">
-              <span className="font-['Source_Sans_3',sans-serif] font-bold text-[10px] text-white tracking-[0.6px] uppercase">
-                Local News
-              </span>
-            </div>
+            <span className="font-['Source_Sans_3',sans-serif] font-bold text-[10px] text-[#1a3178] tracking-[0.6px] uppercase block mb-3">
+              Local News
+            </span>
             
             <h1 className="font-['Roboto:Bold',sans-serif] font-bold leading-[28px] text-[22px] text-[#1a3178] mb-3" style={{ fontVariationSettings: "'wdth' 100" }}>
               Interstate 85 northbound wreck causing late-morning delays by SR 211
@@ -83,7 +82,7 @@ export function ArticlePage() {
           </div>
 
           {/* Article Content */}
-          <div className="px-4 py-6 pb-[200px]">
+          <div className="px-4 py-6">
             <div className="font-['Roboto:Regular',sans-serif] text-[16px] text-[#1a1c1e] leading-[26px]" style={{ fontVariationSettings: "'wdth' 100" }}>
               <p className="mb-4">
                 <strong>HALL COUNTY, Ga.</strong> — A multi-vehicle wreck on Interstate 85 northbound is causing significant delays near the SR 211 exit Tuesday morning.
@@ -122,20 +121,23 @@ export function ArticlePage() {
                 This is a developing story. AccessNorthGA will provide updates as more information becomes available.
               </p>
 
-              <div className="mt-6 p-4 bg-[#f0f4f8] rounded-lg border-l-4 border-[#1a56a4]">
-                <p className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[14px] text-[#1a1c1e] mb-2" style={{ fontVariationSettings: "'wdth' 100" }}>
-                  Traffic Alert
-                </p>
-                <p className="text-[14px] text-[#41484d]">
-                  For real-time traffic updates, check the Georgia 511 app or visit <a href="https://511ga.org" className="text-[#1a56a4] underline">511ga.org</a>. You can also listen to News Talk 550 WDUN for live traffic reports.
+              <div className="mt-6 rounded-xl border border-[#e2e8f0] bg-white shadow-sm overflow-hidden">
+                <div className="flex items-center gap-2 bg-[#1a3178] px-4 py-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-white shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                  <span className="text-white font-bold text-[13px] uppercase tracking-wide">Traffic Alert</span>
+                </div>
+                <p className="px-4 py-3 text-[14px] text-[#41484d] leading-relaxed">
+                  For real-time traffic updates, check the Georgia 511 app or visit <a href="https://511ga.org" className="text-[#1a3178] font-semibold underline underline-offset-2">511ga.org</a>. You can also listen to News Talk 550 WDUN for live traffic reports.
                 </p>
               </div>
             </div>
           </div>
 
+          <NativeAdArticleCard adUnit={adConfig.adUnits.articleNative} />
+          <div className="pb-[200px]" />
         </div>
       </main>
-      
+
       {/* Anchored Banner Ad */}
       <AnchoredBanner adUnit={adConfig.adUnits.articleBottom} />
       
