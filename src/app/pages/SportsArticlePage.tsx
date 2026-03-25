@@ -31,11 +31,9 @@ export function SportsArticlePage() {
 
           {/* Article Header */}
           <div className="px-4 pt-4 pb-3">
-            <div className="bg-[#1a3178] px-3 py-[3px] rounded-full inline-block mb-3">
-              <span className="font-['Source_Sans_3',sans-serif] font-bold text-[10px] text-white tracking-[0.6px] uppercase">
-                High School
-              </span>
-            </div>
+            <span className="font-['Source_Sans_3',sans-serif] font-bold text-[10px] text-[#1a3178] tracking-[0.6px] uppercase block mb-3">
+              High School
+            </span>
             
             <h1 className="font-['Roboto:Bold',sans-serif] font-bold leading-[28px] text-[22px] text-[#1a3178] mb-3" style={{ fontVariationSettings: "'wdth' 100" }}>
               North Hall wins region championship with dominant 42-14 victory over rivals
@@ -130,20 +128,21 @@ export function SportsArticlePage() {
                 The Trojans will host a first-round playoff game next Friday night. Their opponent will be determined when final playoff brackets are released Sunday afternoon.
               </p>
 
-              <div className="mt-6 p-4 bg-[#f0f4f8] rounded-lg border-l-4 border-[#1976d2]">
-                <p className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[14px] text-[#1a1c1e] mb-3" style={{ fontVariationSettings: "'wdth' 100" }}>
-                  Game Stats
-                </p>
-                <div className="space-y-2 text-[14px]">
+              <div className="mt-6 rounded-xl border border-[#e2e8f0] bg-white shadow-sm overflow-hidden">
+                <div className="flex items-center gap-2 bg-[#1a3178] px-4 py-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-white shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  <span className="text-white font-bold text-[13px] uppercase tracking-wide">Game Stats</span>
+                </div>
+                <div className="px-4 py-3 space-y-2 text-[14px]">
                   <div className="flex justify-between">
-                    <span className="font-['Roboto:SemiBold',sans-serif] font-semibold" style={{ fontVariationSettings: "'wdth' 100" }}>North Hall</span>
-                    <span className="font-['Roboto:Bold',sans-serif] font-bold" style={{ fontVariationSettings: "'wdth' 100" }}>42</span>
+                    <span className="font-semibold text-[#1a1c1e]">North Hall</span>
+                    <span className="font-bold text-[#1a1c1e]">42</span>
                   </div>
                   <div className="flex justify-between text-[#41484d]">
-                    <span className="font-['Roboto:SemiBold',sans-serif] font-semibold" style={{ fontVariationSettings: "'wdth' 100" }}>Dawson County</span>
-                    <span className="font-['Roboto:Bold',sans-serif] font-bold" style={{ fontVariationSettings: "'wdth' 100" }}>14</span>
+                    <span className="font-semibold">Dawson County</span>
+                    <span className="font-bold">14</span>
                   </div>
-                  <div className="border-t border-[#c1c7ce] mt-3 pt-3">
+                  <div className="border-t border-[#e2e8f0] mt-3 pt-3">
                     <p className="text-[12px] text-[#41484d] mb-1">Jake Mitchell: 18/25, 285 yards, 4 TD</p>
                     <p className="text-[12px] text-[#41484d] mb-1">Cameron Davis: 23 carries, 142 yards, 3 TD</p>
                     <p className="text-[12px] text-[#41484d]">Marcus Thompson: 6 rec, 127 yards, 2 TD</p>
@@ -151,11 +150,12 @@ export function SportsArticlePage() {
                 </div>
               </div>
 
-              <div className="mt-6 p-4 bg-[#fff8e1] rounded-lg border-l-4 border-[#ffa000]">
-                <p className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[14px] text-[#1a1c1e] mb-2" style={{ fontVariationSettings: "'wdth' 100" }}>
-                  Up Next
-                </p>
-                <p className="text-[14px] text-[#41484d]">
+              <div className="mt-6 rounded-xl border border-[#e2e8f0] bg-white shadow-sm overflow-hidden">
+                <div className="flex items-center gap-2 bg-[#1a3178] px-4 py-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-white shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <span className="text-white font-bold text-[13px] uppercase tracking-wide">Up Next</span>
+                </div>
+                <p className="px-4 py-3 text-[14px] text-[#41484d] leading-relaxed">
                   North Hall will host their first-round playoff game next Friday, March 10 at 7:30 PM. Stay tuned to AccessNorthGA for playoff matchup announcements and coverage.
                 </p>
               </div>

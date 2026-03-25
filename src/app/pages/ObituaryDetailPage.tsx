@@ -120,11 +120,12 @@ export function ObituaryDetailPage() {
                 She enjoyed gardening, quilting, and cooking for her family. Her famous peach cobbler and Sunday dinners will be greatly missed. Margaret had a servant's heart and was always the first to help anyone in need.
               </p>
 
-              <div className="my-6 p-4 bg-[#f0f4f8] rounded-lg border-l-4 border-[#1976d2]">
-                <p className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[14px] text-[#1a1c1e] mb-3" style={{ fontVariationSettings: "'wdth' 100" }}>
-                  Survivors
-                </p>
-                <div className="space-y-2 text-[14px]">
+              <div className="my-6 rounded-xl border border-[#e2e8f0] bg-white shadow-sm overflow-hidden">
+                <div className="flex items-center gap-2 bg-[#1a3178] px-4 py-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-white shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  <span className="text-white font-bold text-[13px] uppercase tracking-wide">Survivors</span>
+                </div>
+                <div className="px-4 py-3 space-y-2 text-[14px] text-[#41484d] leading-relaxed">
                   <p>Husband of 62 years: Robert Thompson of Gainesville</p>
                   <p>Children: Susan (David) Martin of Flowery Branch, Michael (Jennifer) Thompson of Oakwood, and Lisa (James) Wilson of Buford</p>
                   <p>Grandchildren: Emily, Sarah, Matthew, Daniel, Rachel, and Hannah</p>
@@ -137,15 +138,16 @@ export function ObituaryDetailPage() {
                 In addition to her parents, Margaret was preceded in death by her sister, Elizabeth Ann Henderson.
               </p>
 
-              <div className="my-6 p-4 bg-[#fff8e1] rounded-lg border-l-4 border-[#ffa000]">
-                <p className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[14px] text-[#1a1c1e] mb-3" style={{ fontVariationSettings: "'wdth' 100" }}>
-                  Service Information
-                </p>
-                <div className="space-y-2 text-[14px]">
-                  <p><strong>Visitation:</strong> Tuesday, March 5, 2026, from 2:00 PM to 4:00 PM at Memorial Park Funeral Home</p>
-                  <p><strong>Funeral Service:</strong> Wednesday, March 6, 2026, at 11:00 AM at First Baptist Church of Gainesville</p>
-                  <p><strong>Interment:</strong> Memorial Park Cemetery, Gainesville</p>
-                  <p className="pt-2 border-t border-[#e0e0e0] mt-2">
+              <div className="my-6 rounded-xl border border-[#e2e8f0] bg-white shadow-sm overflow-hidden">
+                <div className="flex items-center gap-2 bg-[#1a3178] px-4 py-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-white shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <span className="text-white font-bold text-[13px] uppercase tracking-wide">Service Information</span>
+                </div>
+                <div className="px-4 py-3 space-y-2 text-[14px] text-[#41484d] leading-relaxed">
+                  <p><strong className="text-[#1a1c1e]">Visitation:</strong> Tuesday, March 5, 2026, from 2:00 PM to 4:00 PM at Memorial Park Funeral Home</p>
+                  <p><strong className="text-[#1a1c1e]">Funeral Service:</strong> Wednesday, March 6, 2026, at 11:00 AM at First Baptist Church of Gainesville</p>
+                  <p><strong className="text-[#1a1c1e]">Interment:</strong> Memorial Park Cemetery, Gainesville</p>
+                  <p className="pt-2 border-t border-[#e2e8f0] mt-1">
                     The family will receive friends at the church following the service.
                   </p>
                 </div>
