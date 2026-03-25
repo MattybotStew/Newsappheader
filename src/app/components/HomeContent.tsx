@@ -12,8 +12,7 @@ function HeroArticleSlider() {
   const [startX, setStartX] = useState(0);
   const [translateX, setTranslateX] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
-  
-  // Use the first 5 articles from breaking news and local news combined
+
   const allStories = [...breakingNews, ...localNews];
   const stories = allStories.slice(0, 5).map(article => ({
     category: article.category,
@@ -30,190 +29,199 @@ function HeroArticleSlider() {
 
   const handleMove = (clientX: number) => {
     if (!isDragging) return;
-    const diff = clientX - startX;
-    setTranslateX(diff);
+    setTranslateX(clientX - startX);
   };
 
   const handleEnd = () => {
     if (!isDragging) return;
     setIsDragging(false);
-
-    // Threshold for slide change (50px)
     if (Math.abs(translateX) > 50) {
-      if (translateX > 0 && currentSlide > 0) {
-        setCurrentSlide(currentSlide - 1);
-      } else if (translateX < 0 && currentSlide < stories.length - 1) {
-        setCurrentSlide(currentSlide + 1);
-      }
+      if (translateX > 0 && currentSlide > 0) setCurrentSlide(currentSlide - 1);
+      else if (translateX < 0 && currentSlide < stories.length - 1) setCurrentSlide(currentSlide + 1);
     }
     setTranslateX(0);
   };
 
-  const handleTouchStart = (e: TouchEvent) => {
-    handleStart(e.touches[0].clientX);
-  };
-
-  const handleTouchMove = (e: TouchEvent) => {
-    handleMove(e.touches[0].clientX);
-  };
-
-  const handleMouseDown = (e: MouseEvent) => {
-    handleStart(e.clientX);
-  };
-
-  const handleMouseMove = (e: MouseEvent) => {
-    handleMove(e.clientX);
-  };
+  const handleTouchStart = (e: TouchEvent) => handleStart(e.touches[0].clientX);
+  const handleTouchMove = (e: TouchEvent) => handleMove(e.touches[0].clientX);
+  const handleMouseDown = (e: MouseEvent) => handleStart(e.clientX);
+  const handleMouseMove = (e: MouseEvent) => handleMove(e.clientX);
 
   return (
     <div className="px-4 pb-3">
-      <div className="block">
-        <div 
-          ref={sliderRef}
-          className="relative overflow-hidden"
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleEnd}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleEnd}
-          onMouseLeave={handleEnd}
+      <div
+        ref={sliderRef}
+        className="relative overflow-hidden"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleEnd}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleEnd}
+        onMouseLeave={handleEnd}
+      >
+        <div
+          className="flex transition-transform duration-300 ease-out"
+          style={{
+            transform: `translateX(calc(-${currentSlide * 100}% + ${translateX}px))`,
+            cursor: isDragging ? 'grabbing' : 'grab'
+          }}
         >
-          <div 
-            className="flex transition-transform duration-300 ease-out"
-            style={{ 
-              transform: `translateX(calc(-${currentSlide * 100}% + ${translateX}px))`,
-              cursor: isDragging ? 'grabbing' : 'grab'
-            }}
-          >
-            {stories.map((story, index) => (
-              <Link 
-                key={index}
-                to="/article/1" 
-                className="min-w-full"
-                onClick={(e) => {
-                  if (Math.abs(translateX) > 5) {
-                    e.preventDefault();
-                  }
-                }}
-              >
-                <div className="bg-[#dde3ea] h-[216px] overflow-clip shadow-[0px_1px_3px_0px_rgba(0,0,0,0.12),0px_1px_2px_0px_rgba(0,0,0,0.08)] relative mx-1">
-                  <ImageWithFallback
-                    src={story.imageUrl}
-                    alt={story.title}
-                    className="size-full object-cover"
-                  />
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                  {/* Text overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 px-3 pb-3 flex flex-col gap-1">
-                    <span className={`self-start text-white text-[10px] font-bold tracking-[0.7px] uppercase px-2 py-0.5 rounded-full ${story.category.toUpperCase() === 'BREAKING' ? 'bg-[#dc2626]' : 'bg-[#1a56a4]'}`}>
-                      {story.category}
-                    </span>
-                    <p className="text-white font-['Source_Sans_3',sans-serif] font-bold text-[16px] leading-[1.25] line-clamp-2 drop-shadow">
-                      {story.title}
-                    </p>
-                    <p className="text-white/80 font-['Source_Sans_3',sans-serif] text-[11px]">
-                      {story.author} · {story.time}
-                    </p>
-                  </div>
+          {stories.map((story, index) => (
+            <Link
+              key={index}
+              to="/article/1"
+              className="min-w-full"
+              onClick={(e) => { if (Math.abs(translateX) > 5) e.preventDefault(); }}
+            >
+              <div className="bg-[#dde3ea] h-[216px] overflow-clip shadow-[0px_1px_3px_0px_rgba(0,0,0,0.12),0px_1px_2px_0px_rgba(0,0,0,0.08)] relative mx-1 rounded-sm">
+                <ImageWithFallback src={story.imageUrl} alt={story.title} className="size-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 px-3 pb-3 flex flex-col gap-1">
+                  <span className={`self-start text-white text-[10px] font-bold tracking-[0.7px] uppercase px-2 py-0.5 rounded-full ${story.category.toUpperCase() === 'BREAKING' ? 'bg-[#dc2626]' : 'bg-[#1a56a4]'}`}>
+                    {story.category}
+                  </span>
+                  <p className="text-white font-['Source_Sans_3',sans-serif] font-bold text-[16px] leading-[1.25] line-clamp-2 drop-shadow">
+                    {story.title}
+                  </p>
+                  <p className="text-white/80 font-['Source_Sans_3',sans-serif] text-[11px]">
+                    {story.author} · {story.time}
+                  </p>
                 </div>
-              </Link>
-            ))}
-          </div>
-          
-          {/* Dots Navigation */}
-          <div className="flex gap-1.5 justify-center mt-3">
-            {stories.map((_, index) => (
-              <button
-                key={index}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setCurrentSlide(index);
-                }}
-                className={`h-1.5 rounded-full transition-all ${
-                  index === currentSlide 
-                    ? 'w-6 bg-[#1a56a4]' 
-                    : 'w-1.5 bg-[#c1c7ce]'
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Dots */}
+        <div className="flex gap-1.5 justify-center mt-3">
+          {stories.map((_, index) => (
+            <button
+              key={index}
+              onClick={(e) => { e.preventDefault(); setCurrentSlide(index); }}
+              className={`h-1.5 rounded-full transition-all ${index === currentSlide ? 'w-6 bg-[#1a56a4]' : 'w-1.5 bg-[#c1c7ce]'}`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-// Article List Item Component
+// Category Filter Chips
+const CATEGORIES = ['All', 'Breaking', 'Local', 'Business', 'Politics', 'Education', 'Sports'];
+
+function CategoryFilter({ selected, onSelect }: { selected: string; onSelect: (c: string) => void }) {
+  return (
+    <div className="flex gap-2 overflow-x-auto scrollbar-hide px-4 pb-3 pt-1">
+      {CATEGORIES.map((cat) => {
+        const active = selected === cat;
+        return (
+          <button
+            key={cat}
+            onClick={() => onSelect(cat)}
+            className={`shrink-0 px-4 py-1.5 rounded-full text-[12px] font-semibold font-['Source_Sans_3',sans-serif] tracking-[0.2px] transition-colors border ${
+              active
+                ? 'bg-[#1a3178] text-white border-[#1a3178]'
+                : 'bg-white text-[#1a3178] border-[#c1c7ce] hover:border-[#1a3178]'
+            }`}
+          >
+            {cat}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+// Article List Item — Artifact-inspired layout
 function ArticleListItem({ category, title, author, imageUrl }: { category: string; title: string; author: string; imageUrl?: string }) {
   const isBreaking = category.toLowerCase() === 'breaking';
-  
-  // Get category color based on type
-  const getCategoryColor = () => {
-    if (isBreaking) return 'text-[#dc2626] bg-[#dc2626]';
-    const lower = category.toLowerCase();
-    if (lower.includes('sport')) return 'text-[#22c55e] bg-[#22c55e]';
-    if (lower.includes('weather')) return 'text-[#f97316] bg-[#f97316]';
-    return 'text-[#1a3178] bg-[#1a3178]'; // Default navy for Local, Business, etc.
-  };
-  
+  const categoryColor = isBreaking ? 'text-[#dc2626]' : 'text-[#1a56a4]';
+
   return (
-    <Link to="/article/1" className="block hover:bg-gray-50 transition-colors">
-      <div className="flex gap-3 items-start pb-[11px] pt-[10px] px-4 border-b border-[#e5e7eb] bg-white">
-        <div className="h-[68px] shrink-0 w-20 overflow-hidden bg-gradient-to-br from-[#b8d0ee] to-[#8fb8e2]">
-          <ImageWithFallback
-            src={imageUrl}
-            alt={title}
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="flex-1 flex flex-col gap-[3px]">
-          <div className={`font-['Source_Sans_3',sans-serif] font-bold text-[10px] tracking-[0.7px] uppercase ${getCategoryColor().split(' ')[0]}`}>
+    <Link to="/article/1" className="block hover:bg-[#f8f9fa] transition-colors">
+      <div className="flex gap-3 items-start py-3 px-4 border-b border-[#eef0f3] bg-white">
+        {/* Text */}
+        <div className="flex-1 flex flex-col gap-1 min-w-0">
+          <span className={`text-[10px] font-bold tracking-[0.7px] uppercase font-['Source_Sans_3',sans-serif] ${categoryColor}`}>
             {category}
-          </div>
-          <div className="h-[37.78px] overflow-clip">
-            <div className="font-['Source_Sans_3',sans-serif] font-semibold leading-[18.9px] text-[#333399] text-[14px]">
-              {title}
-            </div>
-          </div>
-          <div className="font-['Source_Sans_3',sans-serif] font-normal text-[#6b7280] text-[10px] pt-[2px]">
+          </span>
+          <p className="font-['Source_Sans_3',sans-serif] font-bold text-[14px] leading-[1.35] text-[#1a3178] line-clamp-3">
+            {title}
+          </p>
+          <p className="font-['Source_Sans_3',sans-serif] text-[11px] text-[#9ca3af] pt-0.5">
             {author}
-          </div>
+          </p>
+        </div>
+        {/* Thumbnail */}
+        <div className="size-[72px] shrink-0 overflow-hidden rounded-sm bg-gradient-to-br from-[#b8d0ee] to-[#8fb8e2]">
+          <ImageWithFallback src={imageUrl} alt={title} className="w-full h-full object-cover" />
         </div>
       </div>
     </Link>
   );
 }
 
+// Section Divider
+function SectionLabel({ label }: { label: string }) {
+  return (
+    <div className="px-4 pt-4 pb-1">
+      <span className="text-[11px] font-bold tracking-[0.8px] uppercase text-[#9ca3af] font-['Source_Sans_3',sans-serif]">
+        {label}
+      </span>
+    </div>
+  );
+}
+
 // Main Component
 export function HomeContent() {
-  // Combine breaking news and local news, with breaking news first
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
   const allArticles = [...breakingNews, ...localNews];
 
+  const filtered = selectedCategory === 'All'
+    ? allArticles
+    : allArticles.filter(a => a.category.toLowerCase() === selectedCategory.toLowerCase());
+
+  const displayArticles = filtered.slice(0, 15);
+
   return (
-    <div className="bg-[#f8f9fa] w-full pb-24">
-      {/* Hero Slider - Use top 5 breaking/featured stories */}
-      <div className="pt-4">
+    <div className="bg-white w-full">
+      {/* Hero Slider */}
+      <div className="pt-3 bg-[#f8f9fa]">
         <HeroArticleSlider />
       </div>
-      
-      {/* Article List with Native Ad after 3rd article */}
-      {allArticles.slice(0, 10).map((article, index) => (
-        <div key={article.id}>
-          <ArticleListItem
-            category={article.category}
-            title={article.title}
-            author={`${article.author}  ·  ${article.timestamp}`}
-            imageUrl={article.imageUrl}
-          />
-          {/* Insert native ad after 3rd article (index 2) */}
-          {index === 2 && (
-            <NativeAdArticleCard adUnit={adConfig.adUnits.newsFeedNative} />
-          )}
-        </div>
-      ))}
+
+      {/* Category Chips */}
+      <div className="bg-white border-b border-[#eef0f3]">
+        <CategoryFilter selected={selectedCategory} onSelect={setSelectedCategory} />
+      </div>
+
+      {/* Article Feed */}
+      <div className="pb-24">
+        {displayArticles.length === 0 && (
+          <div className="px-4 py-8 text-center text-[#9ca3af] font-['Source_Sans_3',sans-serif] text-sm">
+            No articles in this category.
+          </div>
+        )}
+
+        {displayArticles.map((article, index) => (
+          <div key={article.id}>
+            {index === 0 && selectedCategory === 'All' && <SectionLabel label="Latest News" />}
+            <ArticleListItem
+              category={article.category}
+              title={article.title}
+              author={`${article.author}  ·  ${article.timestamp}`}
+              imageUrl={article.imageUrl}
+            />
+            {index === 2 && (
+              <NativeAdArticleCard adUnit={adConfig.adUnits.newsFeedNative} />
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
