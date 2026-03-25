@@ -134,7 +134,7 @@ export function Header() {
             </Link>
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="size-[40px] flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-white -mr-2"
+              className="size-[36px] flex items-center justify-center rounded-[8px] bg-[#0091b0] hover:bg-[#007a96] transition-colors text-white shrink-0"
               aria-label="Search"
             >
               <svg viewBox="0 0 24 24" fill="none" className="size-[22px]">
@@ -144,7 +144,7 @@ export function Header() {
           </div>
 
           {/* ── Radio bar ───────────────────────────── */}
-          <div className={`px-4 transition-all duration-300 ${isScrolled ? 'pb-2' : 'pb-[10px]'}`}>
+          <div className={`px-[10px] transition-all duration-300 ${isScrolled ? 'pb-2' : 'pb-[10px]'}`}>
             <div className={`bg-[#011843] rounded-[8px] flex items-center justify-between transition-all duration-300 px-3 ${isScrolled ? 'h-[30px]' : 'h-[40px]'}`}>
               {/* Left: live dot + badge + station name */}
               <button

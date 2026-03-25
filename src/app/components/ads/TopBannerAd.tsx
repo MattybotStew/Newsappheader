@@ -1,47 +1,18 @@
-import { useState, useEffect } from 'react';
 import ngrBanner from '../../../assets/bannernew.png';
 
 interface TopBannerAdProps {
   adUnit: string;
 }
 
-export function TopBannerAd({ adUnit }: TopBannerAdProps) {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
-
-  useEffect(() => {
-    // Simulate ad loading
-    const timer = setTimeout(() => {
-      // Simulate 95% success rate
-      if (Math.random() > 0.05) {
-        setIsLoaded(true);
-      } else {
-        setHasError(true);
-      }
-    }, 300);
-
-    return () => clearTimeout(timer);
-  }, [adUnit]);
-
-  // Collapse container if ad fails to load
-  if (hasError || !isLoaded) {
-    return null;
-  }
-
+export function TopBannerAd({ adUnit: _ }: TopBannerAdProps) {
   return (
-    <div className="bg-[#011843] w-full shrink-0">
-      <div className="flex flex-col items-center py-2">
-        
-        <a 
-          href="https://example.com/weaverlaw" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="hover:opacity-90 transition-opacity"
-        >
+    <div className="bg-[#021843] w-full shrink-0">
+      <div className="flex flex-col items-start pt-[4px] px-[4px] pb-[4px]">
+        <a href="#" className="w-full hover:opacity-90 transition-opacity">
           <img
             src={ngrBanner}
-            alt="NGR"
-            className="max-w-full h-auto"
+            alt="Advertisement"
+            className="rounded-[3px] w-full object-cover"
             style={{ maxHeight: '90px' }}
           />
         </a>
