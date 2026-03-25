@@ -203,8 +203,8 @@ export function SearchPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-2">
                           <span
-                            className={`inline-block px-3 py-[3px] rounded-full text-[10px] font-bold uppercase tracking-[0.6px] ${
-                              article.isBreaking ? 'bg-[#dc2626] text-white' : 'bg-[#1a3178] text-white'
+                            className={`font-['Source_Sans_3',sans-serif] font-bold text-[10px] uppercase tracking-[0.6px] ${
+                              article.isBreaking ? 'text-[#dc2626]' : 'text-[#1a3178]'
                             }`}
                           >
                             {article.category}

@@ -185,7 +185,7 @@ function ArticleListItem({ category, title, author, imageUrl }: { category: stri
     <Link to="/sports/article/1" className="block hover:bg-[#f8f9fa] transition-colors">
       <div className="flex gap-3 items-start py-3 px-4 border-b border-[#eef0f3] bg-white">
         <div className="flex-1 flex flex-col gap-1 min-w-0">
-          <span className="text-[10px] font-bold tracking-[0.7px] uppercase font-['Source_Sans_3',sans-serif] text-[#1a56a4]">
+          <span className="text-[10px] font-bold tracking-[0.7px] uppercase font-['Source_Sans_3',sans-serif] text-[#1a3178]">
             {category}
           </span>
           <p className="font-['Source_Sans_3',sans-serif] font-bold text-[14px] leading-[1.35] text-[#1a3178] line-clamp-3">

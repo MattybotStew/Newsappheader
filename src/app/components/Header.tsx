@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import svgPaths from "../../imports/svg-6bngkawl5e";
+import { TopBannerAd } from './ads/TopBannerAd';
+import { adConfig } from '../config/adConfig';
 
 const SECTION_LABELS: Record<string, string> = {
   '/sports': 'SPORTS',
@@ -104,7 +106,7 @@ export function Header() {
       ) : (
         <>
           {/* ── Logo row ────────────────────────────── */}
-          <div className="flex items-center justify-between h-[52px] px-4">
+          <div className="flex items-center justify-between h-[52px] px-[10px]">
             <Link to="/" className="flex items-center gap-2.5">
               <div className="bg-white rounded-[8px] size-[34px] flex items-center justify-center shrink-0">
                 <svg className="size-[22px]" fill="none" viewBox="0 0 22 22">
@@ -202,6 +204,9 @@ export function Header() {
           </div>
         </>
       )}
+
+      {/* ── Ad banner ───────────────────────────────── */}
+      {!isSearchOpen && <TopBannerAd adUnit={adConfig.adUnits.topBanner} />}
 
       {/* ── Station dropdown ────────────────────────── */}
       {isExpanded && !isSearchOpen && (

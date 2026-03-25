@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router';
 import { ChevronLeft, MapPin, Calendar, Church, Facebook, Mail, Share2 } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { TopBannerAd } from '../components/ads/TopBannerAd';
 import { AnchoredBanner } from '../components/ads/AnchoredBanner';
 import { adConfig } from '../config/adConfig';
 import placeholderImage from 'figma:asset/2b97325de4e56fe079f3ddbcfdc4d5b4aa816d2f.png';
@@ -13,7 +12,6 @@ export function ObituaryDetailPage() {
   return (
     <div className="size-full flex flex-col bg-white">
       <Header />
-      <TopBannerAd adUnit={adConfig.adUnits.topBanner} />
       <main className="flex-1 overflow-y-auto bg-[#f8f9fa]">
         <div className="bg-white">
           {/* Back Button */}

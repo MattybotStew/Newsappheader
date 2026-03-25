@@ -113,7 +113,7 @@ function HeroArticleSlider() {
 // Article List Item — Artifact-inspired layout
 function ArticleListItem({ category, title, author, imageUrl }: { category: string; title: string; author: string; imageUrl?: string }) {
   const isBreaking = category.toLowerCase() === 'breaking';
-  const categoryColor = isBreaking ? 'text-[#dc2626]' : 'text-[#1a56a4]';
+  const categoryColor = isBreaking ? 'text-[#dc2626]' : 'text-[#1a3178]';
 
   return (
     <Link to="/article/1" className="block hover:bg-[#f8f9fa] transition-colors">

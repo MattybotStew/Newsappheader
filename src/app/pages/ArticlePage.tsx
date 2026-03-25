@@ -4,7 +4,6 @@ import { Footer } from '../components/Footer';
 import { ChevronLeft, Share2, Facebook, Mail } from 'lucide-react';
 import { BannerAd } from '../components/ads/BannerAd';
 import { AnchoredBanner } from '../components/ads/AnchoredBanner';
-import { TopBannerAd } from '../components/ads/TopBannerAd';
 import { NativeAdArticleCard } from '../components/ads/NativeAdArticleCard';
 import { adConfig, adSizes } from '../config/adConfig';
 
@@ -14,7 +13,6 @@ export function ArticlePage() {
   return (
     <div className="size-full flex flex-col bg-white">
       <Header />
-      <TopBannerAd adUnit={adConfig.adUnits.topBanner} />
       <main className="flex-1 overflow-y-auto bg-[#f8f9fa]">
         <div className="bg-white">
           {/* Back Button */}
