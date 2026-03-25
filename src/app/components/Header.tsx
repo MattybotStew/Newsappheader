@@ -1,265 +1,238 @@
-import { useState } from 'react';
-import { Link } from 'react-router';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router';
 import svgPaths from "../../imports/svg-6bngkawl5e";
-import placeholderImage from 'figma:asset/2b97325de4e56fe079f3ddbcfdc4d5b4aa816d2f.png';
 
-function SvgMountainWaveLogoMarkPlaceholder() {
-  return (
-    <div className="relative shrink-0 size-[22px]" data-name="SVG - Mountain / wave logo mark placeholder">
-      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 22 22">
-        <g id="SVG - Mountain / wave logo mark placeholder">
-          <path d={svgPaths.p2331ea80} fill="url(#logoGradient)" id="Vector" />
-          <path d={svgPaths.p2c748980} id="Vector_2" stroke="url(#logoGradient)" strokeWidth="1.65" />
-        </g>
-        <defs>
-          <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#14b8a6" />
-            <stop offset="50%" stopColor="#22c55e" />
-            <stop offset="100%" stopColor="#f97316" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-  );
+const SECTION_LABELS: Record<string, string> = {
+  '/sports': 'SPORTS',
+  '/weather': 'WEATHER',
+  '/radio': 'RADIO',
+  '/podcasts': 'PODCASTS',
+  '/obituaries': 'OBITS',
+  '/search': 'SEARCH',
+};
+
+function getSectionLabel(pathname: string): string | null {
+  for (const [prefix, label] of Object.entries(SECTION_LABELS)) {
+    if (pathname.startsWith(prefix)) return label;
+  }
+  return null;
 }
 
-function Background() {
-  return (
-    <div className="bg-white content-stretch flex items-center justify-center relative rounded-[8px] shrink-0 size-[34px]" data-name="Background">
-      <SvgMountainWaveLogoMarkPlaceholder />
-    </div>
-  );
-}
+const STATIONS = ['WDUN AM 550', 'WDUN FM 102.9', '94.5FM THE LAKE'];
 
-function Container2() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Container">
-      <div className="flex items-baseline font-['Source_Sans_3',sans-serif] leading-[0] relative shrink-0 text-[22px] text-white tracking-[-0.2px] whitespace-nowrap">
-        <p>
-          <span className="font-normal leading-[normal]">access</span>
-          <span className="font-bold leading-[normal]">WDUN</span>
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function Container1() {
-  return (
-    <div className="content-stretch flex gap-[10px] items-center relative shrink-0" data-name="Container">
-      <Background />
-      <Container2 />
-    </div>
-  );
-}
-
-function Svg() {
-  return (
-    <div className="relative shrink-0 size-[24px]" data-name="SVG">
-      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
-        <g id="SVG">
-          <path d={svgPaths.p3696db80} fill="var(--fill-0, white)" id="Vector" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function ButtonSearch() {
-  return (
-    <Link 
-      to="/search"
-      className="content-stretch flex items-center justify-center relative rounded-[100px] shrink-0 size-[40px] hover:bg-white/10 transition-colors" 
-      data-name="Button - Search"
-    >
-      <Svg />
-    </Link>
-  );
-}
-
-function Container3() {
-  return (
-    <div className="content-stretch flex gap-[2px] items-start relative shrink-0" data-name="Container">
-      <ButtonSearch />
-    </div>
-  );
-}
-
-function Container() {
-  return (
-    <div className="content-stretch flex h-[52px] items-center justify-between relative shrink-0 w-full" data-name="Container">
-      <Container1 />
-      <Container3 />
-    </div>
-  );
-}
-
-function Background1() {
-  return (
-    <div className="bg-[#c62828] content-stretch flex flex-col items-start px-[6px] py-[2px] relative rounded-[100px] shrink-0" data-name="Background">
-      <div className="flex flex-col font-['Roboto:ExtraBold',sans-serif] font-extrabold justify-center leading-[0] relative shrink-0 text-[9px] text-white tracking-[0.8px] whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[normal]">LIVE</p>
-      </div>
-    </div>
-  );
-}
-
-function Container5() {
-  return (
-    <div className="content-stretch flex gap-[5px] items-center relative shrink-0" data-name="Container">
-      <div className="bg-[#ff5252] rounded-[3px] shrink-0 size-[6px] animate-pulse" data-name="Background" />
-      <Background1 />
-    </div>
-  );
-}
-
-function Container6() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Container">
-      <div className="flex flex-col font-['Roboto:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[13px] text-white whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[normal]">WDUN AM 550</p>
-      </div>
-    </div>
-  );
-}
-
-function Container4() {
-  return (
-    <div className="content-stretch flex gap-[8px] items-center relative shrink-0" data-name="Container">
-      <Container5 />
-      <Container6 />
-    </div>
-  );
-}
-
-function Svg2() {
-  return (
-    <div className="relative shrink-0 size-[14px]" data-name="SVG">
-      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 14 14">
-        <g id="SVG">
-          <path d={svgPaths.p3c11d380} fill="white" id="Vector" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function PauseIcon() {
-  return (
-    <div className="relative shrink-0 size-[14px]" data-name="Pause">
-      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 14 14">
-        <g>
-          <path d="M4 2H6 12H4V2ZM8 2H10V12H8V2Z" fill="white" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function ChevronDown() {
-  return (
-    <svg className="size-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-    </svg>
-  );
-}
-
-function ChevronRight() {
-  return (
-    <svg className="size-4 text-[#1a56a4]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-    </svg>
-  );
-}
-
-function Button({ isPlaying, onToggle }: { isPlaying: boolean; onToggle: () => void }) {
-  return (
-    <button 
-      onClick={onToggle}
-      className="bg-[#22c55e] content-stretch flex gap-[5px] h-[28px] items-center px-[14px] relative rounded-[100px] shrink-0 hover:bg-[#16a34a] transition-colors active:scale-95" 
-      data-name="Button"
-    >
-      {isPlaying ? <PauseIcon /> : <Svg2 />}
-      <div className="flex flex-col font-['Source_Sans_3',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-white text-[12px] text-center tracking-[0.3px] whitespace-nowrap">
-        <p className="leading-[normal]">{isPlaying ? 'Pause' : 'Listen'}</p>
-      </div>
-    </button>
-  );
-}
-
-function LiveRadioBar() {
-  const [isExpanded, setIsExpanded] = useState(false);
+export function Header() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentStation, setCurrentStation] = useState(0);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const sectionLabel = getSectionLabel(location.pathname);
 
-  const stations = [
-    { name: 'WDUN AM 550', current: true },
-    { name: 'WDUN FM 102.9', current: false },
-    { name: '94.5FM THE LAKE', current: false }
-  ];
+  // Detect scroll direction on the main scroll container
+  useEffect(() => {
+    const main = document.querySelector('main');
+    if (!main) return;
+    let lastY = 0;
+    const onScroll = () => {
+      const y = main.scrollTop;
+      if (y < 60) setIsScrolled(false);
+      else if (y > lastY + 5) setIsScrolled(true);
+      else if (y < lastY - 5) setIsScrolled(false);
+      lastY = y;
+    };
+    main.addEventListener('scroll', onScroll, { passive: true });
+    return () => main.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Close expanded station list when route changes
+  useEffect(() => {
+    setIsExpanded(false);
+    setIsSearchOpen(false);
+    setSearchQuery('');
+  }, [location.pathname]);
+
+  // Focus search input when opened
+  useEffect(() => {
+    if (isSearchOpen) searchInputRef.current?.focus();
+  }, [isSearchOpen]);
+
+  const handleSearchSubmit = () => {
+    const q = searchQuery.trim();
+    if (q) {
+      navigate(`/search?q=${encodeURIComponent(q)}`);
+      setIsSearchOpen(false);
+      setSearchQuery('');
+    }
+  };
 
   return (
-    <div className="relative w-full">
-      <div className="bg-[rgba(255,255,255,0.13)] h-[40px] rounded-[8px] w-full" data-name="Live radio bar">
-        <div className="flex flex-row items-center size-full">
-          <div className="content-stretch flex items-center justify-between pl-[12px] pr-[10px] relative size-full">
-            <button 
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="flex-1 flex items-center gap-2 hover:opacity-80 transition-opacity"
-            >
-              <Container4 />
+    <div className="bg-[#1a3178] sticky top-0 z-50 w-full shrink-0">
+
+      {/* ── Search mode ─────────────────────────────── */}
+      {isSearchOpen ? (
+        <div className="flex items-center gap-2 px-3 h-[52px]">
+          <button
+            onClick={() => { setIsSearchOpen(false); setSearchQuery(''); }}
+            className="text-white/70 hover:text-white p-1 transition-colors"
+            aria-label="Close search"
+          >
+            <svg viewBox="0 0 24 24" fill="none" className="size-5">
+              <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="currentColor" />
+            </svg>
+          </button>
+          <input
+            ref={searchInputRef}
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && handleSearchSubmit()}
+            placeholder="Search accessWDUN…"
+            className="flex-1 bg-white/15 text-white placeholder-white/40 rounded-full px-4 py-1.5 text-[14px] font-['Source_Sans_3',sans-serif] outline-none focus:bg-white/20 transition-colors"
+          />
+          {searchQuery ? (
+            <button onClick={() => setSearchQuery('')} className="text-white/50 hover:text-white p-1 transition-colors">
+              <svg viewBox="0 0 24 24" fill="none" className="size-4">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor" />
+              </svg>
             </button>
-            <div className="flex items-center gap-2">
-              <Button isPlaying={isPlaying} onToggle={() => setIsPlaying(!isPlaying)} />
-              <button 
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="hover:opacity-80 transition-opacity"
+          ) : <div className="size-6" />}
+        </div>
+
+      ) : (
+        <>
+          {/* ── Logo row ────────────────────────────── */}
+          <div className="flex items-center justify-between h-[52px] px-4">
+            <Link to="/" className="flex items-center gap-2.5">
+              <div className="bg-white rounded-[8px] size-[34px] flex items-center justify-center shrink-0">
+                <svg className="size-[22px]" fill="none" viewBox="0 0 22 22">
+                  <path d={svgPaths.p2331ea80} fill="url(#hdrGrad)" />
+                  <path d={svgPaths.p2c748980} stroke="url(#hdrGrad)" strokeWidth="1.65" />
+                  <defs>
+                    <linearGradient id="hdrGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#14b8a6" />
+                      <stop offset="50%" stopColor="#22c55e" />
+                      <stop offset="100%" stopColor="#f97316" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="font-['Source_Sans_3',sans-serif] text-[22px] text-white tracking-[-0.2px]">
+                  <span className="font-normal">access</span><span className="font-bold">WDUN</span>
+                </span>
+                {sectionLabel && (
+                  <span className="text-[10px] font-bold tracking-[1px] text-white/55 font-['Source_Sans_3',sans-serif]">
+                    {sectionLabel}
+                  </span>
+                )}
+              </div>
+            </Link>
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className="size-[40px] flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-white"
+              aria-label="Search"
+            >
+              <svg viewBox="0 0 24 24" fill="none" className="size-[22px]">
+                <path d={svgPaths.p3696db80} fill="currentColor" />
+              </svg>
+            </button>
+          </div>
+
+          {/* ── Radio bar ───────────────────────────── */}
+          <div className={`px-4 transition-all duration-300 ${isScrolled ? 'pb-2' : 'pb-[10px]'}`}>
+            <div className={`bg-white/[0.13] rounded-[8px] flex items-center justify-between transition-all duration-300 px-3 ${isScrolled ? 'h-[30px]' : 'h-[40px]'}`}>
+              {/* Left: live dot + badge + station name */}
+              <button
+                onClick={() => !isScrolled && setIsExpanded(!isExpanded)}
+                className="flex items-center gap-2 flex-1 min-w-0 hover:opacity-80 transition-opacity text-left"
               >
-                <ChevronDown />
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <div className={`rounded-[3px] size-[6px] bg-[#ff5252] ${isPlaying ? 'animate-pulse' : 'opacity-50'}`} />
+                  <span className="bg-[#c62828] text-white text-[9px] font-extrabold tracking-[0.8px] px-[6px] py-[2px] rounded-full">LIVE</span>
+                </div>
+                <span className="text-white text-[13px] font-medium font-['Source_Sans_3',sans-serif] truncate">
+                  {STATIONS[currentStation]}
+                </span>
               </button>
+
+              {/* Right: listen button + "More stations" */}
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  onClick={() => setIsPlaying(!isPlaying)}
+                  className="bg-[#22c55e] hover:bg-[#16a34a] active:scale-95 transition-all flex items-center gap-1 px-3 rounded-full text-white text-[12px] font-bold font-['Source_Sans_3',sans-serif] whitespace-nowrap"
+                  style={{ height: isScrolled ? '22px' : '26px' }}
+                >
+                  {isPlaying ? (
+                    <>
+                      <svg viewBox="0 0 14 14" fill="none" className="size-3 shrink-0">
+                        <path d="M4 2H6V12H4V2ZM8 2H10V12H8V2Z" fill="white" />
+                      </svg>
+                      Pause
+                    </>
+                  ) : (
+                    <>
+                      <svg viewBox="0 0 14 14" fill="none" className="size-3 shrink-0">
+                        <path d={svgPaths.p3c11d380} fill="white" />
+                      </svg>
+                      Listen
+                    </>
+                  )}
+                </button>
+
+                {!isScrolled && (
+                  <button
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    className="flex items-center gap-0.5 text-white/60 hover:text-white transition-colors text-[11px] font-medium font-['Source_Sans_3',sans-serif] whitespace-nowrap"
+                  >
+                    More stations
+                    <svg viewBox="0 0 24 24" fill="none" className={`size-3 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>
+                      <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} stroke="currentColor" />
+                    </svg>
+                  </button>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
 
-      {isExpanded && (
+      {/* ── Station dropdown ────────────────────────── */}
+      {isExpanded && !isSearchOpen && (
         <>
-          <div 
-            className="fixed inset-0 bg-black/20 z-40"
-            onClick={() => setIsExpanded(false)}
-          />
-          <div className="absolute top-full left-4 right-4 mt-2 bg-white rounded-lg shadow-lg overflow-hidden z-50 border border-[#c1c7ce]">
-            <div className="bg-[#1a56a4] px-4 py-3 flex items-center justify-between">
-              <div className="font-['Roboto:Bold',sans-serif] font-bold text-white text-[14px]" style={{ fontVariationSettings: "'wdth' 100" }}>
-                LISTEN LIVE
-              </div>
-              <ChevronDown />
+          <div className="fixed inset-0 bg-black/20 z-40" onClick={() => setIsExpanded(false)} />
+          <div className="absolute top-full left-4 right-4 mt-1 bg-white rounded-lg shadow-xl overflow-hidden z-50 border border-[#d1d5db]">
+            <div className="bg-[#1a56a4] px-4 py-2.5 flex items-center justify-between">
+              <span className="font-bold text-white text-[14px] font-['Source_Sans_3',sans-serif] tracking-[0.3px]">LISTEN LIVE</span>
+              <button onClick={() => setIsExpanded(false)} className="text-white/70 hover:text-white transition-colors">
+                <svg viewBox="0 0 24 24" fill="none" className="size-4">
+                  <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="currentColor" />
+                </svg>
+              </button>
             </div>
-            <div className="divide-y divide-gray-200">
-              {stations.map((station, index) => (
+            <div className="divide-y divide-gray-100">
+              {STATIONS.map((name, i) => (
                 <button
-                  key={index}
-                  onClick={() => setIsExpanded(false)}
+                  key={i}
+                  onClick={() => { setCurrentStation(i); setIsExpanded(false); }}
                   className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
                 >
-                  <div className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[#1a56a4] text-[14px]" style={{ fontVariationSettings: "'wdth' 100" }}>
-                    {station.name}
-                  </div>
-                  <ChevronRight />
+                  <span className={`font-semibold text-[14px] font-['Source_Sans_3',sans-serif] ${i === currentStation ? 'text-[#1a56a4]' : 'text-[#374151]'}`}>
+                    {name}
+                  </span>
+                  {i === currentStation && (
+                    <svg viewBox="0 0 24 24" fill="none" className="size-4 text-[#1a56a4]">
+                      <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="currentColor" />
+                    </svg>
+                  )}
                 </button>
               ))}
             </div>
           </div>
         </>
       )}
-    </div>
-  );
-}
-
-export function Header() {
-  return (
-    <div className="bg-[#1a3178] content-stretch flex flex-col gap-[2px] items-start pb-[10px] px-[16px] pt-[10px] sticky top-0 z-50 shrink-0 w-full" data-name="TOP APP BAR">
-      <Container />
-      <LiveRadioBar />
     </div>
   );
 }
