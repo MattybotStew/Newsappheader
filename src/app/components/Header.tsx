@@ -72,11 +72,11 @@ export function Header() {
   };
 
   return (
-    <div className="bg-[#1a3178] sticky top-0 z-50 w-full shrink-0">
+    <div className="bg-[#1a3178] sticky top-0 z-50 w-full shrink-0 flex flex-col gap-[8px] p-[6px]">
 
       {/* ── Search mode ─────────────────────────────── */}
       {isSearchOpen ? (
-        <div className="flex items-center gap-2 px-3 h-[52px]">
+        <div className="flex items-center gap-2 w-full h-[36px]">
           <button
             onClick={() => { setIsSearchOpen(false); setSearchQuery(''); }}
             className="text-white/70 hover:text-white p-1 transition-colors"
@@ -106,7 +106,7 @@ export function Header() {
       ) : (
         <>
           {/* ── Logo row ────────────────────────────── */}
-          <div className="flex items-center justify-between h-[52px] px-[10px]">
+          <div className="flex items-center justify-between w-full">
             <Link to="/" className="flex items-center gap-2.5">
               <div className="bg-white rounded-[8px] size-[34px] flex items-center justify-center shrink-0">
                 <svg className="size-[22px]" fill="none" viewBox="0 0 22 22">
@@ -144,8 +144,8 @@ export function Header() {
           </div>
 
           {/* ── Radio bar ───────────────────────────── */}
-          <div className={`px-[10px] transition-all duration-300 ${isScrolled ? 'pb-2' : 'pb-[10px]'}`}>
-            <div className={`bg-[#011843] rounded-[8px] flex items-center justify-between transition-all duration-300 px-3 ${isScrolled ? 'h-[30px]' : 'h-[40px]'}`}>
+          <div className="w-full">
+            <div className={`bg-[#011843] rounded-[8px] flex items-center justify-between px-[12px] transition-all duration-300 ${isScrolled ? 'h-[30px]' : 'h-[40px]'}`}>
               {/* Left: live dot + badge + station name */}
               <button
                 onClick={() => !isScrolled && setIsExpanded(!isExpanded)}
