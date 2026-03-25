@@ -162,7 +162,7 @@ export function Header() {
               <div className="flex items-center gap-2 shrink-0">
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
-                  className={`active:scale-95 transition-all flex items-center gap-1.5 px-3 rounded-[3px] text-white text-[12px] font-bold font-['Source_Sans_3',sans-serif] whitespace-nowrap ${isPlaying ? 'bg-[#1a3178] hover:bg-[#142660]' : 'bg-[#009933] hover:bg-[#007a29]'}`}
+                  className={`active:scale-95 transition-all flex items-center gap-1.5 pl-3 pr-1.5 rounded-[3px] text-white text-[12px] font-bold font-['Source_Sans_3',sans-serif] whitespace-nowrap ${isPlaying ? 'bg-[#e65100] hover:bg-[#bf4500]' : 'bg-[#009933] hover:bg-[#007a29]'}`}
                   style={{ height: isScrolled ? '22px' : '26px' }}
                 >
                   {isPlaying ? (
