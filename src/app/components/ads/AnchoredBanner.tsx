@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import weaverLawBanner from '../../../assets/weaver-law-banner.png';
+import ngrBanner from '../../../assets/ngr.gif';
 
 interface AnchoredBannerProps {
   adUnit: string;
@@ -38,8 +38,8 @@ export function AnchoredBanner({ adUnit }: AnchoredBannerProps) {
           className="hover:opacity-90 transition-opacity"
         >
           <img
-            src={weaverLawBanner}
-            alt="Weaver Law - Injury Attorneys"
+            src={ngrBanner}
+            alt="NGR"
             className="max-w-full h-auto"
             style={{ maxHeight: '90px' }}
           />
