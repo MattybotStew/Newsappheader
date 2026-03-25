@@ -6,7 +6,7 @@ interface AnchoredBannerProps {
 
 export function AnchoredBanner({ adUnit: _ }: AnchoredBannerProps) {
   return (
-    <div className="fixed bottom-[62px] left-0 right-0 z-30 bg-[#021843] rounded-t-[6px]">
+    <div className="fixed left-0 right-0 z-30 bg-[#021843] rounded-t-[6px]" style={{ bottom: 'calc(62px + env(safe-area-inset-bottom, 0px))' }}>
       <div className="flex flex-col items-center px-[4px] pt-[4px]">
         <a href="#" className="w-full hover:opacity-90 transition-opacity">
           <img
