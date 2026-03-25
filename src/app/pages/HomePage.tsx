@@ -10,7 +10,7 @@ export function HomePage() {
     <div className="size-full flex flex-col bg-white">
       <Header />
       <TopBannerAd adUnit={adConfig.adUnits.topBanner} />
-      <main className="flex-1 overflow-y-auto pb-[200px]">
+      <main className="flex-1 overflow-y-auto">
         <HomeContent />
       </main>
       <AnchoredBanner adUnit={adConfig.adUnits.anchoredBanner} />

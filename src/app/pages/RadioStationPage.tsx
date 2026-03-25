@@ -1,13 +1,14 @@
 import { useParams, useNavigate } from 'react-router';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { ChevronLeft, Radio as RadioIcon, Square, Play, Share2 } from 'lucide-react';
+import { ChevronLeft, Share2 } from 'lucide-react';
 import { useState } from 'react';
-import { BannerAd } from '../components/ads/BannerAd';
 import { AnchoredBanner } from '../components/ads/AnchoredBanner';
 import { TopBannerAd } from '../components/ads/TopBannerAd';
-import { adConfig, adSizes } from '../config/adConfig';
-import placeholderImage from 'figma:asset/2b97325de4e56fe079f3ddbcfdc4d5b4aa816d2f.png';
+import { adConfig } from '../config/adConfig';
+import wdunAmLogo from '../../assets/wdun-am-550.png';
+import wdunFmLogo from '../../assets/wdun-fm-102.png';
+import lakeLogo from '../../assets/the-lake-94.png';
 
 const stationData = {
   'wdun-am': {
@@ -16,6 +17,7 @@ const stationData = {
     tagline: 'News Talk 550',
     genre: 'News & Talk',
     description: 'North Georgia\'s trusted source for news, weather, and talk radio since 1947.',
+    logoUrl: wdunAmLogo,
   },
   'wdun-fm': {
     name: 'WDUN FM 102.9',
@@ -23,6 +25,7 @@ const stationData = {
     tagline: 'North Georgia\'s News Station',
     genre: 'News & Information',
     description: 'Your source for local news, sports, and community updates across North Georgia.',
+    logoUrl: wdunFmLogo,
   },
   'the-lake': {
     name: '94.5 The Lake',
@@ -30,6 +33,7 @@ const stationData = {
     tagline: 'Classic Hits',
     genre: 'Classic Rock',
     description: 'Playing the greatest hits from the 70s, 80s, and 90s - music you know and love.',
+    logoUrl: lakeLogo,
   },
 };
 
@@ -56,140 +60,110 @@ export function RadioStationPage() {
     <div className="size-full flex flex-col bg-white">
       <Header />
       <TopBannerAd adUnit={adConfig.adUnits.topBanner} />
-      <main className="flex-1 overflow-y-auto bg-[#f8f9fa]">
-        <div className="bg-white">
-          {/* Back Button */}
-          <div className="border-b border-[#c1c7ce]">
-            <button 
-              onClick={() => navigate('/radio')}
-              className="flex items-center gap-2 px-4 py-3 hover:bg-gray-50 transition-colors w-full"
-            >
-              <ChevronLeft className="size-5 text-[#1976d2]" />
-              <span className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[14px] text-[#1976d2]" style={{ fontVariationSettings: "'wdth' 100" }}>
-                Back to Radio
-              </span>
-            </button>
-          </div>
+      <main className="flex-1 overflow-y-auto flex flex-col">
 
-          {/* Station Header */}
-          <div className="text-center py-6 px-4">
-            <h1 className="font-['Roboto:Bold',sans-serif] font-bold text-[28px] text-[#1a1c1e] mb-2" style={{ fontVariationSettings: "'wdth' 100" }}>
-              {station.name}
-            </h1>
-            <p className="font-['Roboto:Medium',sans-serif] font-medium text-[16px] text-[#1976d2] mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
-              {station.tagline}
-            </p>
-            <div className="flex items-center justify-center gap-2">
-              <span className="inline-flex items-center gap-1 bg-[#1976d2] text-white px-3 py-1 rounded-full">
-                <span className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[12px]" style={{ fontVariationSettings: "'wdth' 100" }}>
-                  LIVE
-                </span>
-              </span>
+        {/* Player area — fills screen, vertically centered */}
+        <div className="flex-1 bg-gradient-to-b from-[#011843] to-[#1a3178] relative flex flex-col justify-center px-6 pt-12 pb-[200px]">
+          {/* Back button — absolute so it doesn't affect centering */}
+          <button
+            onClick={() => navigate('/radio')}
+            className="absolute top-4 left-6 flex items-center gap-1.5 text-white/70 hover:text-white transition-colors"
+          >
+            <ChevronLeft className="size-5" />
+            <span className="font-['Source_Sans_3',sans-serif] text-[13px] font-semibold tracking-wide uppercase">Radio</span>
+          </button>
+
+          {/* Two-column layout: artwork left, player right */}
+          <div className="flex items-center gap-6 w-full mb-8">
+            {/* Artwork */}
+            <div className="bg-white rounded-lg shadow-2xl flex items-center justify-center overflow-hidden shrink-0" style={{ width: 120, height: 120 }}>
+              <img
+                src={station.logoUrl}
+                alt={station.name}
+                className="w-4/5 h-4/5 object-contain"
+              />
             </div>
-          </div>
 
-          {/* Album Art / Now Playing */}
-          <div className="px-4 py-6">
-            <div className="max-w-sm mx-auto">
-              <div className="aspect-square w-1/2 mx-auto overflow-hidden shadow-lg bg-gradient-to-br from-[#e8e8e8] to-[#d0d0d0] mb-4">
-                <img
-                  src="https://images.unsplash.com/photo-1767474365536-ef81bfa24c8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyYWRpbyUyMGJyb2FkY2FzdGluZyUyMHN0dWRpbyUyMG1pY3JvcGhvbmV8ZW58MXx8fHwxNzc0Mzc0Nzg1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                  alt="Now Playing"
-                  className="size-full object-cover"
-                />
-              </div>
-
-              {/* Playback Controls */}
-              <div className="flex items-center justify-center gap-6 mb-4">
-                <button className="size-12 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors">
-                  <Square className="size-6 text-[#41484d]" fill="#41484d" />
-                </button>
-                <button 
-                  onClick={() => setIsPlaying(!isPlaying)}
-                  className="size-16 flex items-center justify-center rounded-full bg-[#1976d2] hover:bg-[#1565c0] transition-colors shadow-lg"
-                >
-                  {isPlaying ? (
-                    <svg className="size-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <rect x="6" y="4" width="4" height="16" rx="1"/>
-                      <rect x="14" y="4" width="4" height="16" rx="1"/>
-                    </svg>
-                  ) : (
-                    <Play className="size-8 text-white ml-1" fill="white" />
-                  )}
-                </button>
-                <button className="size-12 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors">
-                  <Share2 className="size-6 text-[#41484d]" />
-                </button>
-              </div>
-
-              <p className="text-center font-['Roboto:Regular',sans-serif] text-[14px] text-[#6b7178] mb-2" style={{ fontVariationSettings: "'wdth' 100" }}>
-                Now Playing
-              </p>
-            </div>
-          </div>
-
-          {/* Station Info */}
-          <div className="px-4 py-6 bg-white border-t border-[#c1c7ce]">
-            <div className="max-w-sm mx-auto">
-              <div className="bg-[#f0f4f8] rounded-lg p-4 mb-4">
-                <div className="flex items-start gap-3">
-                  <RadioIcon className="size-6 text-[#1976d2] mt-1" />
-                  <div>
-                    <p className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[14px] text-[#1a1c1e] mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
-                      {station.frequency}
-                    </p>
-                    <p className="font-['Roboto:Regular',sans-serif] text-[13px] text-[#41484d]" style={{ fontVariationSettings: "'wdth' 100" }}>
-                      {station.genre}
-                    </p>
-                  </div>
+            {/* Player right column */}
+            <div className="flex-1 min-w-0">
+              {/* Station info */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="min-w-0">
+                  <h1 className="font-['Source_Sans_3',sans-serif] font-bold text-[20px] text-white leading-tight mb-0.5 truncate">
+                    {station.name}
+                  </h1>
+                  <p className="font-['Source_Sans_3',sans-serif] text-[13px] text-white/60 truncate">
+                    {station.tagline} · {station.frequency}
+                  </p>
                 </div>
+                <button className="ml-2 shrink-0 text-white/60 hover:text-white transition-colors">
+                  <Share2 className="size-5" />
+                </button>
               </div>
 
-              <p className="font-['Roboto:Regular',sans-serif] text-[15px] text-[#41484d] leading-[24px] mb-4" style={{ fontVariationSettings: "'wdth' 100" }}>
-                {station.description}
-              </p>
+              {/* Live pulse bar */}
+              <div className="flex items-center gap-2 mb-4">
+                <div className={`size-2 rounded-full shrink-0 ${isPlaying ? 'bg-[#009933] animate-pulse' : 'bg-white/30'}`} />
+                <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
+                  {isPlaying && (
+                    <div className="h-full bg-[#009933] animate-pulse rounded-full" style={{ width: '100%' }} />
+                  )}
+                </div>
+                <span className="font-['Source_Sans_3',sans-serif] text-[11px] font-bold tracking-widest text-white/60 uppercase shrink-0">
+                  Live
+                </span>
+              </div>
+
+              {/* Play/Pause control */}
+              <button
+                onClick={() => setIsPlaying(!isPlaying)}
+                className="size-10 flex items-center justify-center rounded-full bg-white hover:scale-105 active:scale-95 transition-transform shadow-lg"
+              >
+                {isPlaying ? (
+                  <svg className="size-4 text-[#011843]" fill="currentColor" viewBox="0 0 24 24">
+                    <rect x="6" y="4" width="4" height="16" rx="1"/>
+                    <rect x="14" y="4" width="4" height="16" rx="1"/>
+                  </svg>
+                ) : (
+                  <svg className="size-4 text-[#011843] ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                )}
+              </button>
             </div>
           </div>
 
-          {/* Other Stations */}
-          <div className="px-4 py-6 pb-[200px] bg-[#f8f9fa] border-t border-[#c1c7ce]">
-            <h2 className="font-['Roboto:Bold',sans-serif] font-bold text-[18px] text-[#1a1c1e] mb-4 text-center" style={{ fontVariationSettings: "'wdth' 100" }}>
+          {/* Other stations */}
+          <div className="w-full border-t border-white/10 pt-6">
+            <p className="font-['Source_Sans_3',sans-serif] text-[11px] font-bold tracking-[0.8px] uppercase text-white/40 mb-3">
               Other Stations
-            </h2>
-            
-            <div className="space-y-3 max-w-sm mx-auto">
+            </p>
+            <div className="space-y-2">
               {Object.entries(stationData)
                 .filter(([key]) => key !== id)
                 .map(([key, s]) => (
                   <button
                     key={key}
                     onClick={() => navigate(`/radio/${key}`)}
-                    className="w-full bg-white rounded-lg p-4 border border-[#c1c7ce] hover:shadow-md transition-shadow text-left"
+                    className="w-full flex items-center gap-3 py-2 hover:opacity-80 transition-opacity text-left"
                   >
-                    <p className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[15px] text-[#1a1c1e] mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
-                      {s.name}
-                    </p>
-                    <p className="font-['Roboto:Regular',sans-serif] text-[13px] text-[#6b7178]" style={{ fontVariationSettings: "'wdth' 100" }}>
-                      {s.frequency} • {s.genre}
-                    </p>
+                    <div className="size-10 shrink-0 bg-white rounded flex items-center justify-center overflow-hidden">
+                      <img src={s.logoUrl} alt={s.name} className="w-4/5 h-4/5 object-contain" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-['Source_Sans_3',sans-serif] font-semibold text-[14px] text-white truncate">{s.name}</p>
+                      <p className="font-['Source_Sans_3',sans-serif] text-[12px] text-white/50">{s.frequency} · {s.genre}</p>
+                    </div>
+                    <ChevronLeft className="size-4 text-white/30 shrink-0 rotate-180" />
                   </button>
                 ))}
             </div>
           </div>
-
-          {/* Ad Banner */}
-          <div className="px-4 py-6 bg-[#f8f9fa] border-t border-[#c1c7ce]">
-            <BannerAd 
-              adUnit={adConfig.adUnits.radioStationInline}
-              size={adSizes.mediumRectangle}
-            />
-          </div>
         </div>
+
       </main>
-      
-      {/* Anchored Banner Ad */}
+
       <AnchoredBanner adUnit={adConfig.adUnits.articleBottom} />
-      
       <Footer />
     </div>
   );

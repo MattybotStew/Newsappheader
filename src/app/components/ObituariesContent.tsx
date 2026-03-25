@@ -116,7 +116,7 @@ function ObituaryListItem({
           />
         </div>
         <div className="flex-1 flex flex-col gap-1.5">
-          <div className="font-['Source_Sans_3',sans-serif] font-bold leading-[20px] text-[#111827] text-[16px]">
+          <div className="font-['Source_Sans_3',sans-serif] font-bold leading-[20px] text-[#1a3178] text-[16px]">
             {name}
           </div>
           <div className="font-['Source_Sans_3',sans-serif] font-semibold text-[#6b7280] text-[13px]">

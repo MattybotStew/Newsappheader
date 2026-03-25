@@ -183,7 +183,8 @@ export const sportsArticles: SportsArticle[] = [
     excerpt: 'Red Elephants celebrate student-athletes continuing careers at collegiate level across multiple sports.',
     content: 'Gainesville High School celebrated six student-athletes Wednesday who signed National Letters of Intent to continue their athletic and academic careers at the collegiate level.\n\nThe signees included:\n\n• Marcus Davis - Football, Mercer University\n• Emma Sullivan - Softball, University of North Georgia\n• Jordan Mitchell - Soccer, Georgia Southern University\n• Taylor Anderson - Volleyball, Kennesaw State University\n• Cameron Wright - Baseball, Shorter University\n• Alyssa Johnson - Track & Field, Georgia State University\n\n"This is a proud day for Gainesville High School," said Athletic Director Tim Jones. "These six young people have excelled in the classroom and in competition. They represent what our athletic program is all about."\n\nDavis, a three-year starter at linebacker, chose Mercer over offers from several FCS programs. He recorded 98 tackles and 12 sacks as a senior, earning first-team All-Region honors.\n\nSullivan, a two-time All-State pitcher, will join the Nighthawks\' softball program after leading Gainesville to the region championship with a 1.87 ERA and 184 strikeouts.\n\nAll six athletes maintained GPAs above 3.5 while competing at the varsity level.',
     author: 'AccessWDUN Sports',
-    timestamp: '6 hours ago'
+    timestamp: '6 hours ago',
+    imageUrl: 'https://images.unsplash.com/photo-1686947079063-f1e7a7dfc6a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcG9ydHMlMjBzdGFkaXVtJTIwY3Jvd2R8ZW58MXx8fHwxNzc0Mzc0Nzg3fDA&ixlib=rb-4.1.0&q=80&w=1080'
   },
   {
     id: 's5',
@@ -193,7 +194,8 @@ export const sportsArticles: SportsArticle[] = [
     excerpt: 'Complete scores and game summaries from Friday night action across the region.',
     content: 'Here are the scores and highlights from Week 10 high school football action across Northeast Georgia:\n\n**Region 7-3A**\nNorth Hall 42, Dawson County 14 - Tyler Johnson rushes for 187 yards and 3 TDs as Trojans claim region title\nWhite County 28, East Hall 21 - Warriors score 14 unanswered in 4th quarter to secure comeback win\n\n**Region 8-4A**\nFlowery Branch 35, Loganville 21 - Falcons control game from start to finish, improve to 8-2\nCherokee Bluff 31, Madison County 17 - Bears defense forces 4 turnovers in road victory\n\n**Region 6-6A**\nGainesville 24, Lanier 20 - Red Elephants hold off late rally to remain undefeated in region\nJohnson 45, Dacula 28 - Knights score 31 second-half points to pull away\n\n**Region 7-A (D-I)**\nCommerce 56, Washington-Wilkes 7 - Tigers dominate in all phases, clinch region championship\nRabun County 35, Elbert County 14 - Wildcats win 6th straight\n\n**Region 8-A (D-II)**\nTrinity Christian 38, Prince Avenue 21 - Lions stay perfect in region play\n\nPlayoff pairings will be announced Sunday.',
     author: 'AccessWDUN Sports',
-    timestamp: 'Yesterday'
+    timestamp: 'Yesterday',
+    imageUrl: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb290YmFsbCUyMHN0YWRpdW0lMjBuaWdodCUyMGxpZ2h0c3xlbnwxfHx8fDE3NzQzNzQ3ODZ8MA&ixlib=rb-4.1.0&q=80&w=1080'
   },
   {
     id: 's6',
@@ -203,7 +205,8 @@ export const sportsArticles: SportsArticle[] = [
     excerpt: 'Registration available for players ages 4-14, with season beginning in April.',
     content: 'The Hall County Youth Soccer League announced that registration is now open for the spring 2026 season, with programs available for players ages 4-14.\n\nThe recreational league offers co-ed divisions for younger age groups (U6-U8) and separate boys and girls divisions for older players (U10-U14). Games will be played on Saturdays at various fields throughout Hall County beginning in mid-April.\n\n"Youth soccer continues to grow in Hall County, and we\'re excited to offer quality programs for players of all skill levels," said league president David Martinez. "Our focus is on player development, sportsmanship, and having fun."\n\nRegistration costs $85 per player and includes a jersey, shorts, and socks. Players must provide their own shin guards and cleats. Volunteer coaches are needed for all age groups, and the league provides free training for new coaches.\n\nThe league also offers a competitive travel program for experienced players ages 9-14 who want to compete against teams from other counties. Travel team tryouts will be held in late March.\n\nRegistration closes on March 31 or when divisions fill up. Visit hallcountysoccer.org to register online.',
     author: 'Staff Reports',
-    timestamp: '2 days ago'
+    timestamp: '2 days ago',
+    imageUrl: 'https://images.unsplash.com/photo-1761225091881-0d3bda9f6d5a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2NjZXIlMjBnYW1lJTIwYWN0aW9ufGVufDF8fHx8MTc3NDM1NjUyMXww&ixlib=rb-4.1.0&q=80&w=1080'
   },
   {
     id: 's7',
@@ -213,7 +216,8 @@ export const sportsArticles: SportsArticle[] = [
     excerpt: 'Vikings overcome 12-point fourth quarter deficit to force OT, secure region victory.',
     content: 'East Hall mounted a furious comeback from a 12-point fourth-quarter deficit, then pulled out a 67-65 overtime victory over Habersham Central Tuesday night in a critical region game.\n\nSenior guard Jaylen Parker scored 11 of his game-high 28 points in the fourth quarter and overtime, including the game-winning free throws with 4.2 seconds remaining. Junior forward Darius Coleman added 18 points and 13 rebounds for the Vikings (15-8, 8-4).\n\n"That\'s as gutsy a performance as I\'ve seen from this group," said East Hall head coach Mike Davis. "We could have folded when we got down, but these guys kept believing and kept fighting."\n\nEast Hall trailed 52-40 with 6:30 remaining in regulation before unleashing a devastating press that forced six consecutive Habersham Central turnovers. The Vikings tied the game at 58-58 on a Parker three-pointer with 12 seconds left, sending it to overtime.\n\nIn the extra period, the teams traded baskets until Parker drew a foul on a drive to the basket with 4.2 seconds left. He calmly sank both free throws to give East Hall the lead for good.\n\nThe victory keeps East Hall in contention for a top-three region finish and a first-round home playoff game.',
     author: 'Jeff Hart',
-    timestamp: '2 days ago'
+    timestamp: '2 days ago',
+    imageUrl: 'https://images.unsplash.com/photo-1762025930827-9f1dda45aff8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYXNrZXRiYWxsJTIwZ2FtZSUyMGFjdGlvbiUyMHNob3R8ZW58MXx8fHwxNzc0Mzc0Nzg0fDA&ixlib=rb-4.1.0&q=80&w=1080'
   }
 ];
 

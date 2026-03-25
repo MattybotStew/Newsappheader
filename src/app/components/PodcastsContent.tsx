@@ -139,7 +139,7 @@ export function PodcastsContent() {
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[15px] text-[#1a1c1e] mb-1 line-clamp-2" style={{ fontVariationSettings: "'wdth' 100" }}>
+                  <h3 className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[15px] text-[#1a3178] mb-1 line-clamp-2" style={{ fontVariationSettings: "'wdth' 100" }}>
                     {episode.title}
                   </h3>
                   <p className="font-['Roboto:Regular',sans-serif] text-[13px] text-[#6b7178] mb-2 line-clamp-2" style={{ fontVariationSettings: "'wdth' 100" }}>

@@ -78,7 +78,7 @@ function HeroArticleSlider() {
                 <ImageWithFallback src={story.imageUrl} alt={story.title} className="size-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 px-3 pb-3 flex flex-col gap-1">
-                  <span className={`self-start text-white text-[10px] font-bold tracking-[0.7px] uppercase px-2 py-0.5 rounded-full ${story.category.toUpperCase() === 'BREAKING' ? 'bg-[#dc2626]' : 'bg-[#1a56a4]'}`}>
+                  <span className={`self-start text-white text-[10px] font-bold tracking-[0.7px] uppercase px-3 py-[3px] rounded-full ${story.category.toUpperCase() === 'BREAKING' ? 'bg-[#dc2626]' : 'bg-[#1a3178]'}`}>
                     {story.category}
                   </span>
                   <p className="text-white font-['Source_Sans_3',sans-serif] font-bold text-[16px] leading-[1.25] line-clamp-2 drop-shadow">

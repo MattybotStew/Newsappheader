@@ -44,7 +44,7 @@ export function ObituaryDetailPage() {
 
           {/* Name and Details */}
           <div className="px-4 pb-4">
-            <h1 className="font-['Roboto:Bold',sans-serif] font-bold leading-[32px] text-[26px] text-[#1a1c1e] text-center mb-2" style={{ fontVariationSettings: "'wdth' 100" }}>
+            <h1 className="font-['Roboto:Bold',sans-serif] font-bold leading-[32px] text-[26px] text-[#1a3178] text-center mb-2" style={{ fontVariationSettings: "'wdth' 100" }}>
               Margaret Louise Thompson
             </h1>
             

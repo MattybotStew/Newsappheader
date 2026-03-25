@@ -127,7 +127,7 @@ export function PodcastPlayerPage() {
             <p className="font-['Roboto:Medium',sans-serif] font-medium text-[14px] text-[#6b7178] mb-2" style={{ fontVariationSettings: "'wdth' 100" }}>
               {episode.showName}
             </p>
-            <h1 className="font-['Roboto:Bold',sans-serif] font-bold text-[22px] text-[#1a1c1e] mb-3 leading-tight" style={{ fontVariationSettings: "'wdth' 100" }}>
+            <h1 className="font-['Roboto:Bold',sans-serif] font-bold text-[22px] text-[#1a3178] mb-3 leading-tight" style={{ fontVariationSettings: "'wdth' 100" }}>
               {episode.title}
             </h1>
             <div className="flex items-center justify-center gap-2 text-[#6b7178]">

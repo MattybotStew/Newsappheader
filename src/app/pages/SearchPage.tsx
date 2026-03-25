@@ -203,19 +203,15 @@ export function SearchPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-2">
                           <span
-                            className={`inline-block px-2 py-1 rounded text-[11px] font-bold uppercase ${
-                              article.isBreaking
-                                ? 'bg-[#dc2626] text-white'
-                                : article.category === 'High School' || article.category === 'College Signing' || article.category === 'Basketball' || article.category === 'Youth Sports' || article.category === 'Friday Game Night'
-                                ? 'bg-[#22c55e] text-white'
-                                : 'bg-[#333399] text-white'
+                            className={`inline-block px-3 py-[3px] rounded-full text-[10px] font-bold uppercase tracking-[0.6px] ${
+                              article.isBreaking ? 'bg-[#dc2626] text-white' : 'bg-[#1a3178] text-white'
                             }`}
                           >
                             {article.category}
                           </span>
                           <span className="text-[12px] text-gray-500">{article.timestamp}</span>
                         </div>
-                        <h3 className="text-[16px] font-bold text-gray-900 mb-1 line-clamp-2">
+                        <h3 className="text-[16px] font-bold text-[#1a3178] mb-1 line-clamp-2">
                           {article.title}
                         </h3>
                         <p className="text-[14px] text-gray-600 line-clamp-2">
