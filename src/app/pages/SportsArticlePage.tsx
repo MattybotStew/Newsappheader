@@ -163,7 +163,6 @@ export function SportsArticlePage() {
             </div>
           </div>
 
-          <NativeAdArticleCard adUnit={adConfig.adUnits.articleBottom} />
           <div className="pb-[200px]" />
         </div>
       </main>
