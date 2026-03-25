@@ -29,7 +29,7 @@ export function AnchoredBanner({ adUnit }: AnchoredBannerProps) {
   }
 
   return (
-    <div className="fixed bottom-[80px] left-0 right-0 z-30 bg-[#011843] shadow-[0_-2px_8px_rgba(0,0,0,0.3)]">
+    <div className="fixed bottom-[80px] left-0 right-0 z-30 bg-[#1a3178] shadow-[0_-2px_8px_rgba(0,0,0,0.3)]">
       <div className="flex flex-col items-center py-2">
         <a 
           href="https://example.com/weaverlaw" 
