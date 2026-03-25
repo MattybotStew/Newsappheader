@@ -5,6 +5,7 @@ import { ChevronLeft, Share2, Facebook, Mail } from 'lucide-react';
 import { BannerAd } from '../components/ads/BannerAd';
 import { AnchoredBanner } from '../components/ads/AnchoredBanner';
 import { TopBannerAd } from '../components/ads/TopBannerAd';
+import { NativeAdArticleCard } from '../components/ads/NativeAdArticleCard';
 import { adConfig, adSizes } from '../config/adConfig';
 
 export function SportsArticlePage() {
@@ -81,7 +82,7 @@ export function SportsArticlePage() {
           </div>
 
           {/* Article Content */}
-          <div className="px-4 py-6 pb-[200px]">
+          <div className="px-4 py-6">
             <div className="font-['Roboto:Regular',sans-serif] text-[16px] text-[#1a1c1e] leading-[26px]" style={{ fontVariationSettings: "'wdth' 100" }}>
               <p className="mb-4">
                 <strong>GAINESVILLE, Ga.</strong> — North Hall High School secured the Region 7-3A championship Friday night with a commanding 42-14 victory over rival Dawson County in front of a packed home crowd.
@@ -162,9 +163,11 @@ export function SportsArticlePage() {
             </div>
           </div>
 
+          <NativeAdArticleCard adUnit={adConfig.adUnits.articleBottom} />
+          <div className="pb-[200px]" />
         </div>
       </main>
-      
+
       {/* Anchored Banner Ad */}
       <AnchoredBanner adUnit={adConfig.adUnits.articleBottom} />
       
