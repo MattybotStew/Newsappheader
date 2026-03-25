@@ -35,21 +35,31 @@ function ChipRow({ items, selected, onSelect }: { items: string[]; selected: str
 
 function CountyDropdown({ selected, onSelect }: { selected: string; onSelect: (v: string) => void }) {
   const [open, setOpen] = useState(false);
+  const isFiltered = selected !== 'All';
   return (
-    <div className="relative bg-white border-b border-[#eef0f3]">
+    <div className="relative border-b border-[#eef0f3]">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between px-4 py-2.5 hover:bg-[#f8f9fa] transition-colors"
+        className={`w-full flex items-center justify-between px-4 py-3 transition-colors ${isFiltered ? 'bg-[#1a3178]' : 'bg-[#f0f4ff] hover:bg-[#e6ecfa]'}`}
       >
-        <div className="flex items-center gap-2">
-          <span className="text-[11px] font-bold tracking-[0.7px] uppercase text-[#9ca3af] font-['Source_Sans_3',sans-serif]">County</span>
-          {selected !== 'All' && (
-            <span className="bg-[#1a3178] text-white text-[11px] font-semibold font-['Source_Sans_3',sans-serif] px-2 py-0.5 rounded-full">{selected}</span>
-          )}
+        <div className="flex items-center gap-2.5">
+          <svg viewBox="0 0 24 24" fill="none" className={`size-4 shrink-0 ${isFiltered ? 'text-white/70' : 'text-[#1a3178]'}`}>
+            <path d="M3 6h18M6 12h12M9 18h6" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="currentColor" />
+          </svg>
+          <span className={`text-[13px] font-bold font-['Source_Sans_3',sans-serif] tracking-[0.2px] ${isFiltered ? 'text-white' : 'text-[#1a3178]'}`}>
+            {isFiltered ? `County: ${selected}` : 'Filter by County'}
+          </span>
         </div>
-        <svg viewBox="0 0 24 24" fill="none" className={`size-4 text-[#9ca3af] transition-transform duration-200 ${open ? 'rotate-180' : ''}`}>
-          <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="currentColor" />
-        </svg>
+        <div className="flex items-center gap-2">
+          {isFiltered && (
+            <span className="bg-white/20 text-white text-[10px] font-bold px-2 py-0.5 rounded-full font-['Source_Sans_3',sans-serif]">
+              Active
+            </span>
+          )}
+          <svg viewBox="0 0 24 24" fill="none" className={`size-4 transition-transform duration-200 ${open ? 'rotate-180' : ''} ${isFiltered ? 'text-white' : 'text-[#1a3178]'}`}>
+            <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="currentColor" />
+          </svg>
+        </div>
       </button>
 
       {open && (
