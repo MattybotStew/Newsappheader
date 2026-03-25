@@ -1,16 +1,23 @@
-
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>News app header</title>
-      <script type="module" crossorigin src="/assets/index-CXG4iNVZ.js"></script>
-      <link rel="stylesheet" crossorigin href="/assets/index-t0CG4Cau.css">
-    </head>
-
-    <body>
-      <div id="root"></div>
-    </body>
-  </html>
-  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>accessWDUN</title>
+    <script>
+      // SPA redirect handler for GitHub Pages
+      (function () {
+        var redirect = sessionStorage.getItem('ghpages_redirect');
+        if (redirect) {
+          sessionStorage.removeItem('ghpages_redirect');
+          window.history.replaceState(null, '', '/Newsappheader' + redirect);
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/Newsappheader/assets/index-B9TWcxhu.js"></script>
+    <link rel="stylesheet" crossorigin href="/Newsappheader/assets/index-BQedpaBp.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

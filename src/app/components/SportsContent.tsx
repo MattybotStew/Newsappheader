@@ -1,7 +1,6 @@
 import { useState, useRef, TouchEvent, MouseEvent } from 'react';
 import { Link } from 'react-router';
 import { NativeAdArticleCard } from './ads/NativeAdArticleCard';
-import { TopBannerAd } from './ads/TopBannerAd';
 import { adConfig } from '../config/adConfig';
 import { SportsTicker } from './SportsTicker';
 import { sportsArticles } from '../data/mockArticles';
@@ -234,7 +233,6 @@ export function SportsContent() {
             author={`${article.author}  ·  ${article.timestamp}`}
             imageUrl={article.imageUrl}
           />
-          {index === 0 && <TopBannerAd adUnit={adConfig.adUnits.topBanner} />}
           {index === 2 && (
             <NativeAdArticleCard adUnit={adConfig.adUnits.sportsFeedNative} />
           )}
