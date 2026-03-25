@@ -1,4 +1,4 @@
-import newAd from '../../../assets/newAd.png';
+import newAd from '../../../assets/newADxd.png';
 
 interface BannerAdProps {
   adUnit: string;
