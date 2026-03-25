@@ -6,7 +6,7 @@ import { adConfig, adSizes } from '../config/adConfig';
 import { obituaries as mockObituaries } from '../data/mockArticles';
 
 const TIME_FILTERS = ['Day', 'Week', 'Month'];
-const COUNTY_FILTERS = ['All', 'Banks', 'Barrow', 'Clarke', 'Dawson', 'DeKalb', 'Fannin',
+const COUNTIES = ['All', 'Banks', 'Barrow', 'Clarke', 'Dawson', 'DeKalb', 'Fannin',
   'Forsyth', 'Franklin', 'Fulton', 'Gwinnett', 'Habersham',
   'Hall', 'Jackson', 'Lumpkin', 'Madison', 'Oconee', 'Rabun',
   'Stephens', 'Towns', 'Union', 'White', 'Other'];
@@ -29,6 +29,52 @@ function ChipRow({ items, selected, onSelect }: { items: string[]; selected: str
           </button>
         ))}
       </div>
+    </div>
+  );
+}
+
+function CountyDropdown({ selected, onSelect }: { selected: string; onSelect: (v: string) => void }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="relative bg-white border-b border-[#eef0f3]">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between px-4 py-2.5 hover:bg-[#f8f9fa] transition-colors"
+      >
+        <div className="flex items-center gap-2">
+          <span className="text-[11px] font-bold tracking-[0.7px] uppercase text-[#9ca3af] font-['Source_Sans_3',sans-serif]">County</span>
+          {selected !== 'All' && (
+            <span className="bg-[#1a3178] text-white text-[11px] font-semibold font-['Source_Sans_3',sans-serif] px-2 py-0.5 rounded-full">{selected}</span>
+          )}
+        </div>
+        <svg viewBox="0 0 24 24" fill="none" className={`size-4 text-[#9ca3af] transition-transform duration-200 ${open ? 'rotate-180' : ''}`}>
+          <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="currentColor" />
+        </svg>
+      </button>
+
+      {open && (
+        <>
+          <div className="fixed inset-0 z-30" onClick={() => setOpen(false)} />
+          <div className="absolute left-0 right-0 z-40 bg-white border-b border-[#eef0f3] shadow-lg max-h-[240px] overflow-y-auto">
+            {COUNTIES.map((county) => (
+              <button
+                key={county}
+                onClick={() => { onSelect(county); setOpen(false); }}
+                className={`w-full flex items-center justify-between px-4 py-2.5 text-left hover:bg-[#f8f9fa] transition-colors border-b border-[#f3f4f6] last:border-0 ${selected === county ? 'bg-[#f0f4ff]' : ''}`}
+              >
+                <span className={`text-[13px] font-['Source_Sans_3',sans-serif] ${selected === county ? 'font-bold text-[#1a3178]' : 'font-normal text-[#374151]'}`}>
+                  {county}
+                </span>
+                {selected === county && (
+                  <svg viewBox="0 0 24 24" fill="none" className="size-4 text-[#1a3178] shrink-0">
+                    <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} stroke="currentColor" />
+                  </svg>
+                )}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -86,7 +132,7 @@ export function ObituariesContent() {
   return (
     <div className="bg-white w-full pb-24">
       <ChipRow items={TIME_FILTERS} selected={selectedTime} onSelect={setSelectedTime} />
-      <ChipRow items={COUNTY_FILTERS} selected={selectedCounty} onSelect={setSelectedCounty} />
+      <CountyDropdown selected={selectedCounty} onSelect={setSelectedCounty} />
       
       {/* Obituary List with Ads */}
       <div>
