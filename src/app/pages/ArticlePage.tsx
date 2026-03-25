@@ -83,7 +83,7 @@ export function ArticlePage() {
           </div>
 
           {/* Article Content */}
-          <div className="px-4 py-6 pb-24">
+          <div className="px-4 py-6 pb-[200px]">
             <div className="font-['Roboto:Regular',sans-serif] text-[16px] text-[#1a1c1e] leading-[26px]" style={{ fontVariationSettings: "'wdth' 100" }}>
               <p className="mb-4">
                 <strong>HALL COUNTY, Ga.</strong> — A multi-vehicle wreck on Interstate 85 northbound is causing significant delays near the SR 211 exit Tuesday morning.

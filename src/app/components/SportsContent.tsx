@@ -212,7 +212,7 @@ export function SportsContent() {
     : sportsArticles.filter(a => a.category.toLowerCase() === selectedCategory.toLowerCase());
 
   return (
-    <div className="bg-white w-full pb-24">
+    <div className="bg-white w-full pb-[200px]">
       {/* Sports Ticker */}
       <SportsTicker />
 

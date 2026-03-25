@@ -87,7 +87,7 @@ export function PodcastsContent() {
     : episodes.filter(ep => ep.show === selectedShow);
 
   return (
-    <div className="bg-[#f8f9fa] w-full pb-24">
+    <div className="bg-[#f8f9fa] w-full pb-[200px]">
       {/* Header */}
       <div className="px-4 pt-5 pb-4 bg-white border-b border-[#c1c7ce]">
         <h1 className="font-['Roboto:Bold',sans-serif] font-bold text-[24px] text-[#1a1c1e] mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>

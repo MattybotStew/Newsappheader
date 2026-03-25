@@ -4,7 +4,7 @@ import { adConfig, adSizes } from '../config/adConfig';
 
 export function WeatherContent() {
   return (
-    <div className="bg-[#f8f9fa] w-full h-full flex items-center justify-center pb-24">
+    <div className="bg-[#f8f9fa] w-full h-full flex items-center justify-center pb-[200px]">
       <div className="text-center px-4">
         <div className="bg-white rounded-lg shadow-md p-8 text-center">
           <div className="flex justify-center mb-4">

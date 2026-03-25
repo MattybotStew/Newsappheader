@@ -163,7 +163,7 @@ export function HomeContent() {
       </div>
 
       {/* Article Feed */}
-      <div className="pb-24">
+      <div className="pb-[200px]">
         <SectionLabel label="Latest News" />
         {allArticles.slice(0, 15).map((article, index) => (
           <div key={article.id}>

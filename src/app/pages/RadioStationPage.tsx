@@ -152,7 +152,7 @@ export function RadioStationPage() {
           </div>
 
           {/* Other Stations */}
-          <div className="px-4 py-6 pb-24 bg-[#f8f9fa] border-t border-[#c1c7ce]">
+          <div className="px-4 py-6 pb-[200px] bg-[#f8f9fa] border-t border-[#c1c7ce]">
             <h2 className="font-['Roboto:Bold',sans-serif] font-bold text-[18px] text-[#1a1c1e] mb-4 text-center" style={{ fontVariationSettings: "'wdth' 100" }}>
               Other Stations
             </h2>

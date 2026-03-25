@@ -102,7 +102,7 @@ export function ObituaryDetailPage() {
           </div>
 
           {/* Obituary Content */}
-          <div className="px-4 py-6 pb-24">
+          <div className="px-4 py-6 pb-[200px]">
             <div className="font-['Roboto:Regular',sans-serif] text-[15px] text-[#1a1c1e] leading-[24px]" style={{ fontVariationSettings: "'wdth' 100" }}>
               <p className="mb-4">
                 Margaret Louise Thompson, 84, of Gainesville, Georgia, passed away peacefully on March 1, 2026, surrounded by her loving family. She was born on January 15, 1942, in Hall County to the late John and Mary Henderson.

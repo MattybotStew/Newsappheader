@@ -81,7 +81,7 @@ export function SportsArticlePage() {
           </div>
 
           {/* Article Content */}
-          <div className="px-4 py-6 pb-24">
+          <div className="px-4 py-6 pb-[200px]">
             <div className="font-['Roboto:Regular',sans-serif] text-[16px] text-[#1a1c1e] leading-[26px]" style={{ fontVariationSettings: "'wdth' 100" }}>
               <p className="mb-4">
                 <strong>GAINESVILLE, Ga.</strong> — North Hall High School secured the Region 7-3A championship Friday night with a commanding 42-14 victory over rival Dawson County in front of a packed home crowd.

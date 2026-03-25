@@ -140,7 +140,7 @@ export function ObituariesContent() {
   const [selectedCounty, setSelectedCounty] = useState('All');
 
   return (
-    <div className="bg-white w-full pb-24">
+    <div className="bg-white w-full pb-[200px]">
       <CountyDropdown selected={selectedCounty} onSelect={setSelectedCounty} />
       <ChipRow items={TIME_FILTERS} selected={selectedTime} onSelect={setSelectedTime} />
       
