@@ -29,7 +29,7 @@ export function TopBannerAd({ adUnit }: TopBannerAdProps) {
   }
 
   return (
-    <div className="bg-white w-full border-b border-[#e5e7eb] sticky top-[114px] z-40">
+    <div className="bg-[#1a3178] w-full sticky top-[102px] z-40">
       <div className="flex flex-col items-center py-2">
         
         <a 
