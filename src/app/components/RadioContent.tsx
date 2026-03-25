@@ -1,5 +1,4 @@
 import { Link } from 'react-router';
-import { Radio as RadioIcon } from 'lucide-react';
 import wdunAmLogo from '../../assets/wdun-am-550.png';
 import wdunFmLogo from '../../assets/wdun-fm-102.png';
 import lakeLogo from '../../assets/the-lake-94.png';
@@ -26,7 +25,7 @@ const stations: RadioStation[] = [
     id: 'wdun-fm',
     name: 'WDUN FM 102.9',
     frequency: 'FM 102.9',
-    tagline: 'North Georgia\'s News Station',
+    tagline: "North Georgia's News Station",
     genre: 'News & Information',
     logoUrl: wdunFmLogo,
   },
@@ -43,35 +42,35 @@ const stations: RadioStation[] = [
 function RadioStationCard({ station }: { station: RadioStation }) {
   return (
     <Link to={`/radio/${station.id}`} className="block">
-      <div className="bg-white rounded-lg shadow-sm border border-[#c1c7ce] overflow-hidden hover:shadow-md transition-shadow">
-        <div className="flex gap-3 p-3">
-          {/* Thumbnail - matching podcast size (96px) */}
-          <div className="size-24 shrink-0 overflow-hidden bg-white flex items-center justify-center">
-            <img 
-              src={station.logoUrl} 
+      <div className="bg-white border-b border-[#e8eaed] hover:bg-[#f8f9fa] transition-colors">
+        <div className="flex gap-3 px-4 py-3 items-center">
+          <div className="size-[96px] shrink-0 overflow-hidden rounded-[4px] bg-[#f0f0f0] flex items-center justify-center">
+            <img
+              src={station.logoUrl}
               alt={station.name}
               className="max-w-full max-h-full object-contain"
             />
           </div>
-          
-          {/* Content */}
           <div className="flex-1 min-w-0">
-            <h3 className="font-['Roboto:Bold',sans-serif] font-bold text-[18px] mb-1 line-clamp-2 text-[#333399]" style={{ fontVariationSettings: "'wdth' 100" }}>
+            <p className="font-['Source_Sans_3',sans-serif] font-bold text-[17px] text-[#1a3178] mb-0.5 leading-snug">
               {station.name}
-            </h3>
-            <p className="font-['Roboto:Medium',sans-serif] font-medium text-[14px] text-[#1976d2] mb-2 line-clamp-1" style={{ fontVariationSettings: "'wdth' 100" }}>
+            </p>
+            <p className="font-['Source_Sans_3',sans-serif] text-[14px] text-[#41484d] mb-1.5">
               {station.tagline}
             </p>
-            <div className="flex items-center gap-3">
-              <span className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[13px] text-[#41484d]" style={{ fontVariationSettings: "'wdth' 100" }}>
+            <div className="flex items-center gap-2 text-[#6b7178]">
+              <span className="font-['Source_Sans_3',sans-serif] font-semibold text-[13px] text-[#41484d]">
                 {station.frequency}
               </span>
-              <span className="text-[#6b7178]">•</span>
-              <span className="font-['Roboto:Regular',sans-serif] text-[13px] text-[#6b7178]" style={{ fontVariationSettings: "'wdth' 100" }}>
+              <span>·</span>
+              <span className="font-['Source_Sans_3',sans-serif] text-[13px]">
                 {station.genre}
               </span>
             </div>
           </div>
+          <svg viewBox="0 0 24 24" fill="none" className="size-5 text-[#c1c7ce] shrink-0">
+            <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </div>
       </div>
     </Link>
@@ -80,18 +79,16 @@ function RadioStationCard({ station }: { station: RadioStation }) {
 
 export function RadioContent() {
   return (
-    <div className="bg-[#f8f9fa] w-full pb-[200px]">
-      {/* Page Header */}
-      <div className="px-4 pt-5 pb-4 bg-white border-b border-[#c1c7ce]">
-        <h1 className="font-['Roboto:Bold',sans-serif] font-bold text-[24px] mb-1 text-[#333399]" style={{ fontVariationSettings: "'wdth' 100" }}>
+    <div className="bg-white w-full pb-[200px]">
+      <div className="px-4 pt-5 pb-4 border-b border-[#e8eaed]">
+        <h1 className="font-['Source_Sans_3',sans-serif] font-bold text-[24px] text-[#1a1c1e] mb-0.5">
           Radio
         </h1>
-        <p className="font-['Roboto:Regular',sans-serif] text-[14px] text-[#41484d]" style={{ fontVariationSettings: "'wdth' 100" }}>
+        <p className="font-['Source_Sans_3',sans-serif] text-[14px] text-[#6b7178]">
           Listen to your favorite local stations
         </p>
       </div>
-
-      <div className="px-4 py-4 space-y-3">
+      <div>
         {stations.map((station) => (
           <RadioStationCard key={station.id} station={station} />
         ))}
