@@ -15,15 +15,13 @@ interface NavButtonProps {
 
 function NavButton({ label, path, icon, isActive }: NavButtonProps) {
   return (
-    <Link to={path} className="flex-[1_0_0] min-h-px min-w-px relative">
-      <div className="flex flex-col gap-[1px] items-center justify-end w-full">
-        <div className={`flex h-[32px] items-center justify-center rounded-[100px] shrink-0 ${isActive ? 'bg-white/20 w-full' : 'w-[64px]'}`}>
-          <img src={icon} alt={label} className={`size-[24px] ${isActive ? 'opacity-100' : 'opacity-60'}`} />
-        </div>
-        <p className={`font-['Source_Sans_3',sans-serif] text-[11px] text-center tracking-[0.3px] leading-normal ${isActive ? 'font-bold text-white' : 'font-semibold text-white/60'}`}>
-          {label}
-        </p>
+    <Link to={path} className="flex-[1_0_0] flex flex-col justify-end items-center px-[4px] gap-[1px] h-[50px]">
+      <div className={`flex h-[32px] items-center justify-center rounded-[100px] shrink-0 ${isActive ? 'bg-white/20 w-full' : 'w-[64px]'}`}>
+        <img src={icon} alt={label} className={`size-[24px] ${isActive ? 'opacity-100' : 'opacity-60'}`} />
       </div>
+      <p className={`font-['Source_Sans_3',sans-serif] text-[11px] text-center tracking-[0.3px] leading-[16px] ${isActive ? 'font-bold text-white' : 'font-semibold text-white/60'}`}>
+        {label}
+      </p>
     </Link>
   );
 }
