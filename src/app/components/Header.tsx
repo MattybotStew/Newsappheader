@@ -162,22 +162,26 @@ export function Header() {
               <div className="flex items-center gap-2 shrink-0">
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
-                  className="bg-[#009933] hover:bg-[#007a29] active:scale-95 transition-all flex items-center gap-1 px-3 rounded-[3px] text-white text-[12px] font-bold font-['Source_Sans_3',sans-serif] whitespace-nowrap"
+                  className={`active:scale-95 transition-all flex items-center gap-1.5 px-3 rounded-[3px] text-white text-[12px] font-bold font-['Source_Sans_3',sans-serif] whitespace-nowrap ${isPlaying ? 'bg-[#1a3178] hover:bg-[#142660]' : 'bg-[#009933] hover:bg-[#007a29]'}`}
                   style={{ height: isScrolled ? '22px' : '26px' }}
                 >
                   {isPlaying ? (
                     <>
                       Pause
-                      <svg viewBox="0 0 14 14" fill="none" className="size-3 shrink-0">
-                        <path d="M4 2H6V12H4V2ZM8 2H10V12H8V2Z" fill="white" />
-                      </svg>
+                      <div className="size-[18px] rounded-full bg-black/30 flex items-center justify-center shrink-0">
+                        <svg viewBox="0 0 14 14" fill="none" className="size-2.5">
+                          <path d="M4 2H6V12H4V2ZM8 2H10V12H8V2Z" fill="white" />
+                        </svg>
+                      </div>
                     </>
                   ) : (
                     <>
                       Listen
-                      <svg viewBox="0 0 14 14" fill="none" className="size-3 shrink-0">
-                        <path d={svgPaths.p3c11d380} fill="white" />
-                      </svg>
+                      <div className="size-[18px] rounded-full bg-black/30 flex items-center justify-center shrink-0">
+                        <svg viewBox="0 0 14 14" fill="none" className="size-2.5">
+                          <path d={svgPaths.p3c11d380} fill="white" />
+                        </svg>
+                      </div>
                     </>
                   )}
                 </button>
