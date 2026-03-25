@@ -14,7 +14,7 @@ const COUNTIES = ['All', 'Banks', 'Barrow', 'Clarke', 'Dawson', 'DeKalb', 'Fanni
 function ChipRow({ items, selected, onSelect }: { items: string[]; selected: string; onSelect: (v: string) => void }) {
   return (
     <div className="bg-white border-b border-[#eef0f3]">
-      <div className="flex gap-2 overflow-x-auto scrollbar-hide px-4 pb-3 pt-1">
+      <div className="flex gap-2 overflow-x-auto scrollbar-hide px-4 py-2.5">
         {items.map((item) => (
           <button
             key={item}
