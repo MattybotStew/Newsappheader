@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import ngrBanner from '../../../assets/ngr.gif';
+import ngrBanner from '../../../assets/bannernew.png';
 
 interface TopBannerAdProps {
   adUnit: string;
