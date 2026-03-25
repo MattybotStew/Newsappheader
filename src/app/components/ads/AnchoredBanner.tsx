@@ -6,14 +6,14 @@ interface AnchoredBannerProps {
 
 export function AnchoredBanner({ adUnit: _ }: AnchoredBannerProps) {
   return (
-    <div className="fixed bottom-[80px] left-0 right-0 z-30">
-      <div className="flex flex-col items-start pt-[4px] px-[4px]">
+    <div className="fixed bottom-[62px] left-0 right-0 z-30 bg-[#021843] rounded-t-[6px]">
+      <div className="flex flex-col items-center px-[4px] pt-[4px]">
         <a href="#" className="w-full hover:opacity-90 transition-opacity">
           <img
             src={ngrBanner}
             alt="Advertisement"
             className="rounded-[3px] w-full object-cover"
-            style={{ maxHeight: '90px' }}
+            style={{ height: '47.22px', maxHeight: '90px' }}
           />
         </a>
       </div>
