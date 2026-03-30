@@ -72,7 +72,7 @@ export function Header() {
   };
 
   return (
-    <div className="bg-[#1a3178] sticky top-0 z-50 w-full shrink-0 flex flex-col gap-[8px] p-[6px]">
+    <div className="bg-[#1a3178] sticky top-0 z-50 w-full shrink-0 flex flex-col gap-[8px] p-[6px] overflow-hidden">
 
       {/* ── Search mode ─────────────────────────────── */}
       {isSearchOpen ? (
@@ -84,7 +84,7 @@ export function Header() {
             </svg>
           </div>
           {/* White input */}
-          <div className="flex-1 flex items-center bg-white rounded-[8px] px-3 gap-2 h-[36px]">
+          <div className="flex-1 min-w-0 flex items-center bg-white rounded-[8px] px-3 gap-2 h-[36px]">
             <input
               ref={searchInputRef}
               value={searchQuery}
