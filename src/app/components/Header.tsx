@@ -91,7 +91,7 @@ export function Header() {
               onChange={e => setSearchQuery(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleSearchSubmit()}
               placeholder="Search accessWDUN…"
-              className="flex-1 bg-transparent text-[#011843] placeholder-[#011843]/40 text-[14px] font-['Source_Sans_3',sans-serif] outline-none"
+              className="flex-1 bg-transparent text-[#011843] placeholder-[#011843]/40 text-[16px] font-['Source_Sans_3',sans-serif] outline-none"
             />
             {searchQuery && (
               <button onClick={() => setSearchQuery('')} className="text-[#011843]/40 hover:text-[#011843] transition-colors shrink-0">
