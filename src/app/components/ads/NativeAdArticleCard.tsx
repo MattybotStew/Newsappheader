@@ -1,45 +1,22 @@
-import { useState, useEffect } from 'react';
 import { getRandomAd } from '../../data/fakeAds';
 
 interface NativeAdArticleCardProps {
   adUnit: string;
 }
 
-export function NativeAdArticleCard({ adUnit }: NativeAdArticleCardProps) {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
-  const [ad] = useState(() => getRandomAd());
-
-  useEffect(() => {
-    // Simulate ad loading
-    const timer = setTimeout(() => {
-      // Simulate 95% success rate
-      if (Math.random() > 0.05) {
-        setIsLoaded(true);
-      } else {
-        setHasError(true);
-      }
-    }, 300);
-
-    return () => clearTimeout(timer);
-  }, [adUnit]);
-
-  // Collapse container if ad fails to load
-  if (hasError || !isLoaded) {
-    return null;
-  }
+export function NativeAdArticleCard({ adUnit: _ }: NativeAdArticleCardProps) {
+  const ad = getRandomAd();
 
   return (
-    <a 
-      href={ad.clickUrl} 
-      target="_blank" 
+    <a
+      href={ad.clickUrl}
+      target="_blank"
       rel="noopener noreferrer"
       className="relative block hover:opacity-95 transition-opacity bg-[#1a3178] border-b border-[#444]"
     >
       <div className="flex gap-3 items-start pb-[11px] pt-[10px] px-4">
-        {/* Sponsored label in top right */}
         <div className="absolute top-3 right-4">
-          <span className="font-['Roboto:Regular',sans-serif] text-[10px] text-[#6b9bd1] uppercase tracking-wider">
+          <span className="font-['Source_Sans_3',sans-serif] text-[10px] text-[#6b9bd1] uppercase tracking-wider">
             Sponsored
           </span>
         </div>
@@ -52,15 +29,15 @@ export function NativeAdArticleCard({ adUnit }: NativeAdArticleCardProps) {
           />
         </div>
         <div className="flex-1 flex flex-col gap-[3px]">
-          <div className="font-['Roboto:Bold',sans-serif] font-bold text-[#6b9bd1] text-[10px] tracking-[0.7px] uppercase">
+          <div className="font-['Source_Sans_3',sans-serif] font-bold text-[#6b9bd1] text-[10px] tracking-[0.7px] uppercase">
             Advertisement
           </div>
           <div className="h-[37.78px] overflow-clip">
-            <div className="font-['Roboto:SemiBold',sans-serif] font-semibold leading-[18.9px] text-white text-[14px]">
+            <div className="font-['Source_Sans_3',sans-serif] font-semibold leading-[18.9px] text-white text-[14px]">
               {ad.headline}
             </div>
           </div>
-          <div className="font-['Roboto:Regular',sans-serif] font-normal text-[#bbb] text-[10px] pt-[2px]">
+          <div className="font-['Source_Sans_3',sans-serif] text-[#bbb] text-[10px] pt-[2px]">
             {ad.callToAction}
           </div>
         </div>
