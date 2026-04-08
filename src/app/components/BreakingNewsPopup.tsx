@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { breakingNews } from '../data/mockArticles';
-import ngrBanner from '../../assets/bannernew.png';
+import ad300x300 from '../../assets/300x300.png';
 
 const SESSION_KEY = 'breaking_news_dismissed';
 
@@ -81,7 +81,7 @@ export function BreakingNewsPopup() {
             </p>
             <a href="#" className="block w-[300px] h-[300px] overflow-hidden rounded-[4px] hover:opacity-90 transition-opacity">
               <img
-                src={ngrBanner}
+                src={ad300x300}
                 alt="Advertisement"
                 className="w-full h-full object-cover object-center"
               />
