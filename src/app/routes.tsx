@@ -12,66 +12,25 @@ import { PodcastsPage } from "./pages/PodcastsPage";
 import { PodcastPlayerPage } from "./pages/PodcastPlayerPage";
 import { SearchPage } from "./pages/SearchPage";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { RootLayout } from "./components/RootLayout";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
-    Component: HomePage,
+    Component: RootLayout,
     errorElement: <ErrorBoundary />,
-  },
-  {
-    path: "/search",
-    Component: SearchPage,
-    errorElement: <ErrorBoundary />,
-  },
-  {
-    path: "/sports",
-    Component: SportsPage,
-    errorElement: <ErrorBoundary />,
-  },
-  {
-    path: "/article/:id",
-    Component: ArticlePage,
-    errorElement: <ErrorBoundary />,
-  },
-  {
-    path: "/sports/article/:id",
-    Component: SportsArticlePage,
-    errorElement: <ErrorBoundary />,
-  },
-  {
-    path: "/obituaries",
-    Component: ObituariesPage,
-    errorElement: <ErrorBoundary />,
-  },
-  {
-    path: "/obituaries/:id",
-    Component: ObituaryDetailPage,
-    errorElement: <ErrorBoundary />,
-  },
-  {
-    path: "/weather",
-    Component: WeatherPage,
-    errorElement: <ErrorBoundary />,
-  },
-  {
-    path: "/radio",
-    Component: RadioPage,
-    errorElement: <ErrorBoundary />,
-  },
-  {
-    path: "/radio/:id",
-    Component: RadioStationPage,
-    errorElement: <ErrorBoundary />,
-  },
-  {
-    path: "/podcasts",
-    Component: PodcastsPage,
-    errorElement: <ErrorBoundary />,
-  },
-  {
-    path: "/podcasts/player/:id",
-    Component: PodcastPlayerPage,
-    errorElement: <ErrorBoundary />,
+    children: [
+      { path: "/", Component: HomePage },
+      { path: "/search", Component: SearchPage },
+      { path: "/sports", Component: SportsPage },
+      { path: "/article/:id", Component: ArticlePage },
+      { path: "/sports/article/:id", Component: SportsArticlePage },
+      { path: "/obituaries", Component: ObituariesPage },
+      { path: "/obituaries/:id", Component: ObituaryDetailPage },
+      { path: "/weather", Component: WeatherPage },
+      { path: "/radio", Component: RadioPage },
+      { path: "/radio/:id", Component: RadioStationPage },
+      { path: "/podcasts", Component: PodcastsPage },
+      { path: "/podcasts/player/:id", Component: PodcastPlayerPage },
+    ],
   },
 ], { basename: '/Newsappheader' });
