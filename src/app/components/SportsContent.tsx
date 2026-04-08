@@ -2,11 +2,10 @@ import { useState, useRef, TouchEvent, MouseEvent } from 'react';
 import { Link } from 'react-router';
 import { NativeAdArticleCard } from './ads/NativeAdArticleCard';
 import { adConfig } from '../config/adConfig';
-import { SportsTicker } from './SportsTicker';
 import { sportsArticles } from '../data/mockArticles';
 
 // Filter Chips Component — Artifact style
-const SPORT_CATEGORIES = ['All', 'High School', 'Friday Game Night', 'Youth Sports', 'College Signing', 'Baseball', 'Basketball', 'Football', 'Softball', 'Soccer'];
+const SPORT_CATEGORIES = ['All', 'High School', 'Friday Game Night'];
 
 function FilterChips({ selected, onSelect }: { selected: string; onSelect: (c: string) => void }) {
   return (
@@ -213,9 +212,6 @@ export function SportsContent() {
 
   return (
     <div className="bg-white w-full pb-[200px]">
-      {/* Sports Ticker */}
-      <SportsTicker />
-
       {/* Hero Slider */}
       <div className="pt-3 bg-[#f8f9fa]">
         <HeroArticleSlider />
