@@ -5,29 +5,32 @@ import { BannerAd } from './ads/BannerAd';
 import { adConfig, adSizes } from '../config/adConfig';
 import { obituaries as mockObituaries } from '../data/mockArticles';
 
-const TIME_FILTERS = ['Day', 'Week', 'Month'];
 const COUNTIES = ['All', 'Banks', 'Barrow', 'Clarke', 'Dawson', 'DeKalb', 'Fannin',
   'Forsyth', 'Franklin', 'Fulton', 'Gwinnett', 'Habersham',
   'Hall', 'Jackson', 'Lumpkin', 'Madison', 'Oconee', 'Rabun',
   'Stephens', 'Towns', 'Union', 'White', 'Other'];
 
-function ChipRow({ items, selected, onSelect }: { items: string[]; selected: string; onSelect: (v: string) => void }) {
+function ObituarySearch({ value, onChange }: { value: string; onChange: (v: string) => void }) {
   return (
-    <div className="bg-white border-b border-[#eef0f3]">
-      <div className="flex gap-2 overflow-x-auto scrollbar-hide px-4 py-2.5">
-        {items.map((item) => (
-          <button
-            key={item}
-            onClick={() => onSelect(item)}
-            className={`shrink-0 px-4 py-1.5 rounded-full text-[12px] font-semibold font-['Source_Sans_3',sans-serif] tracking-[0.2px] transition-colors border whitespace-nowrap ${
-              selected === item
-                ? 'bg-[#1a3178] text-white border-[#1a3178]'
-                : 'bg-white text-[#1a3178] border-[#c1c7ce] hover:border-[#1a3178]'
-            }`}
-          >
-            {item}
+    <div className="bg-white border-b border-[#eef0f3] px-4 py-2.5">
+      <div className="flex items-center bg-[#f0f4ff] border border-[#c1c7ce] rounded-[8px] px-3 gap-2 h-[38px]">
+        <svg viewBox="0 0 24 24" fill="none" className="size-4 text-[#1a3178] shrink-0">
+          <path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
+        </svg>
+        <input
+          type="text"
+          value={value}
+          onChange={e => onChange(e.target.value)}
+          placeholder="Search obituaries…"
+          className="flex-1 bg-transparent text-[16px] text-[#1a1c1e] placeholder-[#6b7280] font-['Source_Sans_3',sans-serif] outline-none"
+        />
+        {value && (
+          <button onClick={() => onChange('')} className="text-[#6b7280] hover:text-[#1a1c1e] transition-colors shrink-0">
+            <svg viewBox="0 0 24 24" fill="none" className="size-4">
+              <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
+            </svg>
           </button>
-        ))}
+        )}
       </div>
     </div>
   );
@@ -136,17 +139,24 @@ function ObituaryListItem({
 
 // Main Component
 export function ObituariesContent() {
-  const [selectedTime, setSelectedTime] = useState('Day');
+  const [searchQuery, setSearchQuery] = useState('');
   const [selectedCounty, setSelectedCounty] = useState('All');
+
+  const filteredObituaries = mockObituaries.filter(obit => {
+    const matchesCounty = selectedCounty === 'All' || obit.county === selectedCounty;
+    const q = searchQuery.toLowerCase();
+    const matchesSearch = !q || obit.name.toLowerCase().includes(q) || obit.city.toLowerCase().includes(q);
+    return matchesCounty && matchesSearch;
+  });
 
   return (
     <div className="bg-white w-full pb-[200px]">
       <CountyDropdown selected={selectedCounty} onSelect={setSelectedCounty} />
-      <ChipRow items={TIME_FILTERS} selected={selectedTime} onSelect={setSelectedTime} />
+      <ObituarySearch value={searchQuery} onChange={setSearchQuery} />
       
       {/* Obituary List with Ads */}
       <div>
-        {mockObituaries.map((obit, index) => (
+        {filteredObituaries.map((obit, index) => (
           <div key={obit.id}>
             <ObituaryListItem
               name={obit.name}
