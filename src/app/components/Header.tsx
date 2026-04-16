@@ -118,10 +118,10 @@ export function Header() {
         <>
           {/* ── Logo row ────────────────────────────── */}
           <div className="flex items-center justify-between w-full">
-            <Link to="/" className="flex items-center gap-2.5">
+            <Link to="/" className="flex items-end gap-2.5">
               <img src={logoNew} alt="Logo" className="w-[200px] h-auto" />
               {sectionLabel && (
-                <span className="text-[10px] font-bold tracking-[1px] text-white/55 font-['Source_Sans_3',sans-serif]">
+                <span className="text-[10px] font-thin tracking-[1px] text-white/55 font-['Source_Sans_3',sans-serif] mb-[5px]">
                   {sectionLabel}
                 </span>
               )}
