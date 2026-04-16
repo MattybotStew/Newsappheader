@@ -130,7 +130,7 @@ function HeroArticleSlider() {
                   }
                 }}
               >
-                <div className="bg-[#dde3ea] h-[216px] overflow-clip shadow-[0px_1px_3px_0px_rgba(0,0,0,0.12),0px_1px_2px_0px_rgba(0,0,0,0.08)] relative mx-1">
+                <div className="bg-[#dde3ea] h-[216px] overflow-clip shadow-[0px_1px_3px_0px_rgba(0,0,0,0.12),0px_1px_2px_0px_rgba(0,0,0,0.08)] relative mx-1 rounded-sm">
                   <img
                     src={story.imageUrl}
                     alt={story.title}
