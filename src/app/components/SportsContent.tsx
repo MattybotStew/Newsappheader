@@ -2,6 +2,7 @@ import { useState, useRef, TouchEvent, MouseEvent } from 'react';
 import { Link } from 'react-router';
 import { NativeAdArticleCard } from './ads/NativeAdArticleCard';
 import { adConfig } from '../config/adConfig';
+import { SportsTicker } from './SportsTicker';
 import { sportsArticles } from '../data/mockArticles';
 
 // Filter Chips Component — Artifact style
@@ -212,6 +213,9 @@ export function SportsContent() {
 
   return (
     <div className="bg-white w-full pb-[200px]">
+      {/* Sports Ticker */}
+      <SportsTicker />
+
       {/* Hero Slider */}
       <div className="pt-3 bg-[#f8f9fa]">
         <HeroArticleSlider />
