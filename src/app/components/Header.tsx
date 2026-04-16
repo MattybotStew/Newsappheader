@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import svgPaths from "../../imports/svg-6bngkawl5e";
+import logoNew from "../../assets/logoNew.svg";
 import { TopBannerAd } from './ads/TopBannerAd';
 import { adConfig } from '../config/adConfig';
 
@@ -118,29 +119,12 @@ export function Header() {
           {/* ── Logo row ────────────────────────────── */}
           <div className="flex items-center justify-between w-full">
             <Link to="/" className="flex items-center gap-2.5">
-              <div className="bg-white rounded-[8px] size-[34px] flex items-center justify-center shrink-0">
-                <svg className="size-[22px]" fill="none" viewBox="0 0 22 22">
-                  <path d={svgPaths.p2331ea80} fill="url(#hdrGrad)" />
-                  <path d={svgPaths.p2c748980} stroke="url(#hdrGrad)" strokeWidth="1.65" />
-                  <defs>
-                    <linearGradient id="hdrGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#14b8a6" />
-                      <stop offset="50%" stopColor="#22c55e" />
-                      <stop offset="100%" stopColor="#f97316" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-              <div className="flex items-baseline gap-2">
-                <span className="font-['Source_Sans_3',sans-serif] text-[22px] text-white tracking-[-0.2px]">
-                  <span className="font-normal">access</span><span className="font-bold">WDUN</span>
+              <img src={logoNew} alt="Logo" className="w-[200px] h-auto" />
+              {sectionLabel && (
+                <span className="text-[10px] font-bold tracking-[1px] text-white/55 font-['Source_Sans_3',sans-serif]">
+                  {sectionLabel}
                 </span>
-                {sectionLabel && (
-                  <span className="text-[10px] font-bold tracking-[1px] text-white/55 font-['Source_Sans_3',sans-serif]">
-                    {sectionLabel}
-                  </span>
-                )}
-              </div>
+              )}
             </Link>
             <button
               onClick={() => setIsSearchOpen(true)}
