@@ -213,8 +213,8 @@ export function SportsContent() {
 
   return (
     <div className="bg-white w-full pb-[200px]">
-      {/* Sports Ticker */}
-      <SportsTicker />
+      {/* Sports Ticker — only shown for Friday Game Night */}
+      {selectedCategory === 'Friday Game Night' && <SportsTicker />}
 
       {/* Hero Slider */}
       <div className="pt-3 bg-[#f8f9fa]">
