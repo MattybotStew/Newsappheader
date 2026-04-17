@@ -22,17 +22,26 @@ function getSectionLabel(pathname: string): string | null {
 }
 
 const STATIONS = ['WDUN AM 550', 'WDUN FM 102.9', '94.5FM THE LAKE'];
+const STREAM_URLS = [
+  'https://ice42.securenetsystems.net/WDUN',
+  'https://ice24.securenetsystems.net/WDUNFM',
+  'https://ice42.securenetsystems.net/WGGA',
+];
 
 export function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isBuffering, setIsBuffering] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentStation, setCurrentStation] = useState(0);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const [headerHeight, setHeaderHeight] = useState(120);
   const sectionLabel = getSectionLabel(location.pathname);
 
   // Detect scroll direction on the main scroll container
@@ -63,6 +72,60 @@ export function Header() {
     if (isSearchOpen) searchInputRef.current?.focus();
   }, [isSearchOpen]);
 
+  // Measure header height whenever layout-affecting state changes
+  useEffect(() => {
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.offsetHeight);
+    }
+  }, [isScrolled, isSearchOpen, isExpanded]);
+
+  // Clean up audio on unmount
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = '';
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
+  const startStream = (stationIndex: number) => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.src = '';
+    }
+    const audio = new Audio(STREAM_URLS[stationIndex]);
+    audioRef.current = audio;
+    audio.addEventListener('waiting', () => setIsBuffering(true));
+    audio.addEventListener('playing', () => { setIsBuffering(false); setIsPlaying(true); });
+    audio.addEventListener('error', () => { setIsBuffering(false); setIsPlaying(false); });
+    audio.addEventListener('ended', () => { setIsBuffering(false); setIsPlaying(false); });
+    setIsBuffering(true);
+    audio.play().catch(() => { setIsBuffering(false); setIsPlaying(false); });
+  };
+
+  const handlePlayPause = () => {
+    if (isPlaying || isBuffering) {
+      // Stop
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = '';
+        audioRef.current = null;
+      }
+      setIsPlaying(false);
+      setIsBuffering(false);
+    } else {
+      startStream(currentStation);
+    }
+  };
+
+  const handleSelectStation = (index: number) => {
+    setCurrentStation(index);
+    setIsExpanded(false);
+    startStream(index);
+  };
+
   const handleSearchSubmit = () => {
     const q = searchQuery.trim();
     if (q) {
@@ -73,7 +136,7 @@ export function Header() {
   };
 
   return (
-    <div className="bg-[#1a3178] sticky top-0 z-50 w-full shrink-0 flex flex-col gap-[8px] p-[6px] overflow-hidden">
+    <div ref={headerRef} className="bg-[#1a3178] sticky top-0 z-50 w-full shrink-0 flex flex-col gap-[8px] p-[6px]">
 
       {/* ── Search mode ─────────────────────────────── */}
       {isSearchOpen ? (
@@ -146,7 +209,7 @@ export function Header() {
                 className="flex items-center gap-2 flex-1 min-w-0 hover:opacity-80 transition-opacity text-left"
               >
                 <div className="flex items-center gap-1.5 shrink-0">
-                  <div className={`rounded-[3px] size-[6px] bg-[#ff5252] ${isPlaying ? 'animate-pulse' : 'opacity-50'}`} />
+                  <div className={`rounded-[3px] size-[6px] bg-[#ff5252] ${(isPlaying || isBuffering) ? 'animate-pulse' : 'opacity-50'}`} />
                   <span className="bg-[#c62828] text-white text-[9px] font-extrabold tracking-[0.8px] px-[6px] py-[2px] rounded-full">LIVE</span>
                 </div>
                 <span className="text-white text-[13px] font-medium font-['Source_Sans_3',sans-serif] truncate">
@@ -154,14 +217,36 @@ export function Header() {
                 </span>
               </button>
 
-              {/* Right: listen button + "More stations" */}
+              {/* Right: "More stations" + listen button */}
               <div className="flex items-center gap-2 shrink-0">
+                {!isScrolled && (
+                  <button
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    className="flex items-center gap-0.5 text-white/60 hover:text-white transition-colors text-[11px] font-medium font-['Source_Sans_3',sans-serif] whitespace-nowrap"
+                  >
+                    More stations
+                    <svg viewBox="0 0 24 24" fill="none" className={`size-3 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>
+                      <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} stroke="currentColor" />
+                    </svg>
+                  </button>
+                )}
+
                 <button
-                  onClick={() => setIsPlaying(!isPlaying)}
-                  className={`active:scale-95 transition-all flex items-center gap-1.5 pl-3 pr-1.5 rounded-[3px] text-white text-[12px] font-bold font-['Source_Sans_3',sans-serif] whitespace-nowrap ${isPlaying ? 'bg-[#0077b6] hover:bg-[#005f92]' : 'bg-[#009933] hover:bg-[#007a29]'}`}
+                  onClick={handlePlayPause}
+                  className={`active:scale-95 transition-all flex items-center gap-1.5 pl-3 pr-1.5 rounded-[3px] text-white text-[12px] font-bold font-['Source_Sans_3',sans-serif] whitespace-nowrap ${(isPlaying || isBuffering) ? 'bg-[#0077b6] hover:bg-[#005f92]' : 'bg-[#009933] hover:bg-[#007a29]'}`}
                   style={{ height: isScrolled ? '22px' : '26px' }}
                 >
-                  {isPlaying ? (
+                  {isBuffering ? (
+                    <>
+                      Loading
+                      <div className="size-[18px] rounded-full bg-black/30 flex items-center justify-center shrink-0">
+                        <svg className="size-3 animate-spin" viewBox="0 0 24 24" fill="none">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="white" strokeWidth="3" />
+                          <path className="opacity-75" fill="white" d="M4 12a8 8 0 018-8v8z" />
+                        </svg>
+                      </div>
+                    </>
+                  ) : isPlaying ? (
                     <>
                       Pause
                       <div className="size-[18px] rounded-full bg-black/30 flex items-center justify-center shrink-0">
@@ -181,18 +266,6 @@ export function Header() {
                     </>
                   )}
                 </button>
-
-                {!isScrolled && (
-                  <button
-                    onClick={() => setIsExpanded(!isExpanded)}
-                    className="flex items-center gap-0.5 text-white/60 hover:text-white transition-colors text-[11px] font-medium font-['Source_Sans_3',sans-serif] whitespace-nowrap"
-                  >
-                    More stations
-                    <svg viewBox="0 0 24 24" fill="none" className={`size-3 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>
-                      <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} stroke="currentColor" />
-                    </svg>
-                  </button>
-                )}
               </div>
             </div>
           </div>
@@ -205,8 +278,8 @@ export function Header() {
       {/* ── Station dropdown ────────────────────────── */}
       {isExpanded && !isSearchOpen && (
         <>
-          <div className="fixed inset-0 bg-black/20 z-40" onClick={() => setIsExpanded(false)} />
-          <div className="absolute top-full left-4 right-4 mt-1 bg-white rounded-lg shadow-xl overflow-hidden z-50 border border-[#d1d5db]">
+          <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setIsExpanded(false)} />
+          <div className="fixed left-4 right-4 bg-white rounded-lg shadow-xl overflow-hidden z-[60] border border-[#d1d5db]" style={{ top: headerHeight + 4 }}>
             <div className="bg-[#011843] px-4 py-2.5 flex items-center justify-between">
               <span className="font-bold text-white text-[14px] font-['Source_Sans_3',sans-serif] tracking-[0.3px]">LISTEN LIVE</span>
               <button onClick={() => setIsExpanded(false)} className="text-white/70 hover:text-white transition-colors">
@@ -219,7 +292,7 @@ export function Header() {
               {STATIONS.map((name, i) => (
                 <button
                   key={i}
-                  onClick={() => { setCurrentStation(i); setIsExpanded(false); }}
+                  onClick={() => handleSelectStation(i)}
                   className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
                 >
                   <span className={`font-semibold text-[14px] font-['Source_Sans_3',sans-serif] ${i === currentStation ? 'text-[#1a56a4]' : 'text-[#374151]'}`}>

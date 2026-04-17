@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { ChevronLeft, Share2 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { AnchoredBanner } from '../components/ads/AnchoredBanner';
 import { adConfig } from '../config/adConfig';
 import wdunAmLogo from '../../assets/wdun-am-550.png';
@@ -15,16 +15,18 @@ const stationData = {
     frequency: 'AM 550',
     tagline: 'News Talk 550',
     genre: 'News & Talk',
-    description: 'North Georgia\'s trusted source for news, weather, and talk radio since 1947.',
+    description: "North Georgia's trusted source for news, weather, and talk radio since 1947.",
     logoUrl: wdunAmLogo,
+    streamUrl: 'https://ice42.securenetsystems.net/WDUN',
   },
   'wdun-fm': {
     name: 'WDUN FM 102.9',
     frequency: 'FM 102.9',
-    tagline: 'North Georgia\'s News Station',
+    tagline: "North Georgia's News Station",
     genre: 'News & Information',
     description: 'Your source for local news, sports, and community updates across North Georgia.',
     logoUrl: wdunFmLogo,
+    streamUrl: 'https://ice24.securenetsystems.net/WDUNFM',
   },
   'the-lake': {
     name: '94.5 The Lake',
@@ -33,6 +35,7 @@ const stationData = {
     genre: 'Classic Rock',
     description: 'Playing the greatest hits from the 70s, 80s, and 90s - music you know and love.',
     logoUrl: lakeLogo,
+    streamUrl: 'https://ice42.securenetsystems.net/WGGA',
   },
 };
 
@@ -40,8 +43,75 @@ export function RadioStationPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isBuffering, setIsBuffering] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const station = id ? stationData[id as keyof typeof stationData] : null;
+
+  // Clean up audio when station changes or unmounts
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = '';
+        audioRef.current = null;
+      }
+    };
+  }, [id]);
+
+  const handlePlayPause = () => {
+    if (isPlaying) {
+      // Stop stream
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = '';
+        audioRef.current = null;
+      }
+      setIsPlaying(false);
+      setIsBuffering(false);
+    } else {
+      // Start stream
+      if (!station) return;
+      setIsBuffering(true);
+      const audio = new Audio(station.streamUrl);
+      audioRef.current = audio;
+
+      audio.addEventListener('playing', () => {
+        setIsBuffering(false);
+        setIsPlaying(true);
+      });
+
+      audio.addEventListener('waiting', () => {
+        setIsBuffering(true);
+      });
+
+      audio.addEventListener('canplay', () => {
+        setIsBuffering(false);
+      });
+
+      audio.addEventListener('error', () => {
+        setIsBuffering(false);
+        setIsPlaying(false);
+      });
+
+      audio.play().catch(() => {
+        setIsBuffering(false);
+        setIsPlaying(false);
+      });
+    }
+  };
+
+  const handleStationSwitch = (key: string) => {
+    // Stop current stream before navigating
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.src = '';
+      audioRef.current = null;
+    }
+    setIsPlaying(false);
+    setIsBuffering(false);
+    navigate(`/radio/${key}`);
+  };
 
   if (!station) {
     return (
@@ -60,9 +130,9 @@ export function RadioStationPage() {
       <Header />
       <main className="flex-1 overflow-y-auto flex flex-col">
 
-        {/* Player area — fills screen, vertically centered */}
+        {/* Player area */}
         <div className="flex-1 bg-gradient-to-b from-[#011843] to-[#1a3178] relative flex flex-col justify-center px-6 pt-12 pb-[200px]">
-          {/* Back button — absolute so it doesn't affect centering */}
+          {/* Back button */}
           <button
             onClick={() => navigate('/radio')}
             className="absolute top-4 left-6 flex items-center gap-1.5 text-white/70 hover:text-white transition-colors"
@@ -101,23 +171,28 @@ export function RadioStationPage() {
 
               {/* Live pulse bar */}
               <div className="flex items-center gap-2 mb-4">
-                <div className={`size-2 rounded-full shrink-0 ${isPlaying ? 'bg-[#009933] animate-pulse' : 'bg-white/30'}`} />
+                <div className={`size-2 rounded-full shrink-0 transition-colors ${isPlaying ? 'bg-[#009933] animate-pulse' : 'bg-white/30'}`} />
                 <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
                   {isPlaying && (
                     <div className="h-full bg-[#009933] animate-pulse rounded-full" style={{ width: '100%' }} />
                   )}
+                  {isBuffering && !isPlaying && (
+                    <div className="h-full bg-white/40 rounded-full animate-pulse" style={{ width: '60%' }} />
+                  )}
                 </div>
                 <span className="font-['Source_Sans_3',sans-serif] text-[11px] font-bold tracking-widest text-white/60 uppercase shrink-0">
-                  Live
+                  {isBuffering && !isPlaying ? 'Loading' : 'Live'}
                 </span>
               </div>
 
               {/* Play/Pause control */}
               <button
-                onClick={() => setIsPlaying(!isPlaying)}
+                onClick={handlePlayPause}
                 className="size-10 flex items-center justify-center rounded-full bg-white hover:scale-105 active:scale-95 transition-transform shadow-lg"
               >
-                {isPlaying ? (
+                {isBuffering && !isPlaying ? (
+                  <div className="size-4 border-2 border-[#011843] border-t-transparent rounded-full animate-spin" />
+                ) : isPlaying ? (
                   <svg className="size-4 text-[#011843]" fill="currentColor" viewBox="0 0 24 24">
                     <rect x="6" y="4" width="4" height="16" rx="1"/>
                     <rect x="14" y="4" width="4" height="16" rx="1"/>
@@ -142,7 +217,7 @@ export function RadioStationPage() {
                 .map(([key, s]) => (
                   <button
                     key={key}
-                    onClick={() => navigate(`/radio/${key}`)}
+                    onClick={() => handleStationSwitch(key)}
                     className="w-full flex items-center gap-3 py-2 hover:opacity-80 transition-opacity text-left"
                   >
                     <div className="size-10 shrink-0 bg-white rounded flex items-center justify-center overflow-hidden">

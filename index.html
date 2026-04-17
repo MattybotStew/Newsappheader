@@ -14,6 +14,25 @@
         }
       })();
     </script>
+
+    <!-- Google Publisher Tags (GPT) -->
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script>
+      window.googletag = window.googletag || { cmd: [] };
+      googletag.cmd.push(function () {
+        googletag.pubads().enableSingleRequest();
+        googletag.pubads().collapseEmptyDivs();
+        googletag.pubads().enableLazyLoad({
+          fetchMarginPercent: 100,
+          renderMarginPercent: 50,
+          mobileScaling: 1.0,
+        });
+        googletag.enableServices();
+      });
+    </script>
+
+    <!-- PubGuru Header Bidding -->
+    <script async src="https://c.pubguru.net/pg.accesswdun.home.js"></script>
   </head>
   <body>
     <div id="root"></div>

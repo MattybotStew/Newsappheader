@@ -197,4 +197,85 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  /* WordPress content rendered HTML */
+  .wp-content p {
+    margin-bottom: 1rem;
+  }
+
+  .wp-content h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a3178;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+  }
+
+  .wp-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a3178;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .wp-content ul,
+  .wp-content ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .wp-content ul {
+    list-style-type: disc;
+  }
+
+  .wp-content ol {
+    list-style-type: decimal;
+  }
+
+  .wp-content li {
+    margin-bottom: 0.25rem;
+  }
+
+  .wp-content a {
+    color: #1a56a4;
+    text-decoration: underline;
+  }
+
+  .wp-content strong,
+  .wp-content b {
+    font-weight: 700;
+  }
+
+  .wp-content em,
+  .wp-content i {
+    font-style: italic;
+  }
+
+  .wp-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 0.75rem 0;
+  }
+
+  .wp-content blockquote {
+    border-left: 4px solid #1a3178;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: #41484d;
+    font-style: italic;
+  }
+
+  .wp-content figure {
+    margin: 1rem 0;
+  }
+
+  .wp-content figcaption {
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-align: center;
+    margin-top: 0.25rem;
+  }
 }

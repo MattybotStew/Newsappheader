@@ -22,7 +22,7 @@ function figmaAssetPlugin(): Plugin {
 }
 
 export default defineConfig({
-base: '/Newsappheader/',
+  base: '/Newsappheader/',
   plugins: [
     react(),
     tailwindcss(),
@@ -34,4 +34,16 @@ base: '/Newsappheader/',
     },
   },
   assetsInclude: ['**/*.svg', '**/*.csv'],
+  server: {
+    proxy: {
+      '/soundcloud-feed': {
+        target: 'https://feeds.soundcloud.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/soundcloud-feed/, ''),
+        headers: {
+          'Origin': 'https://feeds.soundcloud.com',
+        },
+      },
+    },
+  },
 })

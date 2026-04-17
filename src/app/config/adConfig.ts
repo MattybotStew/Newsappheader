@@ -1,30 +1,36 @@
-// Ad Unit IDs for Google Ad Manager
-// Replace YOUR_NETWORK_ID with your actual GAM network ID
+// Google Ad Manager — AccessWDUN (Network ID: 4118169)
+
+// Set to true when ready to enable live ads
+export const ADS_ENABLED = false;
 
 export const adConfig = {
-  networkId: 'YOUR_NETWORK_ID',
+  networkId: '4118169',
   adUnits: {
-    // Top banner ad (below header)
-    topBanner: '/YOUR_NETWORK_ID/accessnorthga_top_banner',
-    
-    // Native ads
-    newsFeedNative: '/YOUR_NETWORK_ID/accessnorthga_news_feed_native',
-    sportsFeedNative: '/YOUR_NETWORK_ID/accessnorthga_sports_feed_native',
-    podcastsNative: '/YOUR_NETWORK_ID/accessnorthga_podcasts_native',
-    
-    // Banner ads - Medium Rectangle (300x250)
-    articleInline: '/YOUR_NETWORK_ID/accessnorthga_article_inline',
-    obituariesInline: '/YOUR_NETWORK_ID/accessnorthga_obituaries_inline',
-    weatherInline: '/YOUR_NETWORK_ID/accessnorthga_weather_inline',
-    radioInline: '/YOUR_NETWORK_ID/accessnorthga_radio_inline',
-    radioStationInline: '/YOUR_NETWORK_ID/accessnorthga_radio_station_inline',
-    
-    // Anchored banner ads
-    articleBottom: '/YOUR_NETWORK_ID/accessnorthga_article_bottom',
-  }
+    // Top global banner (below header) — leaderboard / mobile banner
+    topBanner: '/4118169/awdun_header_lazy',
+
+    // In-feed native / medium rectangle
+    newsFeedNative:    '/4118169/awdun_infeed_lazy',
+    sportsFeedNative:  '/4118169/awdun_infeed_lazy',
+    podcastsNative:    '/4118169/awdun_infeed_lazy',
+
+    // Inline banner inside articles / obituaries
+    articleInline:      '/4118169/awdun_sidebar_lazy',
+    obituariesInline:   '/4118169/awdun_sidebar_lazy',
+    weatherInline:      '/4118169/awdun_sidebar_lazy',
+    radioInline:        '/4118169/awdun_radio_tab',
+    radioStationInline: '/4118169/awdun_radio_tab',
+
+    // Anchored bottom banner
+    articleBottom: '/4118169/awdun_bottom_lazy',
+    anchoredBanner: '/4118169/awdun_bottom_lazy',
+  },
 };
 
 export const adSizes = {
-  mediumRectangle: { width: 300, height: 250 },
-  anchoredBanner: { width: 320, height: 50 },
+  // Responsive: 300x250 on mobile, 728x90 on desktop
+  leaderboard:      [[728, 90], [320, 50]] as [number, number][],
+  mediumRectangle:  [[300, 250], [320, 50]] as [number, number][],
+  anchoredBanner:   [[728, 90], [320, 50]] as [number, number][],
+  infeed:           [[300, 250], [320, 50]] as [number, number][],
 };

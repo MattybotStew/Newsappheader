@@ -1,13 +1,22 @@
-import { useNavigate } from 'react-router';
-import { ChevronLeft, MapPin, Calendar, Church, Facebook, Mail, Share2 } from 'lucide-react';
+import { useNavigate, useParams } from 'react-router';
+import { ChevronLeft, Facebook, Mail, Share2 } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { AnchoredBanner } from '../components/ads/AnchoredBanner';
 import { adConfig } from '../config/adConfig';
-import placeholderImage from 'figma:asset/2b97325de4e56fe079f3ddbcfdc4d5b4aa816d2f.png';
+import { useObituaryById, getFeaturedImage, stripHtml } from '../api/hooks';
+import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+
+function formatDate(dateStr: string): string {
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    month: 'long', day: 'numeric', year: 'numeric',
+  });
+}
 
 export function ObituaryDetailPage() {
   const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+  const { data: post, isLoading, isError } = useObituaryById(id ? parseInt(id) : null);
 
   return (
     <div className="size-full flex flex-col bg-white">
@@ -16,150 +25,86 @@ export function ObituaryDetailPage() {
         <div className="bg-white">
           {/* Back Button */}
           <div className="border-b border-[#c1c7ce]">
-            <button 
+            <button
               onClick={() => navigate('/obituaries')}
               className="flex items-center gap-2 px-4 py-3 hover:bg-gray-50 transition-colors w-full"
             >
-              <ChevronLeft className="size-5 text-[#1976d2]" />
-              <span className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[14px] text-[#1976d2]" style={{ fontVariationSettings: "'wdth' 100" }}>
+              <ChevronLeft className="size-5 text-[#1a3178]" />
+              <span className="font-['Source_Sans_3',sans-serif] font-semibold text-[14px] text-[#1a3178]">
                 Back to Obituaries
               </span>
             </button>
           </div>
 
-          {/* Memorial Photo */}
-          <div className="w-full bg-gradient-to-b from-[#f5f5f5] to-white py-8">
-            <div className="flex justify-center">
-              <div className="w-[200px] h-[200px] rounded-full overflow-hidden bg-gradient-to-br from-[#e8e8e8] to-[#d0d0d0] border-4 border-white shadow-lg">
-                <img
-                  src="https://images.unsplash.com/photo-1750926013469-9d8f680d8aff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMGVsZGVybHklMjB3b21hbnxlbnwxfHx8fDE3NzQzNzQ3ODZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                  alt="Margaret Louise Thompson"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+          {isLoading && (
+            <div className="flex items-center justify-center py-24">
+              <div className="w-8 h-8 border-4 border-[#1a3178] border-t-transparent rounded-full animate-spin" />
             </div>
-          </div>
+          )}
 
-          {/* Name and Details */}
-          <div className="px-4 pb-4">
-            <h1 className="font-['Roboto:Bold',sans-serif] font-bold leading-[32px] text-[26px] text-[#1a3178] text-center mb-2" style={{ fontVariationSettings: "'wdth' 100" }}>
-              Margaret Louise Thompson
-            </h1>
-            
-            <div className="text-center mb-4">
-              <p className="font-['Roboto:Medium',sans-serif] font-medium text-[16px] text-[#41484d] mb-1" style={{ fontVariationSettings: "'wdth' 100" }}>
-                January 15, 1942 - March 1, 2026
-              </p>
-              <p className="font-['Roboto:Regular',sans-serif] text-[14px] text-[#6b7178]" style={{ fontVariationSettings: "'wdth' 100" }}>
-                Age 84, of Gainesville, Georgia
-              </p>
+          {isError && (
+            <div className="px-4 py-12 text-center text-[#6b7280]">
+              <p className="font-['Source_Sans_3',sans-serif] text-[16px]">Unable to load obituary. Please try again.</p>
             </div>
+          )}
 
-            {/* Quick Info */}
-            <div className="flex flex-col gap-2 mb-4 pb-4 border-b border-[#c1c7ce]">
-              <div className="flex items-center gap-2 text-[13px] text-[#41484d]">
-                <MapPin className="size-4 text-[#1976d2]" />
-                <span className="font-['Roboto:Regular',sans-serif]" style={{ fontVariationSettings: "'wdth' 100" }}>
-                  Memorial Park Funeral Home, Gainesville
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-[13px] text-[#41484d]">
-                <Calendar className="size-4 text-[#1976d2]" />
-                <span className="font-['Roboto:Regular',sans-serif]" style={{ fontVariationSettings: "'wdth' 100" }}>
-                  Visitation: March 5, 2026, 2:00 PM - 4:00 PM
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-[13px] text-[#41484d]">
-                <Calendar className="size-4 text-[#1976d2]" />
-                <span className="font-['Roboto:Regular',sans-serif]" style={{ fontVariationSettings: "'wdth' 100" }}>
-                  Service: March 6, 2026, 11:00 AM
-                </span>
-              </div>
-            </div>
-
-            {/* Share Buttons */}
-            <div className="flex items-center gap-2 pb-4 border-b border-[#c1c7ce]">
-              <span className="font-['Roboto:SemiBold',sans-serif] font-semibold text-[12px] text-[#41484d] mr-1" style={{ fontVariationSettings: "'wdth' 100" }}>
-                Share:
-              </span>
-              <button className="flex items-center justify-center size-8 rounded-full hover:bg-gray-100 transition-colors">
-                <Facebook className="size-4 text-[#1877f2]" fill="#1877f2" />
-              </button>
-              <button className="flex items-center justify-center size-8 rounded-full hover:bg-gray-100 transition-colors">
-                <svg className="size-4" viewBox="0 0 24 24" fill="#1DA1F2">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-              </button>
-              <button className="flex items-center justify-center size-8 rounded-full hover:bg-gray-100 transition-colors">
-                <Mail className="size-4 text-[#41484d]" />
-              </button>
-              <button className="flex items-center justify-center size-8 rounded-full hover:bg-gray-100 transition-colors">
-                <Share2 className="size-4 text-[#41484d]" />
-              </button>
-            </div>
-          </div>
-
-          {/* Obituary Content */}
-          <div className="px-4 py-6 pb-[200px]">
-            <div className="font-['Roboto:Regular',sans-serif] text-[15px] text-[#1a1c1e] leading-[24px]" style={{ fontVariationSettings: "'wdth' 100" }}>
-              <p className="mb-4">
-                Margaret Louise Thompson, 84, of Gainesville, Georgia, passed away peacefully on March 1, 2026, surrounded by her loving family. She was born on January 15, 1942, in Hall County to the late John and Mary Henderson.
-              </p>
-
-              <p className="mb-4">
-                Margaret was a devoted wife, mother, grandmother, and great-grandmother who cherished every moment spent with her family. She was a member of First Baptist Church of Gainesville for over 50 years, where she taught Sunday School and volunteered with the women's ministry.
-              </p>
-
-              <p className="mb-4">
-                A retired elementary school teacher with Hall County Schools, Margaret dedicated 35 years to educating young minds and touching countless lives. Her former students often remarked on her kindness, patience, and genuine love for teaching.
-              </p>
-
-              <p className="mb-4">
-                She enjoyed gardening, quilting, and cooking for her family. Her famous peach cobbler and Sunday dinners will be greatly missed. Margaret had a servant's heart and was always the first to help anyone in need.
-              </p>
-
-              <div className="my-6 rounded-xl border border-[#e2e8f0] bg-white shadow-sm overflow-hidden">
-                <div className="flex items-center gap-2 bg-[#1a3178] px-4 py-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-white shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  <span className="text-white font-bold text-[13px] uppercase tracking-wide">Survivors</span>
-                </div>
-                <div className="px-4 py-3 space-y-2 text-[14px] text-[#41484d] leading-relaxed">
-                  <p>Husband of 62 years: Robert Thompson of Gainesville</p>
-                  <p>Children: Susan (David) Martin of Flowery Branch, Michael (Jennifer) Thompson of Oakwood, and Lisa (James) Wilson of Buford</p>
-                  <p>Grandchildren: Emily, Sarah, Matthew, Daniel, Rachel, and Hannah</p>
-                  <p>Great-grandchildren: Olivia, Noah, and Grace</p>
-                  <p>Brother: John (Carol) Henderson Jr. of Dahlonega</p>
+          {post && (
+            <>
+              {/* Memorial Photo */}
+              <div className="w-full bg-gradient-to-b from-[#f5f5f5] to-white py-8">
+                <div className="flex justify-center">
+                  <div className="w-[200px] h-[200px] rounded-full overflow-hidden bg-gradient-to-br from-[#e8e8e8] to-[#d0d0d0] border-4 border-white shadow-lg">
+                    <ImageWithFallback
+                      src={getFeaturedImage(post)}
+                      alt={stripHtml(post.title.rendered)}
+                      className="w-full h-full object-cover"
+                      fallbackSrc="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&q=80"
+                    />
+                  </div>
                 </div>
               </div>
 
-              <p className="mb-4">
-                In addition to her parents, Margaret was preceded in death by her sister, Elizabeth Ann Henderson.
-              </p>
+              {/* Name and Details */}
+              <div className="px-4 pb-4">
+                <h1 className="font-['Source_Sans_3',sans-serif] font-bold leading-[32px] text-[26px] text-[#1a3178] text-center mb-2">
+                  {stripHtml(post.title.rendered)}
+                </h1>
 
-              <div className="my-6 rounded-xl border border-[#e2e8f0] bg-white shadow-sm overflow-hidden">
-                <div className="flex items-center gap-2 bg-[#1a3178] px-4 py-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-white shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                  <span className="text-white font-bold text-[13px] uppercase tracking-wide">Service Information</span>
-                </div>
-                <div className="px-4 py-3 space-y-2 text-[14px] text-[#41484d] leading-relaxed">
-                  <p><strong className="text-[#1a1c1e]">Visitation:</strong> Tuesday, March 5, 2026, from 2:00 PM to 4:00 PM at Memorial Park Funeral Home</p>
-                  <p><strong className="text-[#1a1c1e]">Funeral Service:</strong> Wednesday, March 6, 2026, at 11:00 AM at First Baptist Church of Gainesville</p>
-                  <p><strong className="text-[#1a1c1e]">Interment:</strong> Memorial Park Cemetery, Gainesville</p>
-                  <p className="pt-2 border-t border-[#e2e8f0] mt-1">
-                    The family will receive friends at the church following the service.
+                <div className="text-center mb-4">
+                  <p className="font-['Source_Sans_3',sans-serif] font-medium text-[14px] text-[#41484d]">
+                    Published {formatDate(post.date)}
                   </p>
                 </div>
+
+                {/* Share Buttons */}
+                <div className="flex items-center gap-2 pb-4 border-b border-[#c1c7ce]">
+                  <span className="font-['Source_Sans_3',sans-serif] font-semibold text-[12px] text-[#41484d] mr-1">Share:</span>
+                  <button className="flex items-center justify-center size-8 rounded-full hover:bg-gray-100 transition-colors">
+                    <Facebook className="size-4 text-[#1877f2]" fill="#1877f2" />
+                  </button>
+                  <button className="flex items-center justify-center size-8 rounded-full hover:bg-gray-100 transition-colors">
+                    <svg className="size-4" viewBox="0 0 24 24" fill="#1DA1F2">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                  </button>
+                  <button className="flex items-center justify-center size-8 rounded-full hover:bg-gray-100 transition-colors">
+                    <Mail className="size-4 text-[#41484d]" />
+                  </button>
+                  <button className="flex items-center justify-center size-8 rounded-full hover:bg-gray-100 transition-colors">
+                    <Share2 className="size-4 text-[#41484d]" />
+                  </button>
+                </div>
               </div>
 
-              <p className="mb-4">
-                In lieu of flowers, the family requests that memorial donations be made to First Baptist Church of Gainesville Building Fund or the American Heart Association.
-              </p>
-
-              <p className="italic text-[#41484d]">
-                "Her children arise and call her blessed; her husband also, and he praises her." - Proverbs 31:28
-              </p>
-            </div>
-          </div>
+              {/* Obituary Content */}
+              <div className="px-4 py-6 pb-[200px]">
+                <div
+                  className="font-['Source_Sans_3',sans-serif] text-[15px] text-[#1a1c1e] leading-[24px] wp-content"
+                  dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+                />
+              </div>
+            </>
+          )}
         </div>
       </main>
       <Footer />
